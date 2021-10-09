@@ -1,0 +1,35 @@
+# Mensaje sy traducciones varias
+Create a new entry: Crear Nuevo Registro
+list: Lista
+Actions: Acciones
+Delete: Borrar
+Edit: Editar
+edit: editar
+Back to the list: Regresar
+Create: Crear
+create: crear
+Your name: Nombre
+Id: Id
+Nombre: Nombre
+Matricula: Matrícula
+Imagen: 	Imagen
+Imagename: 	Nombre de Imagen
+F nacimiento: 	Fecha de Nacimiento
+A paterno: Apellido Paterno
+A materno: Apellido Materno
+Lugar nacimiento: Lugar de Nacimiento
+Created at: Fecha de Creación
+Updated at: Fecha de Actualización
+Is_active: Estado
+Show: Mostrar
+show: mostrar
+document: documento
+New: Nuevo
+Select Date: Selecciona la Fecha
+Save: Guardar
+Dashboard: Tablero
+Create new: Nuevo Registro
+no records found: no se encontraron registros
+breadcrumb:
+  link_sonata_user_user_list: Usuarios
+Eventos por Ano List: Eventos por Año

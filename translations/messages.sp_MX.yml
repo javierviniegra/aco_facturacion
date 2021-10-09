@@ -1,0 +1,54 @@
+#Para el documento de Alumnos y generales de CRUD
+Create a new entry: Crear Nuevo Registro
+list: Lista
+actions: Acciones
+Delete: Borrar
+Edit: Editar
+Update: Actualizar
+Back to the list: Regresar
+back to list: Regresar
+Create: Crear
+Your name: Nombre
+Id: Id
+Nombre: Nombre
+Matricula: Matrícula
+Imagen: 	Imagen
+Imagename: 	Nombre de Imagen
+F nacimiento: 	Fecha de Nacimiento
+A paterno: Apellido Paterno
+A materno: Apellido Materno
+Lugar nacimiento: Lugar de Nacimiento
+Created at: Fecha de Creación
+Updated at: Fecha de Actualización
+Is active: Estado
+F_nacimiento: 	Fecha de Nacimiento
+A_paterno: Apellido Paterno
+A_materno: Apellido Materno
+Lugar_nacimiento: Lugar de Nacimiento
+Created_at: Fecha de Creación
+Updated_at: Fecha de Actualización
+Is_active: Estado
+Show: Mostrar
+document: Documento
+New: Nuevo
+Select Date: Selecciona la Fecha
+Save: Guardar
+Dashboard: Tablero
+Create New: Nuevo Registro
+no records found: No se encontraron registros
+breadcrumb.link_sonata_user_user_list: Usuarios
+events:  
+    by:  
+        year: Eventos por Año
+cub:
+    regulated:
+        measures: Cub Medidas Normadas
+        measures_ts: Cub Medidas - Tipo de Seguridad
+        measures_fn: Cub Medidas - Función
+Users: Usuarios
+Groups: Grupos
+Configuration: Configuración
+Catalogues: Catálogos
+Presentation: Presentación
+Definitions: Definiciones
+Are you sure you want to delete this item?: Realmente deseas eliminar el registro?
