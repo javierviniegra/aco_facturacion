@@ -29,6 +29,22 @@
     "doctrine/deprecations": {
         "version": "v0.5.3"
     },
+    "doctrine/doctrine-bundle": {
+        "version": "2.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.4",
+            "ref": "bac5c852ff628886de2753215fe5eb1f9ce980fb"
+        },
+        "files": [
+            "./config/packages/doctrine.yaml",
+            "./config/packages/prod/doctrine.yaml",
+            "./config/packages/test/doctrine.yaml",
+            "./src/Entity/.gitignore",
+            "./src/Repository/.gitignore"
+        ]
+    },
     "doctrine/event-manager": {
         "version": "1.1.1"
     },
@@ -41,8 +57,20 @@
     "doctrine/lexer": {
         "version": "1.2.1"
     },
+    "doctrine/orm": {
+        "version": "2.10.1"
+    },
     "doctrine/persistence": {
         "version": "2.2.2"
+    },
+    "doctrine/sql-formatter": {
+        "version": "1.1.1"
+    },
+    "egulias/email-validator": {
+        "version": "3.1.1"
+    },
+    "friendsofsymfony/user-bundle": {
+        "version": "v2.2.2"
     },
     "jms/metadata": {
         "version": "2.5.1"
@@ -55,6 +83,9 @@
     },
     "knplabs/knp-menu-bundle": {
         "version": "v3.1.0"
+    },
+    "nikic/php-parser": {
+        "version": "v4.13.0"
     },
     "phpstan/phpdoc-parser": {
         "version": "0.5.7"
@@ -88,8 +119,14 @@
     "sonata-project/cache": {
         "version": "2.2.0"
     },
+    "sonata-project/datagrid-bundle": {
+        "version": "3.4.0"
+    },
     "sonata-project/doctrine-extensions": {
         "version": "1.14.0"
+    },
+    "sonata-project/doctrine-orm-admin-bundle": {
+        "version": "3.35.0"
     },
     "sonata-project/exporter": {
         "version": "2.8.0"
@@ -108,6 +145,9 @@
     },
     "sonata-project/twig-extensions": {
         "version": "1.9.0"
+    },
+    "sonata-project/user-bundle": {
+        "version": "4.12.0"
     },
     "symfony/asset": {
         "version": "v4.4.27"
@@ -139,6 +179,9 @@
     },
     "symfony/dependency-injection": {
         "version": "v4.4.31"
+    },
+    "symfony/deprecation-contracts": {
+        "version": "v2.4.0"
     },
     "symfony/doctrine-bridge": {
         "version": "v4.4.31"
@@ -214,6 +257,27 @@
     },
     "symfony/intl": {
         "version": "v4.4.31"
+    },
+    "symfony/mailer": {
+        "version": "4.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.3",
+            "ref": "bbfc7e27257d3a3f12a6fb0a42540a42d9623a37"
+        },
+        "files": [
+            "./config/packages/mailer.yaml"
+        ]
+    },
+    "symfony/maker-bundle": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
+        }
     },
     "symfony/mime": {
         "version": "v4.4.31"
@@ -295,8 +359,14 @@
     "symfony/service-contracts": {
         "version": "v2.4.0"
     },
+    "symfony/stopwatch": {
+        "version": "v4.4.27"
+    },
     "symfony/string": {
         "version": "v5.3.7"
+    },
+    "symfony/templating": {
+        "version": "v4.4.30"
     },
     "symfony/translation": {
         "version": "3.3",
@@ -349,6 +419,20 @@
     },
     "symfony/var-exporter": {
         "version": "v4.4.31"
+    },
+    "symfony/web-profiler-bundle": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "6bdfa1a95f6b2e677ab985cd1af2eae35d62e0f6"
+        },
+        "files": [
+            "./config/packages/dev/web_profiler.yaml",
+            "./config/packages/test/web_profiler.yaml",
+            "./config/routes/dev/web_profiler.yaml"
+        ]
     },
     "symfony/yaml": {
         "version": "v4.4.29"
