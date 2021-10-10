@@ -13,11 +13,12 @@ security:
             pattern:            /admin(.*)
             context:            user
             form_login:
-                provider:       fos_userbundle
-                login_path:     /admin/login
-                use_forward:    false
-                check_path:     /admin/login_check
-                failure_path:   null
+                provider:        fos_userbundle
+                login_path:      sonata_user_admin_security_login
+                use_forward:     true
+                use_referer:     true
+                check_path:      sonata_user_admin_security_check
+                failure_path:    null
             logout:
                 path:           /admin/logout
                 target:         /admin/login

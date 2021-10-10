@@ -34,20 +34,14 @@ class RegisroClave
     private $is_valid;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime")
      */
     private $crated_at;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime")
      */
     private $updated_at;
-
-
-    public function __construct(ObjectManager $manager)
-    {
-        $this->clave = "jihjh";
-    }
 
 
     /**
@@ -55,7 +49,7 @@ class RegisroClave
      */
     public function onPrePersist()
     {
-        $this->created_at = new \DateTime();
+        $this->crated_at = new \DateTime();
         $this->updated_at = new \DateTime();
         $this->is_valid = True;
     }
@@ -115,24 +109,24 @@ class RegisroClave
         return $this;
     }
 
-    public function getCratedAt(): ?\DateTimeImmutable
+    public function getCratedAt(): ?\DateTime
     {
         return $this->crated_at;
     }
 
-    public function setCratedAt(\DateTimeImmutable $crated_at): self
+    public function setCratedAt(\DateTime $crated_at): self
     {
         $this->crated_at = $crated_at;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updated_at): self
+    public function setUpdatedAt(\DateTime $updated_at): self
     {
         $this->updated_at = $updated_at;
 
