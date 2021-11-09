@@ -36,15 +36,31 @@ class RegisroClaveRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?RegisroClave
+    
+    public function findOneByClave($value): ?RegisroClave
     {
         return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
+            ->andWhere('r.clave = :val')
             ->setParameter('val', $value)
+            ->andWhere('r.is_valid = :bandera')
+            ->setParameter('bandera', '1')
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
+    
+
+    public function invalidarClave($value)
+    {
+        $this->createQueryBuilder('r')
+            ->update()
+            ->set('r.is_valid', ':bandera')
+            ->setParameter('bandera', '0')
+            ->where('r.clave = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->execute()
+        ;
+    }
+    
 }

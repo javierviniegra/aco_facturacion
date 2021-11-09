@@ -1,0 +1,42 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+<div class="content">
+	<div class="form">
+		{{ form_start(form) }}
+		    <div class="my-custom-class-for-errors">
+		        {{ form_errors(form) }}
+		    </div>
+
+		    <div class="row">
+		        <div class="col">
+		            {{ form_row(form.firstname) }}
+		        </div>
+		    </div>
+		    <div class="row">
+		        <div class="col" id="phone">
+		            {{ form_row(form.phone) }}
+		        </div>
+		        <div class="col" id="email">
+		            {{ form_row(form.email) }}
+		        </div>
+		    </div>
+		    <div class="row">
+		        <div class="col" id="password">
+		            {{ form_row(form.plainPassword.first) }}
+		        </div>
+		        <div class="col" id="password1">
+		            {{ form_row(form.plainPassword.second) }}
+		        </div>
+		    </div>
+		    <div class="row">
+		        <div class="col">
+		    		<div class="btn btn-submit">{{ form_row(form.submit, { 'label': 'Continuar' }) }}</div>
+		        </div>
+		    </div>
+		{#{ form_row(form._token) }#}
+		{{ form_end(form) }}
+		{#{ form_end(form, {'render_rest': false}) }#}
+	</div>
+</div>
+{% endblock content %}

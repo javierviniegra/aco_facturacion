@@ -17,4 +17,19 @@ class SonataUserUser extends BaseUser
      * @ORM\Column(type="integer")
      */
     protected $id;
+
+    public function __construct()
+    {   
+        parent::__construct();
+        $this->roles = array('ROLE_DENTISTA');
+    }
+
+    public function setEmail($email)
+    {
+        $email = is_null($email) ? '' : $email;
+        parent::setEmail($email);
+        $this->setUsername($email);
+
+        return $this;
+    }
 }

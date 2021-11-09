@@ -87,7 +87,7 @@ form:
     username: 'Nombre de usuario'
     email: Email
     current_password: 'Contraseña actual'
-    password: Contraseña
-    password_confirmation: 'Repita la contraseña'
+    password: 'Crear Contraseña'
+    password_confirmation: 'Confirmar Contraseña'
     new_password: 'Nueva contraseña'
     new_password_confirmation: 'Repita la contraseña'

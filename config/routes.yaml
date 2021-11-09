@@ -9,3 +9,10 @@ sonata_user_admin_security:
 sonata_user_admin_resetting:
     resource: '@SonataUserBundle/Resources/config/routing/admin_resetting.xml'
     prefix: /admin/resetting
+    
+fos_user_register_register:
+    controller: 'App\Controller\UserBundle\RegistrationController::registerAction'
+    path: /register
+
+logout:
+    path: /logout
