@@ -88,7 +88,7 @@ class RegistrationController extends Base
                 $elRegistroClave = $em->getRepository('App\Entity\RegisroClave')->invalidarClave($clave);
 
                 if (null === $response = $event->getResponse()) {
-                    $url = $this->generateUrl('register');
+                    $url = $this->generateUrl('home_dentistas');
                     $response = new RedirectResponse($url);
                 }
 
