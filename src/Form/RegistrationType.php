@@ -23,7 +23,7 @@ class RegistrationType extends AbstractType{
                 'label' => 'Whatsapp (10 dígitos)',
             ])
             ->add('submit', SubmitType::class, [
-                'attr' => ['class' => 'save'],
+                'attr' => ['class' => 'save, button primary'],
             ]); 
 
 

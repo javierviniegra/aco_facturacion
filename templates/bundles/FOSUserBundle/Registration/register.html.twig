@@ -1,42 +1,87 @@
-{% extends "base.html.twig" %}
+{% extends "base_registry.html.twig" %}
 
 {% block content %}
-<div class="content">
-	<div class="form">
-		{{ form_start(form) }}
-		    <div class="my-custom-class-for-errors">
-		        {{ form_errors(form) }}
-		    </div>
 
-		    <div class="row">
-		        <div class="col">
-		            {{ form_row(form.firstname) }}
-		        </div>
-		    </div>
-		    <div class="row">
-		        <div class="col" id="phone">
-		            {{ form_row(form.phone) }}
-		        </div>
-		        <div class="col" id="email">
-		            {{ form_row(form.email) }}
-		        </div>
-		    </div>
-		    <div class="row">
-		        <div class="col" id="password">
-		            {{ form_row(form.plainPassword.first) }}
-		        </div>
-		        <div class="col" id="password1">
-		            {{ form_row(form.plainPassword.second) }}
-		        </div>
-		    </div>
-		    <div class="row">
-		        <div class="col">
-		    		<div class="btn btn-submit">{{ form_row(form.submit, { 'label': 'Continuar' }) }}</div>
-		        </div>
-		    </div>
-		{#{ form_row(form._token) }#}
-		{{ form_end(form) }}
-		{#{ form_end(form, {'render_rest': false}) }#}
-	</div>
-</div>
+      <section class="bg-white px-4 md:pr-0 flex flex-col md:flex-row sm:justify-between md:h-screen relative">
+      	<div class="flex flex-col md:w-full">
+	      	<div class="md:ml-20 bg-white pt-20 md:pt-20 md:pl-16">
+				<p class="font-display text-3xl md:text-6xl font-bold uppercase leading-none">bienvenido</p>
+				<div class="visible md:hidden pb-4"><p class="text-xl md:text-2xl font-bold leading-none">al programa exclusivo de Referidos Mureni</p></div>
+			</div>
+	      	<div class="md:ml-20 bg-softBlue md:h-full">
+		        	<div class="w-full md:w-7/12 md:pt-4 md:h-full">
+				      <div class="pl-4 pr-4 pt-0 md:pl-16">
+				        <p class="hidden md:visible text-xl md:text-2xl font-bold leading-none">al programa exclusivo de Referidos Mureni</p>
+				      	<div class="flex flex-col md:flex-row md:pt-4">
+				      		<p class="pt-4 md:pt-8 text-md font-normal leading-none text-blue-500 ">Si estás aquí es porque eres de los mejores profesionales dentales en el país, ¡felicidades!</p>	
+				      		<p class="pt-4 md:pl-6 md:pt-8 md:pb-8 text-md font-normal leading-none">Estás invitado a participar en nuestro programa exclusivo de digitalización de prácticas dentales, por favor registra tus datos para continuar:</p>
+				      	</div>
+				        	<div class="w-full sm:max-w-xs md:max-w-full">
+				          	  {{ form_start(form,{'attr': {'class': 'px-8 pt-6 pb-8 mb-4'}}) }}
+						    <div class="mb-4">
+						    	{% if not form.vars.valid %}
+							    	<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+							    		<span class="block sm:inline">
+						    		{% if form_errors(form) is empty %}
+						    			{% set mensaje_error = 'Error El formulario contiene errores.' %}
+						    			{{ mensaje_error }}
+						    		{% else %}
+						    			{{ form_errors(form) }}
+						    		{% endif %}
+								  </span>
+								  <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+								    <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Cerrar</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+								  </span>
+								</div>
+							{% endif %}
+						      <label class="block text-gray-700 text-sm font-bold mb-2" for="firstname">
+						        Nombre:
+						      </label>
+						    	{{ form_widget(form.firstname,{'attr': {'class': 'shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
+						    </div>
+						    <div class="mb-6 flex flex-col md:flex-row">
+						    	<div>
+						      <label class="block text-gray-700 text-sm font-bold mb-2" for="phone">
+						        WhatsApp (10 dígitos):
+						      </label>
+						    	{{ form_widget(form.phone,{'attr': {'class': 'shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
+						    	</div>
+						    	<div class="md:pl-4 pt-4 md:pt-0">
+						      <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+						        Email:
+						      </label>
+						    	{{ form_widget(form.email,{'attr': {'class': 'shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
+						    	</div>
+						    </div>
+						    <div class="mb-6 flex flex-col md:flex-row">
+						    	<div>
+						      <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+						        Crear Contraseña:
+						      </label>
+						    	{{ form_widget(form.plainPassword.first,{'attr': {'class': 'shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
+						    	</div>
+						    	<div class="md:pl-4 pt-4 md:pt-0">
+						      <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+						        Confirmar Conraseña:
+						      </label>
+						    	{{ form_widget(form.plainPassword.second,{'attr': {'class': 'shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
+						    	</div>
+						      <div class="md:pl-4 pt-4 flex items-center justify-between">
+						    	  {{ form_row(form.submit, { 'label': 'Continuar' }) }}
+						      </div>
+						    </div>
+						  {{ form_end(form) }}
+						</div>
+				      </div>
+		       	 </div>
+
+		      </div>
+	      </div>
+	      <div class="md:w-5/12 md:absolute bottom-0 right-0 w-full h-full z-100">
+	          <img src="{{ asset('images/doc-2.png') }}" class="md:absolute bottom-0 right-0 h-auto md:h-image object-cover" loading="lazy" alt="">
+	      </div>
+	      <div class="md:rounded-full h-13 md:h-40 w-full md:w-40 flex items-center justify-center md:absolute fixed bottom-0 left-0 z-200 md:ml-4 md:mb-24" style="background-color:#00d6d6; color:#fff;">
+	      	<span class="text-xs text-center px-4 "><b>Pst, pst…</b><br/> Este es un link único y con caducidad, por favor <b>NO</b> lo compartas ya que no funcionará.</span>
+		</div>
+      </section>
 {% endblock content %}

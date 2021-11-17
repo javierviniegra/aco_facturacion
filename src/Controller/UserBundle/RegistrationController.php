@@ -104,7 +104,6 @@ class RegistrationController extends Base
                 return $response;
             }
         }
-
         return $this->render('bundles/FOSUserBundle/Registration/register.html.twig', [
             'form' => $form->createView(),
         ]);
