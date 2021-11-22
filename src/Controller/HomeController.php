@@ -25,4 +25,89 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('sonata_user_admin_security_login');
 
     }
+
+    /**
+     * @Route("/precios", name="dent_precios")
+     */
+    public function preciosAction(): Response
+    {
+        $tokenInterface = $this->get('security.token_storage')->getToken();
+        $isAuthenticated = $tokenInterface->getRoles();
+
+        if(!empty($isAuthenticated))//reviso que roles tiene
+            return $this->render('home/precios.html.twig', [
+                'user' => $this->getUser(),
+            ]);
+        else //no tiene roles
+            return $this->redirectToRoute('sonata_user_admin_security_login');
+
+    }
+
+    /**
+     * @Route("/scanners", name="dent_scanners")
+     */
+    public function scannersAction(): Response
+    {
+        $tokenInterface = $this->get('security.token_storage')->getToken();
+        $isAuthenticated = $tokenInterface->getRoles();
+
+        if(!empty($isAuthenticated))//reviso que roles tiene
+            return $this->render('home/scanners.html.twig', [
+                'user' => $this->getUser(),
+            ]);
+        else //no tiene roles
+            return $this->redirectToRoute('sonata_user_admin_security_login');
+
+    }
+
+    /**
+     * @Route("/casos", name="dent_casos")
+     */
+    public function casosAction(): Response
+    {
+        $tokenInterface = $this->get('security.token_storage')->getToken();
+        $isAuthenticated = $tokenInterface->getRoles();
+
+        if(!empty($isAuthenticated))//reviso que roles tiene
+            return $this->render('home/casos.html.twig', [
+                'user' => $this->getUser(),
+            ]);
+        else //no tiene roles
+            return $this->redirectToRoute('sonata_user_admin_security_login');
+
+    }
+
+    /**
+     * @Route("/preguntas", name="dent_preguntas")
+     */
+    public function preguntasAction(): Response
+    {
+        $tokenInterface = $this->get('security.token_storage')->getToken();
+        $isAuthenticated = $tokenInterface->getRoles();
+
+        if(!empty($isAuthenticated))//reviso que roles tiene
+            return $this->render('home/preguntas.html.twig', [
+                'user' => $this->getUser(),
+            ]);
+        else //no tiene roles
+            return $this->redirectToRoute('sonata_user_admin_security_login');
+
+    }
+
+    /**
+     * @Route("/contacto", name="dent_contacto")
+     */
+    public function contactoAction(): Response
+    {
+        $tokenInterface = $this->get('security.token_storage')->getToken();
+        $isAuthenticated = $tokenInterface->getRoles();
+
+        if(!empty($isAuthenticated))//reviso que roles tiene
+            return $this->render('home/contacto.html.twig', [
+                'user' => $this->getUser(),
+            ]);
+        else //no tiene roles
+            return $this->redirectToRoute('sonata_user_admin_security_login');
+
+    }
 }

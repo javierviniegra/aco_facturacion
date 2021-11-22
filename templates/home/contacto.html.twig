@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block navbar %}
+
+{% include ('navbar.html.twig') %}
+
+{% endblock %}
+
+{% block content %}
+<div class="content">
+
+      <section id="contacto" class="bg-white px-4 flex flex-col md:flex-row sm:justify-between relative">
+      	<div class="flex flex-col md:w-full">
+	      	<div class="md:mx-20 bg-white pt-20 md:pt-32 md:pl-20 px-4 md:px-0">
+				<p class="font-display text-2xl md:text-5xl font-bold uppercase leading-none">contacto</p>
+			</div>
+	      	<div class="md:mx-20 bg-gray-200">
+		        	<div class="w-full md:pt-4 md:h-full">
+				      <div class="pl-4 pr-4 pt-0 md:px-20">
+				      	<p class="hidden md:flex pt-4 md:pt-5 text-md md:text-lg font-bold text-blue-400">Escríbenos y con gusto te respondemos</p>
+				      </div>
+				</div>
+		      </div>
+	      </div>
+	    </div>
+      </section>
+
+</div>
+{% endblock content %}

@@ -1,0 +1,50 @@
+{% extends "base.html.twig" %}
+
+{% block navbar %}
+
+{% include ('navbar.html.twig') %}
+
+{% endblock %}
+
+{% block content %}
+<div class="content">
+
+      <section id="preguntas" class="bg-white px-4 flex flex-col md:flex-row sm:justify-between relative">
+      	<div class="flex flex-col md:w-full">
+	      	<div class="md:mx-20 bg-white pt-20 md:pt-32 md:pl-20 px-4 md:px-0">
+				<p class="font-display text-2xl md:text-5xl font-bold uppercase leading-none">preguntas</p>
+			</div>
+	      	<div class="md:mx-20 bg-gray-200">
+		        	<div class="w-full">
+				      <div class="w-full px-4 md:px-20">
+					      <p class="font-display text-2xl md:text-5xl font-bold uppercase leading-none w-full">frecuentes</p>
+				      	<div class="flex flex-col md:flex-row bg-white w-full h-full py-10 mt-10 px-4 md:px-10">
+				      		<div class="flex flex-row order-last md:order-first md:w-1/3 py-4 md:py-0">
+				      			<div class="hidden md:grid grid-cols-2 divide-x divide-blue-400 pr-4"><div></div><div></div></div>
+				      			<div class="flex flex-col">
+				      				<p class="text-md font-bold pb-4">Resuelve tus dudas:</p>
+				      				<a href="#" class="pt-4 hover:text-blue-400 focus:text-blue-400"><span class="text-lg font-bold">01.</span> ¿Cómo es el proceso de escaneo a domicilio?</a>
+				      				<a href="#" class="pt-4 hover:text-blue-400 focus:text-blue-400"><span class="text-lg font-bold">02.</span> ¿Cuánto tiempo se tardan en entregar?</a>
+				      				<a href="#" class="pt-4 hover:text-blue-400 focus:text-blue-400"><span class="text-lg font-bold">03.</span> ¿Cómo se piden las piezas?</a>
+				      				<a href="#" class="pt-4 hover:text-blue-400 focus:text-blue-400"><span class="text-lg font-bold">04.</span> ¿Cómo pago?</a>
+				      				<a href="#" class="pt-4 hover:text-blue-400 focus:text-blue-400"><span class="text-lg font-bold">05.</span> Formas de pago</a>
+				      				<a href="#" class="pt-4 hover:text-blue-400 focus:text-blue-400"><span class="text-lg font-bold">06.</span> ¿Dan crédito?</a>
+				      				<a href="#" class="pt-4 hover:text-blue-400 focus:text-blue-400"><span class="text-lg font-bold">07.</span> ¿Qué scanner usan?</a>
+				      				<a href="#" class="pt-4 hover:text-blue-400 focus:text-blue-400"><span class="text-lg font-bold">08.</span> ¿Qué hago si no funciona el tratamiento?</a>
+				      			</div>
+				      		</div>
+				      		<div class="grid grid-cols-1 divide-y divide-blue-400"><div></div><div></div></div>
+				      		<div class="order-first md:order-last md:w-2/3">
+				      			<p class="text-sm md:pl-4">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu</p>
+				      		</div>
+				      	</div>
+				      </div>
+		       	 </div>
+
+		      </div>
+	      </div>
+	    </div>
+      </section>
+
+</div>
+{% endblock content %}
