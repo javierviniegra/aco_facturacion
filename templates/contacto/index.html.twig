@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+
+{% block navbar %}
+
+{% include ('navbar.html.twig') %}
+
+{% endblock %}
+
+{% block content %}
+<div class="content">
+      <section id="contacto" class="bg-white px-4 flex flex-col md:flex-row sm:justify-between relative">
+        <div class="flex flex-col md:w-full">
+            <div class="md:mx-20 bg-white pt-20 md:pt-32 md:pl-20 px-4 md:px-0">
+                <p class="font-display text-2xl md:text-5xl font-bold uppercase leading-none">contacto</p>
+            </div>
+            <div class="md:mx-20 bg-gray-200">
+                <div class="w-full md:pt-4 md:h-full">
+                    <div class="pl-4 pr-4 pt-0 md:px-20">
+                        <p class="hidden md:flex pt-4 md:pt-5 text-md md:text-lg font-bold text-blue-400">Escríbenos y con gusto te respondemos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:mx-20 bg-gray-200">
+                {% include 'flash_messages.html.twig' %}
+            </div>
+            <div class="md:mx-20 bg-gray-200">
+                {{ form_start(form,{'attr': {'class': 'px-8 pt-6 pb-8 mb-4'}}) }}
+                <div class="flex flex-col md:flex-row w-full">
+                    <div class="md:w-1/2 px-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">Nombre:</label>
+                            {{ form_widget(form.nombre,{'attr': {'class': 'shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
+                        <label class="block text-gray-700 text-sm font-bold mb-2 pt-4" for="whatsapp">WhatsApp (10 dígitos):</label>
+                            {{ form_widget(form.whatsapp,{'attr': {'class': 'shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
+                        <label class="block text-gray-700 text-sm font-bold mb-2 pt-4" for="email">Email:</label>
+                            {{ form_widget(form.email,{'attr': {'class': 'shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
+                    </div>
+                    <div class="md:w-1/2 px-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2 pt-4 md:pt-0" for="mensaje">Mensaje:</label>
+                            {{ form_widget(form.mensaje,{'attr': {'class': 'shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
+                    </div>
+                </div>
+                <div class="mb-6 flex flex-col md:flex-row">
+                    <div class="md:pl-4 pt-4 flex items-center justify-between">
+                        {{ form_row(form.submit, { 'label': 'Enviar' }) }}
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+      </section>
+</div>
+{% endblock content %}

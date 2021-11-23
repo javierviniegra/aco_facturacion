@@ -1,0 +1,59 @@
+{% extends "base.html.twig" %}
+
+{% block navbar %}
+
+{% include ('navbar.html.twig') %}
+
+{% endblock %}
+
+{% block content %}
+<div class="content">
+
+      <section id="empresa" class="bg-white px-4 flex flex-col md:flex-row sm:justify-between relative">
+      	<div class="flex flex-col md:w-full">
+	      	<div class="md:mx-20 bg-white pt-20 md:pt-32 md:pl-20 px-4 md:px-0">
+				<p class="font-display text-2xl md:text-5xl font-bold uppercase leading-none">nuestra</p>
+			</div>
+	      	<div class="md:mx-20 bg-gray-200">
+		        	<div class="w-full">
+				      <div class="w-full px-4 md:px-20">
+					      <p class="font-display text-2xl md:text-5xl font-bold uppercase leading-none w-full">empresa</p>
+					      <div class="mb-10 bg-blue-200 px-4 md:px-10 py-20 flex flex-col md:flex-row">
+					      	<div class="w-full md:w-3/5 px-4 md:px-10">
+								<p align="justify"><b>Mureni</b> es una compañía americana con sede en Palo Alto, California 
+								(Silicon Valley) con presencia en Brasil y México.</p>
+								<p align="justify" class="pt-4">Nuestra misión es mejorar la calidad de vida de los dentistas a través 
+								de herramientas tecnológicas que les ahorren tiempo y trabajo y les 
+								generen más ingresos</p>
+								<p align="justify" class="pt-4">Nuestra solución de laboratorio dental digital para los odontólogos 
+								es la primera en Latinoamérica en reunir en una sola plataforma 
+								digital todos los servicios de laboratorio incluyendo el escaneo de 
+								los pacientes, siendo los pioneros en la digitalización del mercado 
+								dental en la región.</p>
+								<p align="justify" class="pt-4">Nuestro tratamiento de alineadores invisibles es el único en el 
+								mercado que da una solución accesible al paciente trabajando 
+								directamente con los dentistas y ortodoncistas que lo conocen 
+								personalmente. Eso se traduce en la mejor calidad médica al mejor 
+								precio. Somos los únicos que hacen una evaluación con radiografía y 
+								con el apoyo de un ortodoncista de nuestro equipo para asegurar que 
+								no haya problemas con las raíces, periodoncia, anomalías óseas o 
+								cualquier otra condición que pueda implicar un riesgo para el 
+								tratamiento adecuado de los pacientes.</p>
+								<p align="justify" class="pt-4"><b>En Mureni nuestra pasión es servirte.</b></p>
+								<p class="pt-4 text-blue-400 italic text-md text-right">Ulises Vázquez</p>
+								<p class="text-right"><b>CO-FOUNDER</b></p>
+					      	</div>
+					      	<div class="w-full md:w-2/5">
+					      		<img src="{{ asset('images/doc-2.png') }}" class="h-image object-cover" loading="lazy">
+					      	</div>
+					      </div>
+				      </div>
+		       	 </div>
+
+		      </div>
+	      </div>
+	    </div>
+      </section>
+
+</div>
+{% endblock content %}

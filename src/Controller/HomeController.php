@@ -95,15 +95,15 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/contacto", name="dent_contacto")
+     * @Route("/empresa", name="dent_empresa")
      */
-    public function contactoAction(): Response
+    public function empresaAction(): Response
     {
         $tokenInterface = $this->get('security.token_storage')->getToken();
         $isAuthenticated = $tokenInterface->getRoles();
 
         if(!empty($isAuthenticated))//reviso que roles tiene
-            return $this->render('home/contacto.html.twig', [
+            return $this->render('home/empresa.html.twig', [
                 'user' => $this->getUser(),
             ]);
         else //no tiene roles
