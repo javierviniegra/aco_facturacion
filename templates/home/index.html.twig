@@ -6,6 +6,25 @@
 
 {% endblock %}
 
+{% block stylesheets %}
+	{{ parent() }}
+
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <script>
+        $('#elegir_fecha').datepicker();
+
+        $('.seleccionar').click(function(){
+        	$('#registro').removeClass('hidden');
+        });
+    </script>	
+{% endblock %}
+
 {% block content %}
 <div class="content">
 
@@ -158,20 +177,73 @@
 					<p class="pt-4 text-md font-bold text-center px-4 md:pl-8 text-blue-400">SCANNER EN TU CLÍNICA</p>
 					<p class="pt-4 text-sm font-normal text-center md:text-left px-4 md:pl-12">Para clínicas con <b>más de 60 piezas</b> al mes</p>
 					<div class="md:pl-4 pt-4 flex items-center justify-between">
-						<a class="button primary">Seleccionar</a>
+						<a class="seleccionar button primary">Seleccionar</a>
 					</div>
 				</div>
 				<div class="flex flex-col justify-center items-center md:w-2/3 pb-10 md:pb-4">
 					<p class="pt-4 text-md font-bold text-center px-4 md:pl-8 text-blue-400">SERVICIO DE SCANNER A DOMICILIO</p>
 					<p class="pt-4 text-sm font-normal text-center md:text-left px-4 md:pl-12"><b>Sin mínimo</b> de piezas Sin contrato</p>
 					<div class="md:pl-4 pt-4 flex items-center justify-between">
-						<a class="button primary">Seleccionar</a>
+						<a class="seleccionar button primary">Seleccionar</a>
+					</div>
+				</div>
+			</div>
+      		<div id="escaneo_clinica" class="flex flex-col w-full justify-center items-center bg-white">
+				<div class="w-100 items-center justify-center">
+					<div id="registro" class="hidden flex flex-col justify-center items-center ml-auto mr-auto w-full  pb-10 md:pb-4">
+						<div class="rounded-full h-20 w-20 flex items-center justify-center bg-gray-500">
+						</div>
+						<p class="pt-4 text-xs text-center font-normal text-gray-600">LOREM IPSUM</p>
+						<p class="text-md md:text-lg font-bold pt-4">Videollamada de presentación con un Asesor Mureni</p>
+						<p class="pt-4 text-md font-bold text-center md:text-left px-4 md:pl-8"><i style="color:#00d6d6;" class="fa fa-clock-o" aria-hidden="true"></i> <span class="text-thin text-xs">30 minutos</span></p>
+						<p class="pt-4 text-sm"><span class="text-red-500">(!)</span> Los detalles de la llamada serán proporcionados después de la confirmación.</p>
+				      	<div class="grid grid-cols-1 divide-y divide-gray-600"><div class="pt-4"></div>
+				      		<div><p class="pt-4 text-md font-bold text-center md:text-left px-4 md:pl-8" style="color:#00d6d6;">Selecciona la fecha y hora que más te acomoden:</p></div>
+				      	</div>
+				      	<div class="flex flex-col py-4">
+
+				          	  {{ form_start(form,{'attr': {'class': 'px-8 pt-6 pb-8 mb-4'}}) }}
+						    <div class="mb-4">
+						    	{% if not form.vars.valid %}
+							    	<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+							    		<span class="block sm:inline">
+						    		{% if form_errors(form) is empty %}
+						    			{% set mensaje_error = 'Error El formulario contiene errores.' %}
+						    			{{ mensaje_error }}
+						    		{% else %}
+						    			{{ form_errors(form) }}
+						    		{% endif %}
+								  </span>
+								  <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+								    <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Cerrar</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+								  </span>
+								</div>
+								{% endif %}
+								{% set usuario = user.getUsername() %}
+								{% set email = user.getEmail() %}
+						    	{{ form_widget(form.nombre,{ 'value': usuario , 'attr': {'class': 'hidden shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
+						    	{{ form_widget(form.email,{ 'value': email , 'attr': {'class': 'hidden shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
+						    </div>
+						    	<div>
+						    	{{ form_widget(form.fecha,{'attr': {'class': 'w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
+						    	</div>
+						    	<div class="md:pl-4 pt-4 md:pt-0">
+						      <label class="block text-gray-500 text-xs  mt-4" for="hora">
+						        <i style="color:#00d6d6;" class="fa fa-globe" aria-hidden="true"></i> Horarior de Ciudad de México (00:00 xm)
+						      </label>
+						    	{{ form_widget(form.hora,{'attr': {'class': 'shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'}}) }}
+						    	</div>
+    							<div class="md:pl-4 pt-4 flex flex-col justify-center items-center w-full">
+						    	  {{ form_row(form.submit, { 'label': 'Continuar' }) }}
+						      	</div>
+						  {{ form_end(form) }}
+				      	</div>
 					</div>
 				</div>
 			</div>
 		</div>
       </section>
-      <section id="elige" class="bg-white px-4 md:px-20 flex flex-col sm:justify-between">
+      <section id="trabajar" class="bg-white px-4 md:px-20 flex flex-col sm:justify-between">
       	<div class="bg-gray-200 py-5 md:py-10 px-4 md:px-0 flex flex-col sm:justify-between relative">
       		<div class="my-6 md:mt-20 flex flex-col md:flex-row w-full">
       			<div class="flex flex-col w-full md:w-1/2 bg-blue-200 py-4 md:py-10 justify-center items-center px-4 md:px-20">

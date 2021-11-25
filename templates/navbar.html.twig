@@ -17,9 +17,9 @@
           <nav>
             <ul class="hidden md:flex nav list-none items-center">
                 <li class="nav__link"><a href="#" class="text-lg md:text-xl"><span style="color:#00d6d6;"><i class="fa fa-whatsapp" aria-hidden="true"></i></span></a></li>
-                <a class="button primary text-sm py-1">Agenda tu Escaneo</a>
+                <a class="button primary text-sm py-1" href="{{ path('home_dentistas') }}#elige">Agenda tu Escaneo</a>
                 <li class="nav__link">
-                    <a class="dropdown-item text-blue-400" href="{{ path('logout') }}">Cerrar Sesión</a>
+                    <a class="seleccionar dropdown-item text-blue-400" href="{{ path('logout') }}">Cerrar Sesión</a>
                 </li>
             </ul>
           </nav>
@@ -37,6 +37,6 @@
             <a class="py-4 font-semibold" href="{{ path('dent_preguntas') }}">Preguntas Frecuentes</a>
             <a class="py-4 font-semibold" href="{{ path('dent_contacto') }}">Contacto</a>
             <a class="py-4 font-semibold" href="#"><span style="color:#00d6d6;"><i class="fa fa-whatsapp" aria-hidden="true"></i></span></a>
-            <a class="button primary text-sm py-1" href="#">Agenda tu Escaneo</a>
+            <a class="seleccionar button primary text-sm py-1" href="{{ path('home_dentistas') }}#elige">Agenda tu Escaneo</a>
             <a class="dropdown-item text-blue-400" href="{{ path('logout') }}">Cerrar Sesión</a>
     </nav>

@@ -24,7 +24,7 @@ class ContactoController extends AbstractController
 
             $message = (new \Swift_Message('Email de Contacto Mureni - Dentistas!'))
                ->setFrom($contactFormData['email'])
-               ->setTo('javierviniegra@hotmail.com')
+               ->setTo('ayuda@mureni.com')
                ->setBody(
                    $contactFormData['nombre'].' con émail: '.$contactFormData['email'].' y número Whatsapp: '. $contactFormData['whatsapp'].', envía el siguiente mensaje: '.$contactFormData['mensaje'],
                    'text/plain'

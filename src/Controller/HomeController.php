@@ -5,20 +5,46 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Form\ElegirType;
+use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="home_dentistas")
      */
-    public function index(): Response
+    public function index(Request $request, \Swift_Mailer $mailer)
     {
+        $form = $this->createForm(ElegirType::class);
+
+       $form->handleRequest($request);
+
+           if ($form->isSubmitted() && $form->isValid()) {
+               $registroFormData = $form->getData();
+
+                $message = (new \Swift_Message('Email de Scanner Mureni - Dentistas!'))
+                   ->setFrom($registroFormData['email'])
+                   ->setTo('ayuda@mureni.com')
+                   ->setBody(
+                       $registroFormData['nombre'].' con émail: '.$registroFormData['email'].', requiere un escanneo el día: '.$registroFormData['fecha'].' con hora:'.$registroFormData['hora'],
+                       'text/plain'
+                   )
+               ;
+
+               $mailer->send($message);
+
+               $this->addFlash('success', '<p class="font-bold">Tu mensaje fue enviado con exito.</p><p>Nos pondremos en contacto contigo a la brevedad.</p>');
+
+               return $this->redirectToRoute('home_dentistas');
+           }
+
         $tokenInterface = $this->get('security.token_storage')->getToken();
         $isAuthenticated = $tokenInterface->getRoles();
 
         if(!empty($isAuthenticated))//reviso que roles tiene
             return $this->render('home/index.html.twig', [
                 'user' => $this->getUser(),
+                'form' => $form->createView(),
             ]);
         else //no tiene roles
             //return $this->redirect('http://mureni.com');
