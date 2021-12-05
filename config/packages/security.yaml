@@ -20,6 +20,7 @@ security:
                 check_path:      sonata_user_admin_security_check
                 failure_path:    null
                 default_target_path:   /
+                success_handler: admin_success_handler
             logout:
                 path:           /admin/logout
                 target:         /admin/login
@@ -41,6 +42,7 @@ security:
                 check_path:     /login_check
                 failure_path:   null
                 default_target_path:   /
+                success_handler: admin_success_handler
             logout:             true
             anonymous:          true
 
@@ -56,12 +58,22 @@ security:
         # Secured part of the site
         # This config requires being logged for the whole site and having the admin role for the admin part.
         # Change these rules to adapt them to your needs
-        - { path: ^/admin/, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN] }
+        - { path: ^/admin/app/regisroclave/, role: [ROLE_MANAGER,ROLE_ADMIN] }
+        - { path: ^/admin/dashboard, role: [ROLE_MANAGER,ROLE_ADMIN] }
+        - { path: ^/admin/, role: [ROLE_SUPER_ADMIN] }
         #- { path: ^/*, role: ROLE_DENTISTA }
 
     role_hierarchy:
-        ROLE_USER:        ROLE_DENTISTA
-        ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN]
+        ROLE_USER:        ROLE_USER
+        ROLE_DENTISTA:    ROLE_USER
+        ROLE_MANAGER_CLAVES:     
+            - ROLE_SONATA_ADMIN_APP_REGISROCLAVE_LIST
+            - ROLE_SONATA_ADMIN_APP_REGISROCLAVE_VIEW
+            - ROLE_SONATA_ADMIN_APP_REGISROCLAVE_CREATE
+            - ROLE_SONATA_ADMIN_APP_REGISROCLAVE_EDIT
+            - ROLE_SONATA_ADMIN_APP_REGISROCLAVE_DELETE
+        ROLE_MANAGER:     [ROLE_DENTISTA, ROLE_MANAGER_CLAVES,ROLE_SONATA_ADMIN]
+        ROLE_ADMIN:       [ROLE_SONATA_ADMIN, ROLE_MANAGER]
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
         SONATA:
             - ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT  # if you are using acl then this line must be commented
