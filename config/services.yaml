@@ -46,7 +46,7 @@ services:
     admin_success_handler:
         class: App\Services\AuthenticationHandler
         arguments: [ '@service_container' ]
-    
+
     #https://symfony.com/doc/current/bundles/SonataAdminBundle/cookbook/recipe_knp_menu.html
     app.menu_listener:
         class: App\EventListener\MenuBuilderListener
