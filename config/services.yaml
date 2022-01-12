@@ -31,12 +31,12 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    admin.regisro_clave:
-        class: App\Admin\RegisroClaveAdmin
-        arguments: [~, App\Entity\RegisroClave, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Administración, label: Registro de Claves }
-        public: true
+    #admin.regisro_clave:
+    #    class: App\Admin\RegisroClaveAdmin
+    #    arguments: [~, App\Entity\RegisroClave, ~]
+    #    tags:
+    #        - { name: sonata.admin, manager_type: orm, group: Administración, label: Registro de Claves }
+    #    public: true
 
     fos_user.registration.controller: 
         class: App\Controller\UserBundle\RegistrationController
@@ -57,19 +57,19 @@ services:
         class: App\Admin\PuestoAdmin
         arguments: [~, App\Entity\Puesto, App\Controller\PuestoAdminController]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Puesto }
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Puesto }
         public: true
 
     admin.tipo_sangre:
         class: App\Admin\TipoSangreAdmin
         arguments: [~, App\Entity\TipoSangre, App\Controller\TipoSangreAdminController]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Tipo de Sangre }
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Tipo de Sangre }
         public: true
 
     admin.estado_civil:
         class: App\Admin\EstadoCivilAdmin
         arguments: [~, App\Entity\EstadoCivil, App\Controller\EstadoCivilAdminController]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Estado Civil }
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Estado Civil }
         public: true

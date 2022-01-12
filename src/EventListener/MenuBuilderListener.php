@@ -18,7 +18,7 @@ class MenuBuilderListener
     {
         $menu = $event->getMenu();
         $menu->removeChild("sonata_user");
-        $menu->removeChild("admin");
+        $menu->removeChild("Catálogos");
         $menu->removeChild("Administración");
 
         if($this->security->isGranted('ROLE_SUPER_ADMIN'))
