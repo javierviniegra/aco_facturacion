@@ -52,3 +52,24 @@ services:
         class: App\EventListener\MenuBuilderListener
         tags:
             - { name: kernel.event_listener, event: sonata.admin.event.configure.menu.sidebar, method: addMenuItems }
+
+    admin.puesto:
+        class: App\Admin\PuestoAdmin
+        arguments: [~, App\Entity\Puesto, App\Controller\PuestoAdminController]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Puesto }
+        public: true
+
+    admin.tipo_sangre:
+        class: App\Admin\TipoSangreAdmin
+        arguments: [~, App\Entity\TipoSangre, App\Controller\TipoSangreAdminController]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Tipo de Sangre }
+        public: true
+
+    admin.estado_civil:
+        class: App\Admin\EstadoCivilAdmin
+        arguments: [~, App\Entity\EstadoCivil, App\Controller\EstadoCivilAdminController]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Estado Civil }
+        public: true
