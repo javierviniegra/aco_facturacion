@@ -19,7 +19,8 @@ class AuthenticationHandler implements  AuthenticationSuccessHandlerInterface {
         if(in_array('ROLE_MANAGER',$user->getRoles())){
             $url = $this->container->get( 'router' )->generate( 'sonata_admin_dashboard' );
         }else{
-            $url = $this->container->get( 'router' )->generate( 'home_dentistas' );
+            //$url = $this->container->get( 'router' )->generate( 'home_dentistas' );
+            $url = $this->container->get( 'router' )->generate( 'sonata_admin_dashboard' );
         }
         return new RedirectResponse( $url );
 
