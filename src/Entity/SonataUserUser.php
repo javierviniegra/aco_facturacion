@@ -10,7 +10,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user__user")
- * @Vich\Uploadable
  */
 class SonataUserUser extends BaseUser
 {
