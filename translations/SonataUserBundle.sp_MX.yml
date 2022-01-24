@@ -92,3 +92,13 @@ form:
     password_confirmation: 'Repita la contraseña'
     new_password: 'Nueva contraseña'
     new_password_confirmation: 'Repita la contraseña'
+
+breadcrumb:
+    link_sonata_user_user_list: 'Lista de Usuarios'  
+    link_sonata_user_user_create: 'Crear Usuario'
+
+User: Usuario
+Security: Seguridad
+Profile: Perfil de Usuario
+General: General
+Keys: Llaves de Seguridad

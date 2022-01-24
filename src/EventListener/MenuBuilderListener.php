@@ -36,13 +36,13 @@ class MenuBuilderListener
                 'route' => 'admin_app_sonatausergroup_list'
             ]);
             //los catalogos
-            $child = $menu->addChild('catalogos', [
+            $child->addChild('catalogos', [
                 'label' => 'Catálogos',
             ])->setExtras([
                 'icon' => '<i class="fa fa-book"></i>',
                 'orderNumber' => 0,
             ]);
-            $child = $menu->getChild("catalogos");
+            $child = $child->getChild("catalogos");
             $child->addChild('catalogos_puesto',[
                 'label'=> ucfirst(mb_strtolower('Puestos')),
                 'route'=>'admin_app_puesto_list'

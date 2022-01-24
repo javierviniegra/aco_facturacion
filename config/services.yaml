@@ -39,7 +39,7 @@ services:
     #    public: true
 
     fos_user.registration.controller: 
-        class: App\Controller\UserBundle\RegistrationController
+        class: App\Controller\UserBundle\RegistrationController  
 
     FOS\UserBundle\Form\Factory\FactoryInterface: '@fos_user.registration.form.factory'
 
