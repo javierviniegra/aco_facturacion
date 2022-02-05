@@ -6,9 +6,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Sonata\UserBundle\Entity\BaseUser;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
+ * @Vich\Uploadable
  * @ORM\Table(name="fos_user__user")
  */
 class SonataUserUser extends BaseUser
@@ -26,14 +28,44 @@ class SonataUserUser extends BaseUser
     private $lastname_2;
 
     /**
+     * @Assert\File(
+     *     maxSize = "5M",
+     *     mimeTypes = {"application/pdf", "application/x-pdf"},
+     *     mimeTypesMessage = "Please upload a valid PDF"
+     * )
+     * @Vich\UploadableField(mapping="rfc_image", fileNameProperty="rfc", size="rfcSize")
+     * @var File|null
+     */
+    private $rfcFile;
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $rfc;
+    /**
+     * @ORM\Column(type="integer")
+     * @var int|null
+     */
+    private $rfcSize;
 
+    /**
+     * @Assert\File(
+     *     maxSize = "5M",
+     *     mimeTypes = {"application/pdf", "application/x-pdf"},
+     *     mimeTypesMessage = "Please upload a valid PDF"
+     * )
+     * @Vich\UploadableField(mapping="curp_image", fileNameProperty="curp", size="curpSize")
+     * @var File|null
+     */
+    private $curpFile;
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $curp;
+    /**
+     * @ORM\Column(type="integer")
+     * @var int|null
+     */
+    private $curpSize;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -71,9 +103,28 @@ class SonataUserUser extends BaseUser
     private $estado;
 
     /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     * 
+     * @Assert\File(
+     *     maxSize = "5M",
+     *     mimeTypes = {"application/pdf", "application/x-pdf"},
+     *     mimeTypesMessage = "Please upload a valid PDF"
+     * )
+     * @Vich\UploadableField(mapping="domicilio_image", fileNameProperty="comprobanteDomicilio", size="domicilioSize")
+     * 
+     * @var File|null
+     */
+    private $domicilioFile;
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $comprobanteDomicilio;
+    /**
+     * @ORM\Column(type="integer")
+     *
+     * @var int|null
+     */
+    private $domicilioSize;
 
     /**
      * @ORM\Column(type="date", nullable=true)
@@ -141,9 +192,24 @@ class SonataUserUser extends BaseUser
     private $georeferencia;
 
     /**
+     * @Assert\File(
+     *     maxSize = "2048k",
+     *     mimeTypes = {"image/jpeg", "image/gif", "image/png"},
+     *     mimeTypesMessage = "Please upload a valid Image"
+     * )
+     * @Vich\UploadableField(mapping="fotografia_image", fileNameProperty="fotografia", size="fotografiaSize")
+     * @var File|null
+     */
+    private $fotografiaFile;
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $fotografia;
+    /**
+     * @ORM\Column(type="integer")
+     * @var int|null
+     */
+    private $fotografiaSize;
 
     public function __construct()
     {   
@@ -172,29 +238,6 @@ class SonataUserUser extends BaseUser
         return $this;
     }
 
-    public function getRfc(): ?string
-    {
-        return $this->rfc;
-    }
-
-    public function setRfc(?string $rfc): self
-    {
-        $this->rfc = $rfc;
-
-        return $this;
-    }
-
-    public function getCurp(): ?string
-    {
-        return $this->curp;
-    }
-
-    public function setCurp(?string $curp): self
-    {
-        $this->curp = $curp;
-
-        return $this;
-    }
 
     public function getCalle(): ?string
     {
@@ -276,18 +319,6 @@ class SonataUserUser extends BaseUser
     public function setEstado(?string $estado): self
     {
         $this->estado = $estado;
-
-        return $this;
-    }
-
-    public function getComprobanteDomicilio(): ?string
-    {
-        return $this->comprobanteDomicilio;
-    }
-
-    public function setComprobanteDomicilio(?string $comprobanteDomicilio): self
-    {
-        $this->comprobanteDomicilio = $comprobanteDomicilio;
 
         return $this;
     }
@@ -448,11 +479,129 @@ class SonataUserUser extends BaseUser
         return $this;
     }
 
+    /*------ Comprobante de Domicilio File ---*/
+   public function setDomicilioFile(?File $domicilioFile = null): void
+    {
+        $this->domicilioFile = $domicilioFile;
+
+        if (null !== $domicilioFile) {
+            $this->updatedAt = new \DateTime();
+        }
+    }
+    public function getDomicilioFile(): ?File
+    {
+        return $this->domicilioFile;
+    }   
+    public function setDomicilioSize(?int $domicilioSize): void
+    {
+        $this->domicilioSize = $domicilioSize;
+    }
+    public function getDomicilioSize(): ?int
+    {
+        return $this->domicilioSize;
+    }
+    public function getComprobanteDomicilio(): ?string
+    {
+        return $this->comprobanteDomicilio;
+    }
+    public function setComprobanteDomicilio(?string $comprobanteDomicilio): self
+    {
+        $this->comprobanteDomicilio = $comprobanteDomicilio;
+
+        return $this;
+    }
+
+    /*------ RFC File ---*/
+   public function setRfcFile(?File $rfcFile = null): void
+    {
+        $this->rfcFile = $rfcFile;
+
+        if (null !== $rfcFile) {
+            $this->updatedAt = new \DateTime();
+        }
+    }
+    public function getRfcFile(): ?File
+    {
+        return $this->rfcFile;
+    }   
+    public function setRfcSize(?int $rfcSize): void
+    {
+        $this->rfcSize = $rfcSize;
+    }
+    public function getRfcSize(): ?int
+    {
+        return $this->rfcSize;
+    }
+    public function getRfc(): ?string
+    {
+        return $this->rfc;
+    }
+    public function setRfc(?string $rfc): self
+    {
+        $this->rfc = $rfc;
+
+        return $this;
+    }
+
+
+    /*------ CURP File ---*/
+   public function setCurpFile(?File $curpFile = null): void
+    {
+        $this->curpFile = $curpFile;
+
+        if (null !== $curpFile) {
+            $this->updatedAt = new \DateTime();
+        }
+    }
+    public function getCurpFile(): ?File
+    {
+        return $this->curpFile;
+    }   
+    public function setCurpSize(?int $curpSize): void
+    {
+        $this->curpSize = $curpSize;
+    }
+    public function getCurpSize(): ?int
+    {
+        return $this->curpSize;
+    }
+    public function getCurp(): ?string
+    {
+        return $this->curp;
+    }
+    public function setCurp(?string $curp): self
+    {
+        $this->curp = $curp;
+
+        return $this;
+    }
+
+
+    /*------ Fotografia File ---*/
+   public function setFotografiaFile(?File $fotografiaFile = null): void
+    {
+        $this->fotografiaFile = $fotografiaFile;
+
+        if (null !== $fotografiaFile) {
+            $this->updatedAt = new \DateTime();
+        }
+    }
+    public function getFotografiaFile(): ?File
+    {
+        return $this->fotografiaFile;
+    }   
+    public function setFotografiaSize(?int $fotografiaSize): void
+    {
+        $this->fotografiaSize = $fotografiaSize;
+    }
+    public function getFotografiaSize(): ?int
+    {
+        return $this->fotografiaSize;
+    }
     public function getFotografia(): ?string
     {
         return $this->fotografia;
     }
-
     public function setFotografia(?string $fotografia): self
     {
         $this->fotografia = $fotografia;

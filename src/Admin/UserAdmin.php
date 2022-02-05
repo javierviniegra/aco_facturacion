@@ -19,7 +19,10 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Validator\Constraints\File;
+use Vich\UploaderBundle\Form\Type\VichFileType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class UserAdmin extends BaseUserAdmin
 {
@@ -87,17 +90,6 @@ class UserAdmin extends BaseUserAdmin
 
     protected function configureFormFields(FormMapper $form): void
     {
-        $fileOptions = array(
-            'label' => 'Archivo',
-            'required' => true,
-            'vich_file_object' => 'downloadfile',
-            'vich_file_property' => 'downloadFile',
-            'vich_allow_delete' => true,
-            'attr' => array(
-                'data-max-size' => self::FILE_MAX_SIZE,
-                'data-max-size-error' => 'El tamaño del archivo no puede ser mayor de 4 megas'
-            )
-        );
 
         // define group zoning
         $form
@@ -128,7 +120,7 @@ class UserAdmin extends BaseUserAdmin
         $form
             ->tab('User')
                 ->with('General')
-                    ->add('fotografia', null, ['required' => false,'label' => 'Fotografía'])
+                    ->add('fotografiaFile', VichImageType::class, ['required' => false,'label' => 'Fotografía (JPEG, GIF, PNG)'])
                     ->add('username')
                     ->add('email')
                     ->add('plainPassword', TextType::class, [
@@ -144,20 +136,18 @@ class UserAdmin extends BaseUserAdmin
                     ->add('gender', ChoiceType::class, $genderOptions)
                     ->add('locale', LocaleType::class, ['required' => false])
                     ->add('timezone', TimezoneType::class, ['required' => false])*/
-                    ->add('dateOfBirth', DatePickerType::class, [
-                        'years' => range(1900, $now->format('Y')),
-                        'dp_min_date' => '1-1-1900',
-                        'dp_max_date' => $now->format('c'),
+                    ->add('dateOfBirth', DateType::class, [
                         'required' => false,
+                        'widget' => 'choice',
                     ])
                     ->add('tipoSangre', null, ['required' => false,'label' => 'Tipo de Sangre'])
                     ->add('estadoCivil', null, ['required' => false,'label' => 'Estado Civil'])
                     ->add('anotacionesMedicas', null, ['required' => false,'label' => 'Anotaciones Médicas'])
                     ->add('celular', null, ['required' => false,'label' => 'Celular'])
                     ->add('phone', null, ['required' => false,'label' => 'Teléfono de Casa'])
-                    ->add('rfc', null, ['required' => false,'label' => 'RFC'])
-                    ->add('curp', null, ['required' => false,'label' => 'CURP'])
-                    ->add('comprobanteDomicilio', null, ['required' => false,'label' => 'Comprobante de domicilio (PDF)','mapped' => false])
+                    ->add('rfcFile', VichFileType::class, ['required' => false,'label' => 'RFC (PDF)'])
+                    ->add('curpFile', VichFileType::class, ['required' => false,'label' => 'CURP (PDF)'])
+                    ->add('domicilioFile', VichFileType::class, ['required' => false,'label' => 'Comprobante de domicilio (PDF)'])
                     ->add('contacto1', null, ['required' => false,'label' => 'Nombre de Contacto 1'])
                     ->add('celContacto1', null, ['required' => false,'label' => 'Celular de Contacto 1'])
                     ->add('contacto2', null, ['required' => false,'label' => 'Nombre de Contacto 2'])
@@ -184,7 +174,11 @@ class UserAdmin extends BaseUserAdmin
             ->end()
             ->tab('Laboral')
                 ->with('General')
-                    ->add('fechaIngreso', null, ['required' => false,'label' => 'Fecha de Ingreso'])
+                    ->add('fechaIngreso', DateType::class, [
+                        'widget' => 'choice',
+                        'required' => false,
+                        'label' => 'Fecha de Ingreso',
+                    ])
                     ->add('numImss', null, ['required' => false,'label' => 'Número de Seguridad Social'])
                     ->add('puesto', null, ['required' => false,'label' => 'Puesto'])
                 ->end()
