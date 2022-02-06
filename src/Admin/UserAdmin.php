@@ -102,6 +102,9 @@ class UserAdmin extends BaseUserAdmin
             ->tab('Laboral')
                 ->with('General', ['class' => 'col-md-12'])->end()
             ->end()
+            ->tab('Médico')
+                ->with('General', ['class' => 'col-md-12'])->end()
+            ->end()
             ->tab('Security')
                 ->with('Status', ['class' => 'col-md-4'])->end()
                 ->with('Groups', ['class' => 'col-md-4'])->end()
@@ -138,20 +141,15 @@ class UserAdmin extends BaseUserAdmin
                     ->add('timezone', TimezoneType::class, ['required' => false])*/
                     ->add('dateOfBirth', DateType::class, [
                         'required' => false,
-                        'widget' => 'choice',
+                        'widget' => 'single_text',
+                        /*'html5' => false,
+                        'attr' => ['class' => 'js-datepicker'],*/
                     ])
-                    ->add('tipoSangre', null, ['required' => false,'label' => 'Tipo de Sangre'])
-                    ->add('estadoCivil', null, ['required' => false,'label' => 'Estado Civil'])
-                    ->add('anotacionesMedicas', null, ['required' => false,'label' => 'Anotaciones Médicas'])
                     ->add('celular', null, ['required' => false,'label' => 'Celular'])
                     ->add('phone', null, ['required' => false,'label' => 'Teléfono de Casa'])
                     ->add('rfcFile', VichFileType::class, ['required' => false,'label' => 'RFC (PDF)'])
                     ->add('curpFile', VichFileType::class, ['required' => false,'label' => 'CURP (PDF)'])
                     ->add('domicilioFile', VichFileType::class, ['required' => false,'label' => 'Comprobante de domicilio (PDF)'])
-                    ->add('contacto1', null, ['required' => false,'label' => 'Nombre de Contacto 1'])
-                    ->add('celContacto1', null, ['required' => false,'label' => 'Celular de Contacto 1'])
-                    ->add('contacto2', null, ['required' => false,'label' => 'Nombre de Contacto 2'])
-                    ->add('celContacto2', null, ['required' => false,'label' => 'Celular de Contacto 2'])
                 ->end()
                 ->with('Dirección')
                     ->add('georeferencia', null, ['required' => false,'label' => 'Georeferencia (ej. 41.40338; 2.17403)'])
@@ -175,12 +173,23 @@ class UserAdmin extends BaseUserAdmin
             ->tab('Laboral')
                 ->with('General')
                     ->add('fechaIngreso', DateType::class, [
-                        'widget' => 'choice',
+                        'widget' => 'single_text',
                         'required' => false,
                         'label' => 'Fecha de Ingreso',
                     ])
                     ->add('numImss', null, ['required' => false,'label' => 'Número de Seguridad Social'])
                     ->add('puesto', null, ['required' => false,'label' => 'Puesto'])
+                    ->add('estadoCivil', null, ['required' => false,'label' => 'Estado Civil'])
+                ->end()
+            ->end()
+            ->tab('Médico')
+                ->with('General')
+                    ->add('tipoSangre', null, ['required' => false,'label' => 'Tipo de Sangre'])
+                    ->add('anotacionesMedicas', null, ['required' => false,'label' => 'Anotaciones Médicas'])
+                    ->add('contacto1', null, ['required' => false,'label' => 'Nombre de Contacto 1'])
+                    ->add('celContacto1', null, ['required' => false,'label' => 'Celular de Contacto 1'])
+                    ->add('contacto2', null, ['required' => false,'label' => 'Nombre de Contacto 2'])
+                    ->add('celContacto2', null, ['required' => false,'label' => 'Celular de Contacto 2'])
                 ->end()
             ->end()
             ->tab('Security')

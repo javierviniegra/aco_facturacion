@@ -121,9 +121,15 @@
           <script src="https://cdn.jsdelivr.net/npm/circletype@2.3.0/dist/circletype.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/menuspy@1.3.0/dist/menuspy.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/pickadate@5.0.0-alpha.3/builds/index.min.js"></script>
-          <!--script src="https://cdn.jsdelivr.net/gh/jsanahuja/InstagramFeed/dist/InstagramFeed.min.js" crossorigin></script-->
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/InstagramFeed/3.0.2/InstagramFeed.js" crossorigin></script>
-          <!--script src="instagramfeed.js"></script-->
+          <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+          <script>
+              $(document).ready(function() {
+                  // you may need to change this code if you are not using Bootstrap Datepicker
+                  $('.js-datepicker').datepicker({
+                      format: 'yyyy-mm-dd'
+                  });
+              });
+          </script>
         {% endblock %}
     </body>
 </html>

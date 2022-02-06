@@ -211,6 +211,11 @@ class SonataUserUser extends BaseUser
      */
     private $fotografiaSize;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $numero_nomina;
+
     public function __construct()
     {   
         parent::__construct();
@@ -507,6 +512,18 @@ class SonataUserUser extends BaseUser
     public function setComprobanteDomicilio(?string $comprobanteDomicilio): self
     {
         $this->comprobanteDomicilio = $comprobanteDomicilio;
+
+        return $this;
+    }
+
+    public function getNumeroNomina(): ?string
+    {
+        return $this->numero_nomina;
+    }
+
+    public function setNumeroNomina(?string $numero_nomina): self
+    {
+        $this->numero_nomina = $numero_nomina;
 
         return $this;
     }
