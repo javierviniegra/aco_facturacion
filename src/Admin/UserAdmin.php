@@ -12,6 +12,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ModelType;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\Form\Type\DatePickerType;
+use Sonata\Form\Type\CollectionType;
 use Sonata\UserBundle\Form\Type\SecurityRolesType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\LocaleType;
@@ -100,7 +101,8 @@ class UserAdmin extends BaseUserAdmin
                 #->with('Social', ['class' => 'col-md-6'])->end()
             ->end()
             ->tab('Laboral')
-                ->with('General', ['class' => 'col-md-12'])->end()
+                ->with('General', ['class' => 'col-md-6'])->end()
+                ->with('Sueldos', ['class' => 'col-md-6'])->end()
             ->end()
             ->tab('Médico')
                 ->with('General', ['class' => 'col-md-12'])->end()
@@ -180,6 +182,17 @@ class UserAdmin extends BaseUserAdmin
                     ->add('numImss', null, ['required' => false,'label' => 'Número de Seguridad Social'])
                     ->add('puesto', null, ['required' => false,'label' => 'Puesto'])
                     ->add('estadoCivil', null, ['required' => false,'label' => 'Estado Civil'])
+                ->end()
+                ->with('Sueldos')
+                    ->add('sueldos', CollectionType::class, [
+                        'by_reference' => false,
+                        'required' => false,
+                        'label' => 'Sueldos'
+                    ],
+                    [
+                        'edit' => 'inline',
+                        'inline' => 'table'
+                    ])
                 ->end()
             ->end()
             ->tab('Médico')

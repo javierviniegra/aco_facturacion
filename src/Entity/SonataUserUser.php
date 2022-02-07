@@ -7,6 +7,8 @@ use Sonata\UserBundle\Entity\BaseUser;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity
@@ -216,10 +218,17 @@ class SonataUserUser extends BaseUser
      */
     private $numero_nomina;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Salario::class, mappedBy="sonataUserUser",cascade={"persist"})
+     */
+    private $sueldos;
+
     public function __construct()
     {   
         parent::__construct();
         $this->roles = array('ROLE_DENTISTA');
+        $this->salario = new ArrayCollection();
+        $this->sueldos = new ArrayCollection();
     }
 
     public function setEmail($email)
@@ -622,6 +631,36 @@ class SonataUserUser extends BaseUser
     public function setFotografia(?string $fotografia): self
     {
         $this->fotografia = $fotografia;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|salario[]
+     */
+    public function getSueldos(): Collection
+    {
+        return $this->sueldos;
+    }
+
+    public function addSueldo(salario $sueldo): self
+    {
+        if (!$this->sueldos->contains($sueldo)) {
+            $this->sueldos[] = $sueldo;
+            $sueldo->setSonataUserUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSueldo(salario $sueldo): self
+    {
+        if ($this->sueldos->removeElement($sueldo)) {
+            // set the owning side to null (unless already changed)
+            if ($sueldo->getSonataUserUser() === $this) {
+                $sueldo->setSonataUserUser(null);
+            }
+        }
 
         return $this;
     }

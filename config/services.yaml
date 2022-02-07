@@ -73,3 +73,10 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Estado Civil }
         public: true
+
+    admin.salario:
+        class: App\Admin\SalarioAdmin
+        arguments: [~, App\Entity\Salario, App\Controller\SalarioController]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Salario }
+        public: true
