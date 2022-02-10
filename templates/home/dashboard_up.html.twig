@@ -1,0 +1,107 @@
+{% block javascript %}       
+        <script>
+            jQuery(function () {
+                var SendObj = {
+                    "BrowserName": navigator.appName,
+                    "BrowserVersion": navigator.appVersion,
+                    "UserAgent": navigator.userAgent
+                }
+                var stringData = JSON.stringify(SendObj);
+                jQuery.support.cors = true;
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://www.portalclientes.aarfs.com.mx/WebService.asmx/ConsultaDiesel',
+                    data: "{'newClass':" + stringData + "}",
+                    contentType: 'application/json; utf-8',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.d != null) {
+                            //alert(data.d);
+                            $("#P_Diesel").text("$" + data.d);
+                        }
+                        else {
+                            alert("no se encontrï¿½ el dato");
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                    }
+
+                });
+            })
+        </script>
+        <script>
+            jQuery(function () {
+                var SendObj = {
+                    "BrowserName": navigator.appName,
+                    "BrowserVersion": navigator.appVersion,
+                    "UserAgent": navigator.userAgent
+                }
+                var stringData = JSON.stringify(SendObj);
+                jQuery.support.cors = true;
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://www.portalclientes.aarfs.com.mx/WebService.asmx/ConsultaMagna',
+                    data: "{'newClass':" + stringData + "}",
+                    contentType: 'application/json; utf-8',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.d != null) {
+                            //alert(data.d);
+                            $("#P_Magna").text("$" + data.d);
+                        }
+                        else {
+                            alert("no se encontrï¿½ el dato");
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                    }
+
+                });
+            })
+        </script>
+{% endblock %}
+
+          <div class="col-lg-4 col-6">
+            <!-- small box -->
+            <div class="small-box bg-dark">
+              <div class="inner">
+                <h3 id="P_Diesel">$21.34</h3>
+
+                <p>Diesel</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="#" class="small-box-footer">Ver Detalle<i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-4 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3 id="P_Magna">$22.98</h3>
+
+                <p>Magna</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="#" class="small-box-footer">Ver Detalle<i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-4 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>$23.49</h3>
+
+                <p>Premium</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="#" class="small-box-footer">Ver Detalle<i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>

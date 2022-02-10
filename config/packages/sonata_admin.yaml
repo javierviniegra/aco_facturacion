@@ -18,6 +18,7 @@ sonata_admin:
         action:                     '@SonataAdmin/CRUD/action.html.twig'
         select:                     '@SonataAdmin/CRUD/list__select.html.twig'
         filter:                     '@SonataAdmin/Form/filter_admin_fields.html.twig'
+        dashboard:                  'home/dashboard.html.twig'
 
 sonata_block:
     blocks:
