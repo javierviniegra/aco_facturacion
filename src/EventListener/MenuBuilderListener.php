@@ -23,8 +23,21 @@ class MenuBuilderListener
 
         if($this->security->isGranted('ROLE_SUPER_ADMIN'))
         {
+            $child = $menu->addChild('dashboard', [
+                'route' => 'sonata_admin_dashboard',
+                'label' => 'AI ACO (Dashboard)',
+            ])->setExtras([
+                'icon' => '<i class="fa fa-bars"></i>'
+            ]);
+
+            $child = $menu->addChild('Clientes')->setExtras(['icon' => '<i class="fa fa-vcard"></i>']);
+            $child = $menu->addChild('Proveedores')->setExtras(['icon' => '<i class="fa fa-shopping-cart"></i>']);
+            $child = $menu->addChild('Inventarios')->setExtras(['icon' => '<i class="fa fa-calculator"></i>']);
+            $child = $menu->addChild('Compras')->setExtras(['icon' => '<i class="fa fa-shopping-bag"></i>']);
+            $child = $menu->addChild('Ventas')->setExtras(['icon' => '<i class="fa fa-truck"></i>']);
+
             $child = $menu->addChild('sonata_user', [
-                'label' => 'Users',
+                'label' => 'RRHH',
             ])->setExtras([
                 'icon' => '<i class="fa fa-users"></i>'
             ]);
@@ -55,6 +68,9 @@ class MenuBuilderListener
                 'label'=> ucfirst(mb_strtolower('Estado Civil')),
                 'route'=>'admin_app_estadocivil_list'
             ]);
+
+            $child = $menu->addChild('Reportes')->setExtras(['icon' => '<i class="fa fa-bar-chart"></i>']);
+
         }
     }
 }

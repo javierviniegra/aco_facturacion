@@ -223,6 +223,16 @@ class SonataUserUser extends BaseUser
      */
     private $sueldos;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $rfc_field;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $curp_field;
+
     public function __construct()
     {   
         parent::__construct();
@@ -533,6 +543,30 @@ class SonataUserUser extends BaseUser
     public function setNumeroNomina(?string $numero_nomina): self
     {
         $this->numero_nomina = $numero_nomina;
+
+        return $this;
+    }
+
+    public function getRfcField(): ?string
+    {
+        return $this->rfc_field;
+    }
+
+    public function setRfcField(?string $rfc_field): self
+    {
+        $this->rfc_field = $rfc_field;
+
+        return $this;
+    }
+
+    public function getCurpField(): ?string
+    {
+        return $this->curp_field;
+    }
+
+    public function setCurpField(?string $curp_field): self
+    {
+        $this->curp_field = $curp_field;
 
         return $this;
     }
