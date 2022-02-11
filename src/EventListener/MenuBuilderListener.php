@@ -30,7 +30,9 @@ class MenuBuilderListener
                 'icon' => '<i class="fa fa-bars"></i>'
             ]);
 
-            $child = $menu->addChild('Clientes')->setExtras(['icon' => '<i class="fa fa-vcard"></i>']);
+            $child = $menu->addChild('Clientes',[
+                'route'=>'admin_app_clientes_list'
+            ])->setExtras(['icon' => '<i class="fa fa-vcard"></i>']);
             $child = $menu->addChild('Proveedores')->setExtras(['icon' => '<i class="fa fa-shopping-cart"></i>']);
             $child = $menu->addChild('Inventarios')->setExtras(['icon' => '<i class="fa fa-calculator"></i>']);
             $child = $menu->addChild('Compras')->setExtras(['icon' => '<i class="fa fa-shopping-bag"></i>']);

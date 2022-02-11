@@ -80,3 +80,10 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Salario }
         public: true
+
+    admin.clientes:
+        class: App\Admin\ClientesAdmin
+        arguments: [~, App\Entity\Clientes, App\Controller\ClientesController]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Administración, label: Clientes }
+        public: true
