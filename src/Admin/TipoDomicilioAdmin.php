@@ -10,7 +10,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-final class PuestoAdmin extends AbstractAdmin
+final class TipoDomicilioAdmin extends AbstractAdmin
 {
 
     protected function configureDatagridFilters(DatagridMapper $filter): void
@@ -43,17 +43,13 @@ final class PuestoAdmin extends AbstractAdmin
     {
         $form
             ->tab('General')
-                ->with('Profile', ['class' => 'col-md-6'])->end()
-                ->with('Status', ['class' => 'col-md-6'])->end()
+                ->with('Profile', ['class' => 'col-md-12'])->end()
             ->end();
 
         $form
             ->tab('General')
                 ->with('Profile')
                     ->add('nombre')
-                ->end()
-                ->with('Status')
-                    ->add('is_active')
                 ->end()
             ->end();
     }

@@ -31,8 +31,27 @@ class MenuBuilderListener
             ]);
 
             $child = $menu->addChild('Clientes',[
-                'route'=>'admin_app_clientes_list'
             ])->setExtras(['icon' => '<i class="fa fa-vcard"></i>']);
+            $child->addChild('cliente',[
+                'label'=> 'Clientes',
+                'route'=>'admin_app_clientes_list'
+            ]);
+            //los catalogos
+            $child->addChild('catalogos', [
+                'label' => 'Catálogos',
+            ])->setExtras([
+                'icon' => '<i class="fa fa-book"></i>',
+                'orderNumber' => 0,
+            ]);
+            $child = $child->getChild("catalogos");
+            $child->addChild('usoCfdi',[
+                'label'=> 'Usos del CFDI',
+                'route'=>'admin_app_usocfdi_list'
+            ]);
+            $child->addChild('tipoDomicilio',[
+                'label'=> 'Tipos de Domicilio',
+                'route'=>'admin_app_tipodomicilio_list'
+            ]);
             $child = $menu->addChild('Proveedores')->setExtras(['icon' => '<i class="fa fa-shopping-cart"></i>']);
             $child = $menu->addChild('Inventarios')->setExtras(['icon' => '<i class="fa fa-calculator"></i>']);
             $child = $menu->addChild('Compras')->setExtras(['icon' => '<i class="fa fa-shopping-bag"></i>']);

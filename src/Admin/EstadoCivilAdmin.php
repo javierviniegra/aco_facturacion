@@ -16,7 +16,6 @@ final class EstadoCivilAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
-            ->add('id')
             ->add('nombre')
             ->add('created_at')
             ->add('updated_at')
@@ -27,7 +26,6 @@ final class EstadoCivilAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $list): void
     {
         $list
-            ->add('id')
             ->add('nombre')
             ->add('created_at')
             ->add('updated_at')
@@ -44,18 +42,25 @@ final class EstadoCivilAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $form): void
     {
         $form
-            ->add('id')
-            ->add('nombre')
-            ->add('created_at')
-            ->add('updated_at')
-            ->add('is_active')
-            ;
+            ->tab('General')
+                ->with('Profile', ['class' => 'col-md-6'])->end()
+                ->with('Status', ['class' => 'col-md-6'])->end()
+            ->end();
+
+        $form
+            ->tab('General')
+                ->with('Profile')
+                    ->add('nombre')
+                ->end()
+                ->with('Status')
+                    ->add('is_active')
+                ->end()
+            ->end();
     }
 
     protected function configureShowFields(ShowMapper $show): void
     {
         $show
-            ->add('id')
             ->add('nombre')
             ->add('created_at')
             ->add('updated_at')

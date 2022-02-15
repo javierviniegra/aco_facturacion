@@ -10,7 +10,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-final class PuestoAdmin extends AbstractAdmin
+final class UsoCfdiAdmin extends AbstractAdmin
 {
 
     protected function configureDatagridFilters(DatagridMapper $filter): void
@@ -19,7 +19,6 @@ final class PuestoAdmin extends AbstractAdmin
             ->add('nombre')
             ->add('created_at')
             ->add('updated_at')
-            ->add('is_active')
             ;
     }
 
@@ -29,7 +28,6 @@ final class PuestoAdmin extends AbstractAdmin
             ->add('nombre')
             ->add('created_at')
             ->add('updated_at')
-            ->add('is_active')
             ->add(ListMapper::NAME_ACTIONS, null, [
                 'actions' => [
                     'show' => [],
@@ -43,17 +41,13 @@ final class PuestoAdmin extends AbstractAdmin
     {
         $form
             ->tab('General')
-                ->with('Profile', ['class' => 'col-md-6'])->end()
-                ->with('Status', ['class' => 'col-md-6'])->end()
+                ->with('Others', ['class' => 'col-md-12'])->end()
             ->end();
 
         $form
             ->tab('General')
-                ->with('Profile')
+                ->with('Others')
                     ->add('nombre')
-                ->end()
-                ->with('Status')
-                    ->add('is_active')
                 ->end()
             ->end();
     }
@@ -64,7 +58,6 @@ final class PuestoAdmin extends AbstractAdmin
             ->add('nombre')
             ->add('created_at')
             ->add('updated_at')
-            ->add('is_active')
             ;
     }
 }

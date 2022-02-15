@@ -10,16 +10,19 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-final class PuestoAdmin extends AbstractAdmin
+final class ClienteContactosAdmin extends AbstractAdmin
 {
 
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
             ->add('nombre')
-            ->add('created_at')
-            ->add('updated_at')
-            ->add('is_active')
+            ->add('puesto')
+            ->add('telefono1')
+            ->add('telefono2')
+            ->add('celular')
+            ->add('email')
+            ->add('observaciones')
             ;
     }
 
@@ -27,9 +30,12 @@ final class PuestoAdmin extends AbstractAdmin
     {
         $list
             ->add('nombre')
-            ->add('created_at')
-            ->add('updated_at')
-            ->add('is_active')
+            ->add('puesto')
+            ->add('telefono1')
+            ->add('telefono2')
+            ->add('celular')
+            ->add('email')
+            ->add('observaciones')
             ->add(ListMapper::NAME_ACTIONS, null, [
                 'actions' => [
                     'show' => [],
@@ -44,27 +50,36 @@ final class PuestoAdmin extends AbstractAdmin
         $form
             ->tab('General')
                 ->with('Profile', ['class' => 'col-md-6'])->end()
-                ->with('Status', ['class' => 'col-md-6'])->end()
+                ->with('Others', ['class' => 'col-md-6'])->end()
             ->end();
 
         $form
             ->tab('General')
-                ->with('Profile')
+                ->with('Profile')                    
                     ->add('nombre')
+                    ->add('puesto')
+                    ->add('telefono1')
+                    ->add('telefono2')
+                    ->add('celular')
+                    ->add('email')
                 ->end()
-                ->with('Status')
-                    ->add('is_active')
+                ->with('Others')              
+                    ->add('observaciones')
                 ->end()
-            ->end();
+            ->end()
+            ;
     }
 
     protected function configureShowFields(ShowMapper $show): void
     {
         $show
             ->add('nombre')
-            ->add('created_at')
-            ->add('updated_at')
-            ->add('is_active')
+            ->add('puesto')
+            ->add('telefono1')
+            ->add('telefono2')
+            ->add('celular')
+            ->add('email')
+            ->add('observaciones')
             ;
     }
 }

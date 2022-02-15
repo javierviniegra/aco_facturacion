@@ -87,3 +87,31 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Administración, label: Clientes }
         public: true
+
+    admin.tipo_domicilio:
+        class: App\Admin\TipoDomicilioAdmin
+        arguments: [~, App\Entity\TipoDomicilio, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Administración, label: TipoDomicilio }
+        public: true
+
+    admin.domicilios:
+        class: App\Admin\DomiciliosAdmin
+        arguments: [~, App\Entity\Domicilios, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Administración, label: Domicilios }
+        public: true
+
+    admin.cliente_contactos:
+        class: App\Admin\ClienteContactosAdmin
+        arguments: [~, App\Entity\ClienteContactos, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Administración, label: ClienteContactos }
+        public: true
+
+    admin.uso_cfdi:
+        class: App\Admin\UsoCfdiAdmin
+        arguments: [~, App\Entity\UsoCfdi, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Administración, label: UsoCfdi }
+        public: true

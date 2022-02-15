@@ -24,7 +24,6 @@ final class RegisroClaveAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $list): void
     {
         $list
-            ->add('id')
             ->add('nombre')
             ->add('clave')
             ->add('is_valid')
@@ -50,7 +49,6 @@ final class RegisroClaveAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $show): void
     {
         $show
-            ->add('id')
             ->add('nombre')
             ->add('clave')
             ->add('is_valid')
