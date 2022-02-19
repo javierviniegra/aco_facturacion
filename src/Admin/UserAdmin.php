@@ -24,6 +24,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Validator\Constraints\File;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Component\Security\Core\Security;
 
 class UserAdmin extends BaseUserAdmin
 {
@@ -95,13 +96,13 @@ class UserAdmin extends BaseUserAdmin
         // define group zoning
         $form
             ->tab('Personal')
-                ->with('Profile', ['class' => 'col-md-6'])->end()
-                ->with('General', ['class' => 'col-md-6'])->end()
-                ->with('Dirección', ['class' => 'col-md-6'])->end()
+                ->with('Personal', ['class' => 'col-md-6'])->end()
+                ->with('Usuario', ['class' => 'col-md-6'])->end()
                 #->with('Social', ['class' => 'col-md-6'])->end()
             ->end()
             ->tab('Domicilio')
                 ->with('Domicilio', ['class' => 'col-md-6'])->end()
+                ->with('Contacto', ['class' => 'col-md-6'])->end()
                 ->with('General', ['class' => 'col-md-6'])->end()
             ->end()
             ->tab('Laboral')
@@ -110,13 +111,17 @@ class UserAdmin extends BaseUserAdmin
             ->end()
             ->tab('Médico')
                 ->with('General', ['class' => 'col-md-12'])->end()
-            ->end()
-            ->tab('Security')
-                ->with('Status', ['class' => 'col-md-4'])->end()
-                ->with('Groups', ['class' => 'col-md-4'])->end()
-                ->with('Keys', ['class' => 'col-md-4'])->end()
-                ->with('Roles', ['class' => 'col-md-12'])->end()
             ->end();
+            if($this->isGranted('ROLE_SUPER_ADMIN'))
+            {
+                $form
+                ->tab('Security')
+                    ->with('Status', ['class' => 'col-md-4'])->end()
+                    ->with('Groups', ['class' => 'col-md-4'])->end()
+                    ->with('Keys', ['class' => 'col-md-4'])->end()
+                    ->with('Roles', ['class' => 'col-md-12'])->end()
+                ->end();
+            }
 
         $now = new \DateTime();
 
@@ -128,7 +133,7 @@ class UserAdmin extends BaseUserAdmin
 
         $form
             ->tab('Personal')
-                ->with('General')
+                ->with('Usuario')
                     ->add('fotografiaFile', VichImageType::class, ['required' => false,'label' => 'Fotografía (JPEG, GIF, PNG)'])
                     ->add('username')
                     ->add('email')
@@ -136,7 +141,8 @@ class UserAdmin extends BaseUserAdmin
                         'required' => (!$this->getSubject() || null === $this->getSubject()->getId()),
                     ])
                 ->end()
-                ->with('Profile')
+                ->with('Personal')
+                    ->add('funcion', null, ['required' => false,'label' => 'Función'])
                     ->add('firstname', null, ['required' => false])
                     ->add('lastname', null, ['required' => false,'label' => 'Apellido Paterno'])
                     ->add('lastname_2', null, ['required' => false,'label' => 'Apellido Materno'])
@@ -151,8 +157,6 @@ class UserAdmin extends BaseUserAdmin
                         /*'html5' => false,
                         'attr' => ['class' => 'js-datepicker'],*/
                     ])
-                    //->add('celular', null, ['required' => false,'label' => 'Celular'])
-                    //->add('phone', null, ['required' => false,'label' => 'Teléfono de Casa'])
                     ->add('rfc_field', null, ['required' => false,'label' => 'RFC'])
                     ->add('rfcFile', VichFileType::class, ['required' => false,'label' => 'RFC (PDF)'])
                     ->add('curp_field', null, ['required' => false,'label' => 'CURP'])
@@ -176,10 +180,18 @@ class UserAdmin extends BaseUserAdmin
                     ->add('municipio', null, ['required' => false,'label' => 'Municipio'])
                     ->add('cp', null, ['required' => false,'label' => 'Código Postal'])
                     ->add('estado', null, ['required' => false,'label' => 'Estado'])
+                    ->add('georeferencia', null, ['required' => false,'label' => 'Georeferencia (ej. 41.40338; 2.17403)'])
                 ->end()
                 ->with('General')
                     ->add('domicilioFile', VichFileType::class, ['required' => false,'label' => 'Comprobante de domicilio (PDF)'])
-                    ->add('georeferencia', null, ['required' => false,'label' => 'Georeferencia (ej. 41.40338; 2.17403)'])
+                ->end()
+                ->with('Contacto')
+                    ->add('celular', null, ['required' => false,'label' => 'Celular'])
+                    ->add('phone', null, ['required' => false,'label' => 'Teléfono de Casa'])
+                    ->add('nombreContacto1', null, ['required' => false,'label' => 'Nombre de Contacto 1'])
+                    ->add('telContacto1', null, ['required' => false,'label' => 'Teléfono de Contacto 1'])
+                    ->add('nombreContacto2', null, ['required' => false,'label' => 'Nombre de Contacto 2'])
+                    ->add('telContacto2', null, ['required' => false,'label' => 'Teléfono de Contacto 2'])
                 ->end()
             ->end()
             ->tab('Laboral')
@@ -215,31 +227,35 @@ class UserAdmin extends BaseUserAdmin
                     ->add('contacto2', null, ['required' => false,'label' => 'Nombre de Contacto de Emergencia 2'])
                     ->add('celContacto2', null, ['required' => false,'label' => 'Celular de Contacto de Emergencia 2'])
                 ->end()
-            ->end()
-            ->tab('Security')
-                ->with('Status')
-                    ->add('enabled', null, ['required' => false])
-                ->end()
-                ->with('Groups')
-                    ->add('groups', ModelType::class, [
-                        'required' => false,
-                        'expanded' => true,
-                        'multiple' => true,
-                    ])
-                ->end()
-                ->with('Roles')
-                    ->add('realRoles', SecurityRolesType::class, [
-                        'label' => 'form.label_roles',
-                        'expanded' => true,
-                        'multiple' => true,
-                        'required' => false,
-                    ])
-                ->end()
-                ->with('Keys')
-                    ->add('token', null, ['required' => false])
-                    ->add('twoStepVerificationCode', null, ['required' => false])
-                ->end()
             ->end();
+            if($this->isGranted('ROLE_SUPER_ADMIN'))
+            {
+                $form
+                ->tab('Security')
+                    ->with('Status')
+                        ->add('enabled', null, ['required' => false])
+                    ->end()
+                    ->with('Groups')
+                        ->add('groups', ModelType::class, [
+                            'required' => false,
+                            'expanded' => true,
+                            'multiple' => true,
+                        ])
+                    ->end()
+                    ->with('Roles')
+                        ->add('realRoles', SecurityRolesType::class, [
+                            'label' => 'form.label_roles',
+                            'expanded' => true,
+                            'multiple' => true,
+                            'required' => false,
+                        ])
+                    ->end() 
+                    ->with('Keys')
+                        ->add('token', null, ['required' => false])
+                        ->add('twoStepVerificationCode', null, ['required' => false])
+                    ->end()
+                ->end();
+            }
     }
 
     protected function configureExportFields(): array

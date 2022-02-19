@@ -233,6 +233,31 @@ class SonataUserUser extends BaseUser
      */
     private $curp_field;
 
+    /**
+     * @ORM\OneToOne(targetEntity=UserFuncion::class, cascade={"persist", "remove"})
+     */
+    private $funcion;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nombreContacto1;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $telContacto1;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nombreContacto2;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $telContacto2;
+
     public function __construct()
     {   
         parent::__construct();
@@ -698,4 +723,65 @@ class SonataUserUser extends BaseUser
 
         return $this;
     }
+
+    public function getFuncion(): ?UserFuncion
+    {
+        return $this->funcion;
+    }
+
+    public function setFuncion(?UserFuncion $funcion): self
+    {
+        $this->funcion = $funcion;
+
+        return $this;
+    }
+
+    public function getNombreContacto1(): ?string
+    {
+        return $this->nombreContacto1;
+    }
+
+    public function setNombreContacto1(string $nombreContacto1): self
+    {
+        $this->nombreContacto1 = $nombreContacto1;
+
+        return $this;
+    }
+
+    public function getTelContacto1(): ?string
+    {
+        return $this->telContacto1;
+    }
+
+    public function setTelContacto1(string $telContacto1): self
+    {
+        $this->telContacto1 = $telContacto1;
+
+        return $this;
+    }
+
+    public function getNombreContacto2(): ?string
+    {
+        return $this->nombreContacto2;
+    }
+
+    public function setNombreContacto2(?string $nombreContacto2): self
+    {
+        $this->nombreContacto2 = $nombreContacto2;
+
+        return $this;
+    }
+
+    public function getTelContacto2(): ?string
+    {
+        return $this->telContacto2;
+    }
+
+    public function setTelContacto2(?string $telContacto2): self
+    {
+        $this->telContacto2 = $telContacto2;
+
+        return $this;
+    }
+
 }

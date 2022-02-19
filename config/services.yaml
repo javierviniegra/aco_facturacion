@@ -115,3 +115,10 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Administración, label: UsoCfdi }
         public: true
+
+    admin.user_funcion:
+        class: App\Admin\UserFuncionAdmin
+        arguments: [~, App\Entity\UserFuncion, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: UserFuncion }
+        public: true
