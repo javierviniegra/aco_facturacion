@@ -39,7 +39,6 @@ final class ClientesAdmin extends AbstractAdmin
                 'actions' => [
                     'show' => [],
                     'edit' => [],
-                    'delete' => [],
                 ],
             ]);
     }
@@ -51,12 +50,12 @@ final class ClientesAdmin extends AbstractAdmin
                 ->with('Profile', ['class' => 'col-md-6'])->end()
                 ->with('Status', ['class' => 'col-md-6'])->end()
             ->end()
+            ->tab('Domicilio')
+                ->with('Domicilios', ['class' => 'col-md-12'])->end()
+            ->end()
             ->tab('Administrativo')
                 ->with('SAT', ['class' => 'col-md-6'])->end()
                 ->with('Crédito', ['class' => 'col-md-6'])->end()
-            ->end()
-            ->tab('Domicilio')
-                ->with('Domicilios', ['class' => 'col-md-12'])->end()
             ->end()
             ->tab('Contacto')
                 ->with('Contactos', ['class' => 'col-md-12'])->end()

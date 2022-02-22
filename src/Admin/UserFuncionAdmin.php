@@ -40,8 +40,6 @@ final class UserFuncionAdmin extends AbstractAdmin
     {
         $form
             ->add('nombre')
-            ->add('created_at')
-            ->add('updated_at')
             ;
     }
 

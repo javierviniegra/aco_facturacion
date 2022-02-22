@@ -34,7 +34,6 @@ final class PuestoAdmin extends AbstractAdmin
                 'actions' => [
                     'show' => [],
                     'edit' => [],
-                    'delete' => [],
                 ],
             ]);
     }

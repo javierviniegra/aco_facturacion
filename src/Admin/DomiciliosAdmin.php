@@ -56,7 +56,6 @@ final class DomiciliosAdmin extends AbstractAdmin
                 'actions' => [
                     'show' => [],
                     'edit' => [],
-                    'delete' => [],
                 ],
             ]);
     }

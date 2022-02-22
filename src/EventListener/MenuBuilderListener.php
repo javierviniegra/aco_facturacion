@@ -72,15 +72,48 @@ class MenuBuilderListener
                 'label'=> 'Tipos de Domicilio',
                 'route'=>'admin_app_tipodomicilio_list'
             ]);
+            //compras
+            $child = $menu->getChild("tools1");
+            $child->addChild('tool_compras',[
+                'label' => 'Compras',
+            ])->setExtras(['icon' => '<i class="fa fa-angle-double-right"></i>']);
+            $tools = $child->getChild('tool_compras');
+            $tools->addChild('formaspago',[
+                'label'=> 'Formas de Pago',
+                'route'=>'admin_app_formaspago_list'
+            ]);
+            $tools->addChild('bancos',[
+                'label'=> 'Bancos',
+                'route'=>'admin_app_bancos_list'
+            ]);
+            $tools->addChild('estatusPago',[
+                'label'=> 'Estatus de Pagos',
+                'route'=>'admin_app_estatuspago_list'
+            ]);
+            $tools->addChild('almacenajes',[
+                'label'=> 'Almacenajes',
+                'route'=>'admin_app_almacenajes_list'
+            ]);
         }
         
             $child = $menu->addChild('Clientes',[
                 'label'=> 'Clientes',
                 'route'=>'admin_app_clientes_list'
             ])->setExtras(['icon' => '<i class="fa fa-vcard"></i>']);
-            $child = $menu->addChild('Proveedores')->setExtras(['icon' => '<i class="fa fa-shopping-cart"></i>']);
+            $child = $menu->addChild('Proveedores',[
+                'label'=> 'Proveedores',
+                'route'=>'admin_app_proveedores_list'
+            ])->setExtras(['icon' => '<i class="fa fa-shopping-cart"></i>']);
             $child = $menu->addChild('Inventarios')->setExtras(['icon' => '<i class="fa fa-calculator"></i>']);
-            $child = $menu->addChild('Compras')->setExtras(['icon' => '<i class="fa fa-shopping-bag"></i>']);
+            $child1 = $menu->getChild("Inventarios");
+            $child1->addChild('productos',[
+                'label'=> 'Productos',
+                'route'=>'admin_app_productos_list'
+            ]);
+            $child = $menu->addChild('Compras',[
+                'label'=> 'Compras',
+                'route'=>'admin_app_compras_list'
+            ])->setExtras(['icon' => '<i class="fa fa-shopping-bag"></i>']);
             $child = $menu->addChild('Ventas')->setExtras(['icon' => '<i class="fa fa-truck"></i>']);
 
             $child = $menu->addChild('sonata_user', [

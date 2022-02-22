@@ -122,3 +122,52 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Catálogos, label: UserFuncion }
         public: true
+
+    admin.proveedores:
+        class: App\Admin\ProveedoresAdmin
+        arguments: [~, App\Entity\Proveedores, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Proveedores }
+        public: true
+
+    admin.productos:
+        class: App\Admin\ProductosAdmin
+        arguments: [~, App\Entity\Productos, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Productos }
+        public: true
+
+    admin.formas_pago:
+        class: App\Admin\FormasPagoAdmin
+        arguments: [~, App\Entity\FormasPago, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: FormasPago }
+        public: true
+
+    admin.bancos:
+        class: App\Admin\BancosAdmin
+        arguments: [~, App\Entity\Bancos, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Bancos }
+        public: true
+
+    admin.estatus_pago:
+        class: App\Admin\EstatusPagoAdmin
+        arguments: [~, App\Entity\EstatusPago, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: EstatusPago }
+        public: true
+
+    admin.almacenajes:
+        class: App\Admin\AlmacenajesAdmin
+        arguments: [~, App\Entity\Almacenajes, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Almacenajes }
+        public: true
+
+    admin.compras:
+        class: App\Admin\ComprasAdmin
+        arguments: [~, App\Entity\Compras, App\Controller\ComprasController]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Compras }
+        public: true

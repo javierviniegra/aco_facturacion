@@ -35,7 +35,6 @@ final class SalarioAdmin extends AbstractAdmin
                 'actions' => [
                     'show' => [],
                     'edit' => [],
-                    'delete' => [],
                 ],
             ]);
     }

@@ -16,7 +16,6 @@ final class TipoSangreAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
-            ->add('id')
             ->add('nombre')
             ->add('created_at')
             ->add('updated_at')
@@ -26,7 +25,6 @@ final class TipoSangreAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $list): void
     {
         $list
-            ->add('id')
             ->add('nombre')
             ->add('created_at')
             ->add('updated_at')
@@ -34,7 +32,6 @@ final class TipoSangreAdmin extends AbstractAdmin
                 'actions' => [
                     'show' => [],
                     'edit' => [],
-                    'delete' => [],
                 ],
             ]);
     }
@@ -42,17 +39,21 @@ final class TipoSangreAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $form): void
     {
         $form
-            ->add('id')
-            ->add('nombre')
-            ->add('created_at')
-            ->add('updated_at')
-            ;
+            ->tab('General')
+                ->with('Others', ['class' => 'col-md-12'])->end()
+            ->end();
+
+        $form
+            ->tab('General')
+                ->with('Others')
+                    ->add('nombre')
+                ->end()
+            ->end();
     }
 
     protected function configureShowFields(ShowMapper $show): void
     {
         $show
-            ->add('id')
             ->add('nombre')
             ->add('created_at')
             ->add('updated_at')
