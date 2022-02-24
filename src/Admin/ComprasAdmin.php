@@ -10,6 +10,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\Form\Type\DatePickerType;
+use Sonata\AdminBundle\Form\Type\ModelType;
 use Sonata\Form\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -83,11 +84,21 @@ final class ComprasAdmin extends AbstractAdmin
             ->tab('Compras')
                 ->with('Compras')
                     ->add('fechaCompra', DateType::class, ['label' => 'Fecha de Compra', 'widget' => 'single_text',])
+                    ->add('proveedor', ModelType::class, [
+                            'required' => true,
+                            'expanded' => false,
+                            'multiple' => false,
+                    ])
                     ->add('litros', NumberType::class, ['label' => 'Litros',])
                     ->add('precioLitro', MoneyType::class, [
                         'currency' => 'MXP',
                         'divisor' => 100,
                         'label' => 'Precio por litro',
+                    ])
+                    ->add('producto', ModelType::class, [
+                            'required' => true,
+                            'expanded' => false,
+                            'multiple' => false,
                     ])
                     ->add('iepsFactor', NumberType::class, ['label' => 'Factor IEPS',])
                 ->end()
@@ -118,12 +129,37 @@ final class ComprasAdmin extends AbstractAdmin
                 ->with('Facturación')
                     ->add('fechaPago', DateType::class, ['label' => 'Fecha de Pago', 'widget' => 'single_text',])
                     ->add('numFactura',null, ['label' => 'Número de Factura'])
+                    ->add('formaPago', ModelType::class, [
+                            'required' => false,
+                            'expanded' => false,
+                            'multiple' => false,
+                    ])
+                    ->add('banco', ModelType::class, [
+                            'required' => false,
+                            'expanded' => false,
+                            'multiple' => false,
+                    ])
                     ->add('idTransaccion',null, ['label' => 'ID de transacción'])
+                    ->add('estatusPago', ModelType::class, [
+                            'required' => false,
+                            'expanded' => false,
+                            'multiple' => false,
+                    ])
                 ->end()
             ->end()
             ->tab('Recepción')
                 ->with('General')
                     ->add('fechaRecepcion', DateTimeType::class, ['label' => 'Fecha y Hora de Recepción', 'widget' => 'single_text',])
+                    ->add('almacenaje', ModelType::class, [
+                            'required' => false,
+                            'expanded' => false,
+                            'multiple' => false,
+                    ])
+                    ->add('personaRecibio', ModelType::class, [
+                            'required' => false,
+                            'expanded' => false,
+                            'multiple' => false,
+                    ])
                     ->add('observaciones',null, ['label' => 'Observaciones'])
                 ->end()
             ->end()

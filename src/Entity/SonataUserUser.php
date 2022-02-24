@@ -258,6 +258,12 @@ class SonataUserUser extends BaseUser
      */
     private $telContacto2;
 
+
+    public function __toString()
+    {
+        return $this->getFirstname()." ".$this->getLastname()." - ".$this->getUsername();
+    }
+
     public function __construct()
     {   
         parent::__construct();
