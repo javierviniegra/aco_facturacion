@@ -108,7 +108,7 @@ final class ProveedoresAdmin extends AbstractAdmin
         $form
             ->tab('General')
                 ->with('Profile')
-                    ->add('nombre',null,['label' => 'Nombre'])
+                    ->add('nombre',null,['label' => 'Nombre Comercial'])
                     ->add('rfc',null,['label' => 'RFC'])
                     ->add('razonSocial',ChoiceType::class,[
                         'label' => 'Tipo de Razón',
