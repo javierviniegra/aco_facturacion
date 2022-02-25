@@ -107,7 +107,7 @@ services:
         arguments: [~, App\Entity\ClienteContactos, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Administración, label: ClienteContactos }
-        public: true
+        public: false
 
     admin.uso_cfdi:
         class: App\Admin\UsoCfdiAdmin
@@ -122,14 +122,7 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Catálogos, label: UserFuncion }
         public: true
-
-    admin.proveedores:
-        class: App\Admin\ProveedoresAdmin
-        arguments: [~, App\Entity\Proveedores, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Proveedores }
-        public: true
-
+        
     admin.productos:
         class: App\Admin\ProductosAdmin
         arguments: [~, App\Entity\Productos, ~]
@@ -173,3 +166,17 @@ services:
         public: true
         calls:
             - [ setTemplate, [edit, compras/edit.html.twig]]
+
+    admin.proveedores:
+        class: App\Admin\ProveedoresAdmin
+        arguments: [~, App\Entity\Proveedores, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Proveedores }
+        public: true
+
+    admin.proveedor_contactos:
+        class: App\Admin\ProveedorContactosAdmin
+        arguments: [~, App\Entity\ProveedorContactos, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: ProveedorContactos }
+        public: false
