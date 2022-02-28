@@ -68,7 +68,7 @@ final class ClientesAdmin extends AbstractAdmin
                     ->add('nombreComercial',null,['label' => 'Nombre Comercial'])
                     ->add('razonSocial',null,['label' => 'Razón Social'])
                     ->add('razon',ChoiceType::class,[
-                        'label' => 'Tipo de Razón',
+                        'label' => 'Persona',
                         'multiple' => false,
                         'sortable' => true,
                         'choices' => [

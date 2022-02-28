@@ -24,6 +24,7 @@ final class ComprasAdmin extends AbstractAdmin
     {
         $filter
             ->add('fechaCompra')
+            ->add('id_compra')
             ->add('litros')
             ->add('precioLitro')
             ->add('iepsFactor')
@@ -43,6 +44,7 @@ final class ComprasAdmin extends AbstractAdmin
     {
         $list
             ->add('fechaCompra')
+            ->add('id_compra')
             ->add('litros')
             ->add('precioLitro')
             ->add('iepsFactor')
@@ -83,6 +85,7 @@ final class ComprasAdmin extends AbstractAdmin
         $form
             ->tab('Compras')
                 ->with('Compras')
+                    ->add('id_compra',null,['label' => 'ID de Compra'])
                     ->add('fechaCompra', DateType::class, ['label' => 'Fecha de Compra', 'widget' => 'single_text',])
                     ->add('proveedor', ModelType::class, [
                             'required' => true,
@@ -100,6 +103,7 @@ final class ComprasAdmin extends AbstractAdmin
                             'expanded' => false,
                             'multiple' => false,
                     ])
+                    ->add('requiereIeps',null,['label' => 'Requiere IEPS'])
                     ->add('iepsFactor', NumberType::class, ['label' => 'Factor IEPS',])
                 ->end()
                 ->with('Cálculos')
@@ -127,7 +131,7 @@ final class ComprasAdmin extends AbstractAdmin
             ->end()
             ->tab('Facturación')
                 ->with('Facturación')
-                    ->add('fechaPago', DateType::class, ['label' => 'Fecha de Pago', 'widget' => 'single_text',])
+                    ->add('fechaPago', DateType::class, ['label' => 'Fecha de Pago', 'widget' => 'single_text','required' => false])
                     ->add('numFactura',null, ['label' => 'Número de Factura'])
                     ->add('formaPago', ModelType::class, [
                             'required' => false,
@@ -149,7 +153,7 @@ final class ComprasAdmin extends AbstractAdmin
             ->end()
             ->tab('Recepción')
                 ->with('General')
-                    ->add('fechaRecepcion', DateTimeType::class, ['label' => 'Fecha y Hora de Recepción', 'widget' => 'single_text',])
+                    ->add('fechaRecepcion', DateTimeType::class, ['label' => 'Fecha y Hora de Recepción', 'widget' => 'single_text','required' => false])
                     ->add('almacenaje', ModelType::class, [
                             'required' => false,
                             'expanded' => false,

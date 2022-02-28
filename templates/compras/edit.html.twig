@@ -7,16 +7,26 @@
     {{ parent() }}
     <script>
         var idFormulario = '{{ idForma }}';
+
         $(document).ready( function() {
             $(document).change(function() {
+
+                var requiereIEPS = $('#{{ idForma ~ '_requiereIeps' }}').is(':checked')
                 var litros = parseFloat($('#{{ idForma ~ '_litros' }}').val());
                 var preciolitro = parseFloat($('#{{ idForma ~ '_precioLitro' }}').val());
                 var iepsfactor = parseFloat($('#{{ idForma ~ '_iepsFactor' }}').val());
                 //operaciones
                 var iepstotal = parseFloat(litros * iepsfactor).toFixed(2);
+                iepstotal = requiereIEPS ? iepstotal :  0; 
                 var subtotal = parseFloat(litros * preciolitro).toFixed(2);
-                var iva = parseFloat((subtotal - iepstotal) * 0.16).toFixed(2);
-                var total = parseFloat(iva + subtotal).toFixed(2);
+                var iva1 = parseFloat(subtotal) - parseFloat(iepstotal);
+                var iva = parseFloat(iva1 * 0.16).toFixed(2);
+                var total1 = parseFloat(iva) + parseFloat(subtotal);
+                var total = parseFloat(total1).toFixed(2);
+                iepstotal = isNaN(iepstotal) ? 0 : iepstotal;
+                subtotal = isNaN(subtotal) ? 0 : subtotal;
+                iva = isNaN(iva) ? 0 : iva;
+                total = isNaN(total) ? 0 : total;
                 //meto resultados
                 $('#{{ idForma ~ '_iepsTotal' }}').val(iepstotal);
                 $('#{{ idForma ~ '_iva' }}').val(iva);

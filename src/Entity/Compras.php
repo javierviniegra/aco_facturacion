@@ -18,13 +18,13 @@ class Compras
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $fechaCompra;
 
     /**
      * @ORM\ManyToOne(targetEntity=Proveedores::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $proveedor;
 
@@ -40,7 +40,7 @@ class Compras
 
     /**
      * @ORM\ManyToOne(targetEntity=Productos::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $producto;
 
@@ -128,6 +128,16 @@ class Compras
      * @ORM\Column(type="datetime")
      */
     private $updated_at;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $id_compra;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $requiereIeps;
 
     public function getId(): ?int
     {
@@ -394,6 +404,30 @@ class Compras
     public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getIdCompra(): ?string
+    {
+        return $this->id_compra;
+    }
+
+    public function setIdCompra(?string $id_compra): self
+    {
+        $this->id_compra = $id_compra;
+
+        return $this;
+    }
+
+    public function getRequiereIeps(): ?bool
+    {
+        return $this->requiereIeps;
+    }
+
+    public function setRequiereIeps(bool $requiereIeps): self
+    {
+        $this->requiereIeps = $requiereIeps;
 
         return $this;
     }
