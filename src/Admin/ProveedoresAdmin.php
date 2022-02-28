@@ -22,7 +22,13 @@ final class ProveedoresAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
-            ->add('nombre')
+            ->add('nombre',null,['label' => 'Nombre Comercial'])
+            ->add('rfc',null,['label' => 'RFC'])
+            ->add('razonSocial',null,['label' => 'Razón Social'])
+            ->add('razon',null,['label' => 'Persona'])
+            ->add('is_active',null,['label' => 'Activo?'])
+            ->add('telefono1',null,['label' => 'Teléfono 1'])
+            /*->add('nombre')
             ->add('created_at')
             ->add('updated_at')
             ->add('is_active')
@@ -46,43 +52,23 @@ final class ProveedoresAdmin extends AbstractAdmin
             ->add('cuentaContable1')
             ->add('cuentaContable2')
             ->add('porcentajeDescuento')
-            ->add('observaciones')
+            ->add('observaciones')*/
             ;
     }
 
     protected function configureListFields(ListMapper $list): void
     {
         $list
-            ->add('nombre')
-            ->add('created_at')
-            ->add('updated_at')
-            ->add('is_active')
-            ->add('rfc')
-            ->add('razonSocial')
-            ->add('razon')
-            ->add('calle')
-            ->add('numInterior')
-            ->add('numExterior')
-            ->add('colonia')
-            ->add('cp')
-            ->add('municipio')
-            ->add('estado')
-            ->add('pais')
-            ->add('nacionalidad')
-            ->add('telefono1')
-            ->add('telefono2')
-            ->add('manejoCredito')
-            ->add('limiteCredito')
-            ->add('diasCredito')
-            ->add('cuentaContable1')
-            ->add('cuentaContable2')
-            ->add('porcentajeDescuento')
-            ->add('observaciones')
+            ->add('nombre',null,['label' => 'Nombre Comercial'])
+            ->add('rfc',null,['label' => 'RFC'])
+            ->add('razonSocial',null,['label' => 'Razón Social'])
+            ->add('razon',null,['label' => 'Persona'])
+            ->add('is_active',null,['label' => 'Activo?'])
+            ->add('telefono1',null,['label' => 'Teléfono 1'])
             ->add(ListMapper::NAME_ACTIONS, null, [
                 'actions' => [
                     'show' => [],
                     'edit' => [],
-                    'delete' => [],
                 ],
             ]);
     }
@@ -110,8 +96,8 @@ final class ProveedoresAdmin extends AbstractAdmin
                 ->with('Profile')
                     ->add('nombre',null,['label' => 'Nombre Comercial'])
                     ->add('rfc',null,['label' => 'RFC'])
-                    ->add('razonSocial',ChoiceType::class,[
-                        'label' => 'Tipo de Razón',
+                    ->add('razon',ChoiceType::class,[
+                        'label' => 'Persona',
                         'multiple' => false,
                         'sortable' => true,
                         'choices' => [
@@ -120,7 +106,7 @@ final class ProveedoresAdmin extends AbstractAdmin
                         ],
                         'label_attr' => array('class' => 'checkbox-inline'),
                     ])
-                    ->add('razon',null,['label' => 'Razón Social'])
+                    ->add('razonSocial',null,['label' => 'Razón Social'])
                 ->end()
                 ->with('Status')
                     ->add('is_active')

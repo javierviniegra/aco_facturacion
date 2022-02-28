@@ -6,7 +6,8 @@ use App\Repository\ComprasRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ComprasRepository::class)
+ * @ORM\Entity(repositoryClass=ComprasRepository::class) 
+ * @ORM\HasLifecycleCallbacks()
  */
 class Compras
 {
@@ -138,6 +139,29 @@ class Compras
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $requiereIeps;
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->created_at = new \DateTime();
+        $this->updated_at = new \DateTime();
+        $this->is_active = True;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->updated_at = new \DateTime();
+    }
+
+    public function __toString()
+    {
+        return $this->getIdCompra();
+    }
 
     public function getId(): ?int
     {

@@ -85,26 +85,27 @@ final class ComprasAdmin extends AbstractAdmin
         $form
             ->tab('Compras')
                 ->with('Compras')
-                    ->add('id_compra',null,['label' => 'ID de Compra'])
-                    ->add('fechaCompra', DateType::class, ['label' => 'Fecha de Compra', 'widget' => 'single_text',])
+                    ->add('id_compra',null,['label' => 'ID de Compra','required' => true])
+                    ->add('fechaCompra', DateType::class, ['label' => 'Fecha de Compra', 'widget' => 'single_text','required' => false])
                     ->add('proveedor', ModelType::class, [
-                            'required' => true,
+                            'required' => false,
                             'expanded' => false,
                             'multiple' => false,
                     ])
-                    ->add('litros', NumberType::class, ['label' => 'Litros',])
+                    ->add('litros', NumberType::class, ['label' => 'Litros','required' => false])
                     ->add('precioLitro', MoneyType::class, [
                         'currency' => 'MXP',
                         'divisor' => 100,
                         'label' => 'Precio por litro',
+                        'required' => false
                     ])
                     ->add('producto', ModelType::class, [
-                            'required' => true,
+                            'required' => false,
                             'expanded' => false,
                             'multiple' => false,
                     ])
-                    ->add('requiereIeps',null,['label' => 'Requiere IEPS'])
-                    ->add('iepsFactor', NumberType::class, ['label' => 'Factor IEPS',])
+                    ->add('requiereIeps',null,['label' => 'Requiere IEPS','required' => false])
+                    ->add('iepsFactor', NumberType::class, ['label' => 'Factor IEPS','required' => false])
                 ->end()
                 ->with('Cálculos')
                     ->add('iepsTotal', MoneyType::class, [
@@ -164,7 +165,7 @@ final class ComprasAdmin extends AbstractAdmin
                             'expanded' => false,
                             'multiple' => false,
                     ])
-                    ->add('observaciones',null, ['label' => 'Observaciones'])
+                    ->add('observaciones',null, ['label' => 'Observaciones','required' => false])
                 ->end()
             ->end()
             ;

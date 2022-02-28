@@ -19,22 +19,24 @@ final class ClientesAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
-            ->add('rfc')
-            ->add('nombreComercial')
-            ->add('razonSocial')
-            ->add('razon')
-            ->add('is_active')
+            ->add('nombre',null,['label' => 'Nombre Comercial'])
+            ->add('rfc',null,['label' => 'RFC'])
+            ->add('razonSocial',null,['label' => 'Razón Social'])
+            ->add('razon',null,['label' => 'Persona'])
+            ->add('is_active',null,['label' => 'Activo?'])
+            ->add('telefono1',null,['label' => 'Teléfono 1'])
             ;
     }
 
     protected function configureListFields(ListMapper $list): void
     {
         $list
-            ->add('rfc')
-            ->add('nombreComercial')
-            ->add('razonSocial')
-            ->add('razon')
-            ->add('is_active')
+            ->add('nombre',null,['label' => 'Nombre Comercial'])
+            ->add('rfc',null,['label' => 'RFC'])
+            ->add('razonSocial',null,['label' => 'Razón Social'])
+            ->add('razon',null,['label' => 'Persona'])
+            ->add('is_active',null,['label' => 'Activo?'])
+            ->add('telefono1',null,['label' => 'Teléfono 1'])
             ->add(ListMapper::NAME_ACTIONS, null, [
                 'actions' => [
                     'show' => [],
