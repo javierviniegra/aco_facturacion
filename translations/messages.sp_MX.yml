@@ -64,8 +64,10 @@ Clientes List: Listado de Clientes
 Clientes Create: Crear Cliente
 Proveedores List: Listado de Proveedores
 Proveedores Create: Crear Proveedor
-Compras List: Listado de Compras
-Compras Create: Crear Compra
+Compras List: Compras
+Compras Create: Orden de Compra
+Compras List: Ventas
+Compras Create: Orden de Venta
 Productos List: Listado de Productos
 Productos Create: Crear Producto
 Uso Cfdi List: Listado de Usos de CFDI

@@ -10,7 +10,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-final class FormasPagoAdmin extends AbstractAdmin
+final class MetodosPagoAdmin extends AbstractAdmin
 {
 
     protected function configureDatagridFilters(DatagridMapper $filter): void
@@ -57,10 +57,10 @@ final class FormasPagoAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $show): void
     {
         $show
+            ->add('id')
             ->add('nombre')
             ->add('created_at')
             ->add('updated_at')
-            ->add('is_active')
             ;
     }
 }

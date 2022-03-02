@@ -180,3 +180,24 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Catálogos, label: ProveedorContactos }
         public: false
+
+    admin.productos_venta:
+        class: App\Admin\ProductosVentaAdmin
+        arguments: [~, App\Entity\ProductosVenta, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: ProductosVenta }
+        public: false
+
+    admin.metodos_pago:
+        class: App\Admin\MetodosPagoAdmin
+        arguments: [~, App\Entity\MetodosPago, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: MetodosPago }
+        public: true
+
+    admin.ventas:
+        class: App\Admin\VentasAdmin
+        arguments: [~, App\Entity\Ventas, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Ventas }
+        public: true

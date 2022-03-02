@@ -94,6 +94,16 @@ class MenuBuilderListener
                 'label'=> 'Almacenajes',
                 'route'=>'admin_app_almacenajes_list'
             ]);
+            //ventas
+            $child = $menu->getChild("tools1");
+            $child->addChild('tool_ventas',[
+                'label' => 'Ventas',
+            ])->setExtras(['icon' => '<i class="fa fa-angle-double-right"></i>']);
+            $tools = $child->getChild('tool_ventas');
+            $tools->addChild('metodospago',[
+                'label'=> 'Metodos de Pago',
+                'route'=>'admin_app_metodospago_list'
+            ]);
         }
         
             $child = $menu->addChild('Clientes',[
@@ -114,7 +124,10 @@ class MenuBuilderListener
                 'label'=> 'Compras',
                 'route'=>'admin_app_compras_list'
             ])->setExtras(['icon' => '<i class="fa fa-shopping-bag"></i>']);
-            $child = $menu->addChild('Ventas')->setExtras(['icon' => '<i class="fa fa-truck"></i>']);
+            $child = $menu->addChild('Ventas',[
+                'label'=> 'Ventas',
+                'route'=>'admin_app_ventas_list'
+            ])->setExtras(['icon' => '<i class="fa fa-truck"></i>']);
 
             $child = $menu->addChild('sonata_user', [
                 'label' => 'RRHH',
