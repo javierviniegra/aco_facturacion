@@ -165,6 +165,11 @@ class Proveedores
      */
     private $observaciones;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $webpage;
+
     public function __construct()
     {
         $this->contactos = new ArrayCollection();
@@ -561,6 +566,18 @@ class Proveedores
     public function setObservaciones(?string $observaciones): self
     {
         $this->observaciones = $observaciones;
+
+        return $this;
+    }
+
+    public function getWebpage(): ?string
+    {
+        return $this->webpage;
+    }
+
+    public function setWebpage(?string $webpage): self
+    {
+        $this->webpage = $webpage;
 
         return $this;
     }

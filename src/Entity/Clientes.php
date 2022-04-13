@@ -46,7 +46,7 @@ class Clientes
     private $is_active;
 
     /**
-     * @ORM\OneToMany(targetEntity=Domicilios::class, mappedBy="cliente", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Domicilios::class, mappedBy="cliente", orphanRemoval=true, cascade={"persist"})
      */
     private $domicilio;
 
@@ -61,7 +61,7 @@ class Clientes
     private $updated_at;
 
     /**
-     * @ORM\OneToMany(targetEntity=ClienteContactos::class, mappedBy="cliente")
+     * @ORM\OneToMany(targetEntity=ClienteContactos::class, mappedBy="cliente", cascade={"persist"})
      */
     private $contactos;
 
@@ -71,7 +71,7 @@ class Clientes
     private $formaPago;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $numRegistro;
 

@@ -39,7 +39,6 @@ Save: Guardar
 Dashboard: Tablero
 Create New: Nuevo Registro
 no records found: No se encontraron registros
-breadcrumb.link_sonata_user_user_list: Usuarios
 Tools: Herramientas
 events:  
     by:  
@@ -82,3 +81,15 @@ Bancos List: Listado de Bancos
 Bancos Create: Crear Banco
 Almacenajes List: Listado de Almacenajes
 Almacenajes Create: Crear Almacenaje
+Metodos Pago List: Listado de Métodos de Pago
+Metodos Pago Create: Crear Métodos de Pago
+
+MetodosPago: Métodos de Pago
+FormasPago: Formas de Pago
+Bancos: Bancos
+StatusPago: Estatus de Pago 
+Almacenajes: Almacenajes
+UsoCfdi: Usos de CFDI
+TipoDomicilio: Tipos de Domicilio
+Puesto: Puestos
+UserFuncion: Funciones de Usuario

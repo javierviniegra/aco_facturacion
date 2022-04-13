@@ -19,7 +19,7 @@ final class ClientesAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
-            ->add('nombre',null,['label' => 'Nombre Comercial'])
+            ->add('nombreComercial',null,['label' => 'Nombre Comercial'])
             ->add('rfc',null,['label' => 'RFC'])
             ->add('razonSocial',null,['label' => 'Razón Social'])
             ->add('razon',null,['label' => 'Persona'])
@@ -31,7 +31,7 @@ final class ClientesAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $list): void
     {
         $list
-            ->add('nombre',null,['label' => 'Nombre Comercial'])
+            ->add('nombreComercial',null,['label' => 'Nombre Comercial'])
             ->add('rfc',null,['label' => 'RFC'])
             ->add('razonSocial',null,['label' => 'Razón Social'])
             ->add('razon',null,['label' => 'Persona'])
@@ -93,7 +93,7 @@ final class ClientesAdmin extends AbstractAdmin
                         'label' => 'Uso del CFDI'
                     ])
                     ->add('formaPago',null,['label' => 'Forma de Pago'])
-                    ->add('numRegistro',null,['label' => 'Número de Registro Tributario'])
+                    //->add('numRegistro',null,['label' => 'Número de Registro Tributario'])
                     ->add('emailEnvio',null,['label' => 'Email para envío de Facturas'])
                 ->end()
                 ->with('Crédito')

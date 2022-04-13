@@ -3,6 +3,38 @@ sonata_admin:
     dashboard:
         blocks:
             - { type: sonata.admin.block.admin_list, position: left }
+        groups:
+            RRHH:
+                label:                RRHH
+                items:
+                    - route: admin_app_sonatausergroup_list
+                      label: Grupos
+                      roles:        ['ROLE_ADMIN', 'ROLE_SONATA_ADMIN']
+                    - sonata.user.admin.group
+                    - admin.puesto
+                    - admin.tipo_sangre
+                    - admin.estado_civil
+                    - admin.user_funcion
+                roles: ['ROLE_ADMIN', 'ROLE_SONATA_ADMIN']
+            Clientes:
+                label:                Clientes
+                items:
+                    - admin.uso_cfdi
+                    - admin.tipo_domicilio
+                roles: ['ROLE_ADMIN', 'ROLE_SONATA_ADMIN']
+            Compras:
+                label:                Compras
+                items:
+                    - admin.formas_pago
+                    - admin.bancos
+                    - admin.estatus_pago
+                    - admin.almacenajes
+                roles: ['ROLE_ADMIN', 'ROLE_SONATA_ADMIN']
+            Ventas:
+                label:                Ventas
+                items:
+                    - admin.metodos_pago
+                roles: ['ROLE_ADMIN', 'ROLE_SONATA_ADMIN']
     templates:
         layout:                     '@SonataAdmin/standard_layout.html.twig'
         ajax:                       '@SonataAdmin/ajax_layout.html.twig'

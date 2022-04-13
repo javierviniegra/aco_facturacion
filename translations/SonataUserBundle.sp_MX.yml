@@ -94,11 +94,14 @@ form:
     new_password_confirmation: 'Repita la contraseña'
 
 breadcrumb:
-    link_sonata_user_user_list: 'Lista de Usuarios'  
-    link_sonata_user_user_create: 'Crear Usuario'
+    link_sonata_user_user_list: 'Usuarios'  
+    link_sonata_user_user_create: 'Nuevo Usuario'
+    link_sonata_user_group_list: 'Grupos'
+    link_sonata_user_group_create: 'Nuevo Grupo'
 
 User: Usuario
 Security: Seguridad
 Profile: Perfil de Usuario
 General: General
 Keys: Llaves de Seguridad
+Group: Grupo

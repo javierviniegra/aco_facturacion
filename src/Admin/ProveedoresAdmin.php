@@ -107,6 +107,7 @@ final class ProveedoresAdmin extends AbstractAdmin
                         'label_attr' => array('class' => 'checkbox-inline'),
                     ])
                     ->add('razonSocial',null,['label' => 'Razón Social'])
+                    ->add('webpage',null,['label' => 'Página Web'])
                 ->end()
                 ->with('Status')
                     ->add('is_active')
