@@ -170,6 +170,16 @@ class Proveedores
      */
     private $webpage;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Estados::class)
+     */
+    private $estado1;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Paises::class)
+     */
+    private $pais1;
+
     public function __construct()
     {
         $this->contactos = new ArrayCollection();
@@ -578,6 +588,30 @@ class Proveedores
     public function setWebpage(?string $webpage): self
     {
         $this->webpage = $webpage;
+
+        return $this;
+    }
+
+    public function getEstado1(): ?Estados
+    {
+        return $this->estado1;
+    }
+
+    public function setEstado1(?Estados $estado1): self
+    {
+        $this->estado1 = $estado1;
+
+        return $this;
+    }
+
+    public function getPais1(): ?Paises
+    {
+        return $this->pais1;
+    }
+
+    public function setPais1(?Paises $pais1): self
+    {
+        $this->pais1 = $pais1;
 
         return $this;
     }

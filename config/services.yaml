@@ -201,3 +201,17 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Ventas }
         public: true
+
+    admin.estados:
+        class: App\Admin\EstadosAdmin
+        arguments: [~, App\Entity\Estados, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Estados }
+        public: true
+
+    admin.paises:
+        class: App\Admin\PaisesAdmin
+        arguments: [~, App\Entity\Paises, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Paises }
+        public: true

@@ -58,6 +58,10 @@ Are you sure you want to delete this item?: Realmente deseas eliminar el registr
 Whatsapp: Whatsapp
 Others: Otros
 
+Created At: Fecha de Creación
+Updated At: Fecha de Actualización
+Action: Acción
+EstatusPago: Estado de Pago
 
 Clientes List: Listado de Clientes
 Clientes Create: Crear Cliente
@@ -67,22 +71,22 @@ Compras List: Compras
 Compras Create: Orden de Compra
 Ventas List: Ventas
 Ventas Create: Orden de Venta
-Productos List: Listado de Productos
-Productos Create: Crear Producto
-Uso Cfdi List: Listado de Usos de CFDI
-Uso Cfdi Create: Crear Uso de CFDI
-Tipo Domicilio List: Listado de Tipos de Domicilio
-Tipo Domicilio Create: Crear Tipo de Domicilio
-Formas Pago List: Listado de Formas de Pago
-Formas Pago Create: Crear Forma de Pago
-Estatus Pago List: Listado de Estatus de Pago
-Estatus Pago Create: Crear Estatus de Pago
-Bancos List: Listado de Bancos
-Bancos Create: Crear Banco
-Almacenajes List: Listado de Almacenajes
-Almacenajes Create: Crear Almacenaje
-Metodos Pago List: Listado de Métodos de Pago
-Metodos Pago Create: Crear Métodos de Pago
+Productos List: Productos
+Productos Create: Nueo Producto
+Uso Cfdi List: Usos de CFDI
+Uso Cfdi Create: Nueo Uso de CFDI
+Tipo Domicilio List: Tipos de Domicilio
+Tipo Domicilio Create: Nueo Tipo de Domicilio
+Formas Pago List: Formas de Pago
+Formas Pago Create: Nueo Forma de Pago
+Estatus Pago List: Estatus de Pago
+Estatus Pago Create: Nueo Estatus de Pago
+Bancos List: Bancos
+Bancos Create: Nueo Banco
+Almacenajes List: Almacenajes
+Almacenajes Create: Nueo Almacenaje
+Metodos Pago List: Métodos de Pago
+Metodos Pago Create: Nueo Métodos de Pago
 
 MetodosPago: Métodos de Pago
 FormasPago: Formas de Pago
@@ -93,3 +97,7 @@ UsoCfdi: Usos de CFDI
 TipoDomicilio: Tipos de Domicilio
 Puesto: Puestos
 UserFuncion: Funciones de Usuario
+Estados List: Estados
+Estados Create: Nuevo Estado
+Paises List: Paises
+Paises Create: Nuevo País

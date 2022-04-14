@@ -35,6 +35,12 @@ sonata_admin:
                 items:
                     - admin.metodos_pago
                 roles: ['ROLE_ADMIN', 'ROLE_SONATA_ADMIN']
+            Otros:
+                label:                Otros
+                items:
+                    - admin.estados
+                    - admin.paises
+                roles: ['ROLE_ADMIN', 'ROLE_SONATA_ADMIN']
     templates:
         layout:                     '@SonataAdmin/standard_layout.html.twig'
         ajax:                       '@SonataAdmin/ajax_layout.html.twig'
