@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/", name="home_dentistas")
+     * @Route("/", name="home")
      */
     public function index(Request $request, \Swift_Mailer $mailer)
     {

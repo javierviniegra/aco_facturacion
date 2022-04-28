@@ -63,30 +63,30 @@ Updated At: Fecha de Actualización
 Action: Acción
 EstatusPago: Estado de Pago
 
-Clientes List: Listado de Clientes
-Clientes Create: Crear Cliente
-Proveedores List: Listado de Proveedores
-Proveedores Create: Crear Proveedor
+Clientes List: Clientes
+Clientes Create: Nuevo Cliente
+Proveedores List: Proveedores
+Proveedores Create: Nuevo Proveedor
 Compras List: Compras
 Compras Create: Orden de Compra
 Ventas List: Ventas
 Ventas Create: Orden de Venta
 Productos List: Productos
-Productos Create: Nueo Producto
+Productos Create: Nuevo Producto
 Uso Cfdi List: Usos de CFDI
-Uso Cfdi Create: Nueo Uso de CFDI
+Uso Cfdi Create: Nuevo Uso de CFDI
 Tipo Domicilio List: Tipos de Domicilio
-Tipo Domicilio Create: Nueo Tipo de Domicilio
+Tipo Domicilio Create: Nuevo Tipo de Domicilio
 Formas Pago List: Formas de Pago
-Formas Pago Create: Nueo Forma de Pago
+Formas Pago Create: Nuevo Forma de Pago
 Estatus Pago List: Estatus de Pago
-Estatus Pago Create: Nueo Estatus de Pago
+Estatus Pago Create: Nuevo Estatus de Pago
 Bancos List: Bancos
-Bancos Create: Nueo Banco
+Bancos Create: Nuevo Banco
 Almacenajes List: Almacenajes
-Almacenajes Create: Nueo Almacenaje
+Almacenajes Create: Nuevo Almacenaje
 Metodos Pago List: Métodos de Pago
-Metodos Pago Create: Nueo Métodos de Pago
+Metodos Pago Create: Nuevo Métodos de Pago
 
 MetodosPago: Métodos de Pago
 FormasPago: Formas de Pago

@@ -92,9 +92,16 @@ final class ClientesAdmin extends AbstractAdmin
                         'multiple' => false,
                         'label' => 'Uso del CFDI'
                     ])
-                    ->add('formaPago',null,['label' => 'Forma de Pago'])
+                    ->add('forma_pago', ModelType::class, [
+                        'required' => true,
+                        'expanded' => false,
+                        'multiple' => false,
+                        'label' => 'Forma de Pago'
+                    ])
                     //->add('numRegistro',null,['label' => 'Número de Registro Tributario'])
-                    ->add('emailEnvio',null,['label' => 'Email para envío de Facturas'])
+                    ->add('email1_factura',null,['label' => 'Email para envío de Facturas 1'])
+                    ->add('email2_factura',null,['label' => 'Email para envío de Facturas 2'])
+                    ->add('email3_factura',null,['label' => 'Email para envío de Facturas 3'])
                 ->end()
                 ->with('Crédito')
                     ->add('diasCredito',null,['label' => 'Días de Crédito'])

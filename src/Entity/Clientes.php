@@ -83,13 +83,38 @@ class Clientes
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $emailEnvio;
+     private $emailEnvio;
 
     /**
      * @ORM\ManyToOne(targetEntity=UsoCfdi::class, inversedBy="clientes")
      * @ORM\JoinColumn(nullable=false)
      */
     private $usoCfdi;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=FormasPagoClientes::class)
+     */
+    private $formas_pago;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=FormasPagoClientes::class)
+     */
+    private $forma_pago;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $email1_factura;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $email2_factura;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $email3_factura;
 
     public function __construct()
     {
@@ -105,6 +130,7 @@ class Clientes
         $this->created_at = new \DateTime();
         $this->updated_at = new \DateTime();
         $this->is_active = True;
+        $this->emailEnvio = "email@prueba.com";
     }
 
     /**
@@ -325,6 +351,54 @@ class Clientes
     public function setUsoCfdi(?UsoCfdi $usoCfdi): self
     {
         $this->usoCfdi = $usoCfdi;
+
+        return $this;
+    }
+
+    public function getFormasPago(): ?FormasPagoClientes
+    {
+        return $this->formas_pago;
+    }
+
+    public function setFormasPago(?FormasPagoClientes $formas_pago): self
+    {
+        $this->formas_pago = $formas_pago;
+
+        return $this;
+    }
+
+    public function getEmail1Factura(): ?string
+    {
+        return $this->email1_factura;
+    }
+
+    public function setEmail1Factura(?string $email1_factura): self
+    {
+        $this->email1_factura = $email1_factura;
+
+        return $this;
+    }
+
+    public function getEmail2Factura(): ?string
+    {
+        return $this->email2_factura;
+    }
+
+    public function setEmail2Factura(?string $email2_factura): self
+    {
+        $this->email2_factura = $email2_factura;
+
+        return $this;
+    }
+
+    public function getEmail3Factura(): ?string
+    {
+        return $this->email3_factura;
+    }
+
+    public function setEmail3Factura(?string $email3_factura): self
+    {
+        $this->email3_factura = $email3_factura;
 
         return $this;
     }

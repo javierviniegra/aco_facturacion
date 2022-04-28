@@ -258,6 +258,21 @@ class SonataUserUser extends BaseUser
      */
     private $telContacto2;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $licencia;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $vigencia;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=TiposLicencia::class)
+     */
+    private $tipo_licencia;
+
 
     public function __toString()
     {
@@ -786,6 +801,42 @@ class SonataUserUser extends BaseUser
     public function setTelContacto2(?string $telContacto2): self
     {
         $this->telContacto2 = $telContacto2;
+
+        return $this;
+    }
+
+    public function getLicencia(): ?string
+    {
+        return $this->licencia;
+    }
+
+    public function setLicencia(?string $licencia): self
+    {
+        $this->licencia = $licencia;
+
+        return $this;
+    }
+
+    public function getVigencia(): ?string
+    {
+        return $this->vigencia;
+    }
+
+    public function setVigencia(?string $vigencia): self
+    {
+        $this->vigencia = $vigencia;
+
+        return $this;
+    }
+
+    public function getTipoLicencia(): ?TiposLicencia
+    {
+        return $this->tipo_licencia;
+    }
+
+    public function setTipoLicencia(?TiposLicencia $tipo_licencia): self
+    {
+        $this->tipo_licencia = $tipo_licencia;
 
         return $this;
     }

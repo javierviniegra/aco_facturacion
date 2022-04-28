@@ -215,3 +215,17 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Paises }
         public: true
+
+    admin.tipos_licencia:
+        class: App\Admin\TiposLicenciaAdmin
+        arguments: [~, App\Entity\TiposLicencia, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: TiposLicencia }
+        public: true
+
+    admin.formas_pago_clientes:
+        class: App\Admin\FormasPagoClientesAdmin
+        arguments: [~, App\Entity\FormasPagoClientes, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: FormasPagoClientes }
+        public: true

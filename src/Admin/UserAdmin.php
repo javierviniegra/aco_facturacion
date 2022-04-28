@@ -111,6 +111,9 @@ class UserAdmin extends BaseUserAdmin
             ->end()
             ->tab('Médico')
                 ->with('General', ['class' => 'col-md-12'])->end()
+            ->end()
+            ->tab('Licencia')
+                ->with('General', ['class' => 'col-md-12'])->end()
             ->end();
             if($this->isGranted('ROLE_SUPER_ADMIN'))
             {
@@ -226,6 +229,18 @@ class UserAdmin extends BaseUserAdmin
                     ->add('celContacto1', null, ['required' => false,'label' => 'Celular de Contacto de Emergencia 1'])
                     ->add('contacto2', null, ['required' => false,'label' => 'Nombre de Contacto de Emergencia 2'])
                     ->add('celContacto2', null, ['required' => false,'label' => 'Celular de Contacto de Emergencia 2'])
+                ->end()
+            ->end()
+            ->tab('Licencia')
+                ->with('General')
+                    ->add('licencia', null, ['required' => false,'label' => 'Número de Licencia'])
+                    ->add('tipo_licencia', ModelType::class, [
+                        'required' => true,
+                        'expanded' => false,
+                        'multiple' => false,
+                        'label' => 'Tipo de Licencia'
+                    ])
+                    ->add('vigencia', null, ['required' => false,'label' => 'Vigencia'])
                 ->end()
             ->end();
             if($this->isGranted('ROLE_SUPER_ADMIN'))
