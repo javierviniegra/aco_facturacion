@@ -87,7 +87,7 @@ class Clientes
 
     /**
      * @ORM\ManyToOne(targetEntity=UsoCfdi::class, inversedBy="clientes")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $usoCfdi;
 

@@ -50,7 +50,6 @@ class FormasPagoClientes
         $this->clientes = new ArrayCollection();
     }
 
-
     /**
      * @ORM\PrePersist
      */
