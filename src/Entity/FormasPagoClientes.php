@@ -41,6 +41,16 @@ class FormasPagoClientes
     private $is_active;
 
     /**
+     * @ORM\OneToMany(targetEntity=Clientes::class, mappedBy="formasDePago")
+     */
+    private $clientes;
+
+    public function __construct()
+    {
+        $this->clientes = new ArrayCollection();
+    }
+
+    /**
      * @ORM\PrePersist
      */
     public function onPrePersist()
@@ -112,6 +122,36 @@ class FormasPagoClientes
     public function setIsActive(?bool $is_active): self
     {
         $this->is_active = $is_active;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Clientes>
+     */
+    public function getClientes(): Collection
+    {
+        return $this->clientes;
+    }
+
+    public function addCliente(Clientes $cliente): self
+    {
+        if (!$this->clientes->contains($cliente)) {
+            $this->clientes[] = $cliente;
+            $cliente->setFormasDePago($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCliente(Clientes $cliente): self
+    {
+        if ($this->clientes->removeElement($cliente)) {
+            // set the owning side to null (unless already changed)
+            if ($cliente->getFormasDePago() === $this) {
+                $cliente->setFormasDePago(null);
+            }
+        }
 
         return $this;
     }

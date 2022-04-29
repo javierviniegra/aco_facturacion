@@ -106,6 +106,11 @@ class Clientes
      */
     private $email3_factura;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=FormasPagoClientes::class, inversedBy="clientes")
+     */
+    private $formasDePago;
+
     public function __construct()
     {
         $this->domicilio = new ArrayCollection();
@@ -378,6 +383,18 @@ class Clientes
     public function setEmail3Factura(?string $email3_factura): self
     {
         $this->email3_factura = $email3_factura;
+
+        return $this;
+    }
+
+    public function getFormasDePago(): ?FormasPagoClientes
+    {
+        return $this->formasDePago;
+    }
+
+    public function setFormasDePago(?FormasPagoClientes $formasDePago): self
+    {
+        $this->formasDePago = $formasDePago;
 
         return $this;
     }
