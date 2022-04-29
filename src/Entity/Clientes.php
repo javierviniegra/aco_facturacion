@@ -93,7 +93,7 @@ class Clientes
 
     /**
      * @ORM\ManyToOne(targetEntity=FormasPagoClientes::class, inversedBy="clientes")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $formas_pago;
 
