@@ -87,6 +87,10 @@ Almacenajes List: Almacenajes
 Almacenajes Create: Nuevo Almacenaje
 Metodos Pago List: Métodos de Pago
 Metodos Pago Create: Nuevo Métodos de Pago
+Formas Pago Clientes List: Formas de Pago para SAT
+Formas Pago Clientes Create: Nuevo Forma de Pago para SAT
+Tipos Licencia List: Tipo de Licencia
+Tipos Licencia Create: Nuevo Tipo de Licencia
 
 MetodosPago: Métodos de Pago
 FormasPago: Formas de Pago
@@ -101,3 +105,5 @@ Estados List: Estados
 Estados Create: Nuevo Estado
 Paises List: Paises
 Paises Create: Nuevo País
+FormasPagoClientes: Formas de Pago
+TiposLicencia: Tipos de Licencia

@@ -15,6 +15,7 @@ sonata_admin:
                     - admin.tipo_sangre
                     - admin.estado_civil
                     - admin.user_funcion
+                    - admin.tipos_licencia
                 roles: ['ROLE_ADMIN', 'ROLE_SONATA_ADMIN']
             Clientes:
                 label:                Clientes

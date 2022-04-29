@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FormasPagoClientesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,6 +39,16 @@ class FormasPagoClientes
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $is_active;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Clientes::class, mappedBy="formas_pago")
+     */
+    private $clientes;
+
+    public function __construct()
+    {
+        $this->clientes = new ArrayCollection();
+    }
 
 
     /**
@@ -111,6 +123,36 @@ class FormasPagoClientes
     public function setIsActive(?bool $is_active): self
     {
         $this->is_active = $is_active;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Clientes[]
+     */
+    public function getClientes(): Collection
+    {
+        return $this->clientes;
+    }
+
+    public function addCliente(Clientes $cliente): self
+    {
+        if (!$this->clientes->contains($cliente)) {
+            $this->clientes[] = $cliente;
+            $cliente->setFormasPago($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCliente(Clientes $cliente): self
+    {
+        if ($this->clientes->removeElement($cliente)) {
+            // set the owning side to null (unless already changed)
+            if ($cliente->getFormasPago() === $this) {
+                $cliente->setFormasPago(null);
+            }
+        }
 
         return $this;
     }

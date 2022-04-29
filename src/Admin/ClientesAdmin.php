@@ -92,7 +92,7 @@ final class ClientesAdmin extends AbstractAdmin
                         'multiple' => false,
                         'label' => 'Uso del CFDI'
                     ])
-                    ->add('forma_pago', ModelType::class, [
+                    ->add('formas_pago', ModelType::class, [
                         'required' => true,
                         'expanded' => false,
                         'multiple' => false,

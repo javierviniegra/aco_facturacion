@@ -49,7 +49,6 @@ final class FormasPagoAdmin extends AbstractAdmin
             ->tab('General')
                 ->with('Others')
                     ->add('nombre')
-                    ->add('is_active')
                 ->end()
             ->end();
     }
