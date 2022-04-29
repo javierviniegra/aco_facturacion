@@ -93,7 +93,7 @@ final class DomiciliosAdmin extends AbstractAdmin
                     ->add('municipio',null,['label' => 'Alcaldía o Municipio'])
                     //->add('estado',null,['label' => 'Estado'])
                     //->add('pais',null,['label'=>'País'])
-                    ->add('estado1', null, ['required' => false,'label' => 'Estado'])
+                    ->add('estado1', null, ['required' => true,'label' => 'Estado'])
                     ->add('pais1', null, ['required' => false,'label' => 'País'])
                     ->add('nacionalidad',null,['label' => 'Nacionalidad'])
                     ->add('telefono1',null,['label' => 'Teléfono 1'])

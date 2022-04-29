@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=DomiciliosRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Domicilios
 {
@@ -109,6 +110,14 @@ class Domicilios
      * @ORM\ManyToOne(targetEntity=Paises::class)
      */
     private $pais1;
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->estado = "_";
+    }
 
     public function __toString()
     {
