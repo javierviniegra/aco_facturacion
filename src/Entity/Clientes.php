@@ -92,18 +92,6 @@ class Clientes
     private $usoCfdi;
 
     /**
-     * @ORM\ManyToOne(targetEntity=FormasPagoClientes::class, inversedBy="clientes")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $formas_pago;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=FormasPagoClientes::class)
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $forma_pago;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $email1_factura;
@@ -354,18 +342,6 @@ class Clientes
     public function setUsoCfdi(?UsoCfdi $usoCfdi): self
     {
         $this->usoCfdi = $usoCfdi;
-
-        return $this;
-    }
-
-    public function getFormasPago(): ?FormasPagoClientes
-    {
-        return $this->formas_pago;
-    }
-
-    public function setFormasPago(?FormasPagoClientes $formas_pago): self
-    {
-        $this->formas_pago = $formas_pago;
 
         return $this;
     }

@@ -16,6 +16,7 @@ use Sonata\AdminBundle\Form\Type\ModelType;
 final class ClientesAdmin extends AbstractAdmin
 {
 
+
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
@@ -92,12 +93,12 @@ final class ClientesAdmin extends AbstractAdmin
                         'multiple' => false,
                         'label' => 'Uso del CFDI'
                     ])
-                    ->add('formas_pago', ModelType::class, [
+                    /*->add('formas_pago', ModelType::class, [
                         'required' => true,
                         'expanded' => false,
                         'multiple' => false,
                         'label' => 'Forma de Pago'
-                    ])
+                    ])*/
                     //->add('numRegistro',null,['label' => 'Número de Registro Tributario'])
                     ->add('email1_factura',null,['label' => 'Email para envío de Facturas 1'])
                     ->add('email2_factura',null,['label' => 'Email para envío de Facturas 2'])
