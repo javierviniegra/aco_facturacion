@@ -99,6 +99,7 @@ class Clientes
 
     /**
      * @ORM\ManyToOne(targetEntity=FormasPagoClientes::class)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $forma_pago;
 
