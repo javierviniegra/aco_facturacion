@@ -92,7 +92,7 @@ class Clientes
     private $usoCfdi;
 
     /**
-     * @ORM\ManyToOne(targetEntity=FormasPagoClientes::class)
+     * @ORM\ManyToOne(targetEntity=FormasPagoClientes::class, inversedBy="clientes")
      * @ORM\JoinColumn(nullable=false)
      */
     private $formas_pago;
