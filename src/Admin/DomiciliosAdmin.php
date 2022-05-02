@@ -68,22 +68,13 @@ final class DomiciliosAdmin extends AbstractAdmin
     {
         $form
             ->tab('Dirección')
-                ->with('Fiscal', ['class' => 'col-md-6'])->end()
                 ->with('Entrega', ['class' => 'col-md-6'])->end()
+                ->with('Otros', ['class' => 'col-md-6'])->end()
             ->end();
 
         $form
             ->tab('Dirección')
                 ->with('Entrega')
-                    ->add('TipoDomicilio', ModelType::class, [
-                        'required' => true,
-                        'expanded' => false,
-                        'multiple' => false,
-                        'label' => 'Tipo de Domicilio'
-                    ])
-                    ->add('nombre')
-                ->end() 
-                ->with('Fiscal')
                     ->add('calle',null,['label' => 'Calle'])
                     ->add('numExterior',null,['label' => '# Exterior'])
                     ->add('numInterior',null,['label' => '# Interior'])
@@ -99,6 +90,15 @@ final class DomiciliosAdmin extends AbstractAdmin
                     ->add('telefono1',null,['label' => 'Teléfono 1'])
                     ->add('telefono2',null,['label' => 'Teléfono 2'])
                     ->add('observaciones',null,['label' => 'Observaciones'])
+                ->end()
+                ->with('Otros')
+                    ->add('TipoDomicilio', ModelType::class, [
+                        'required' => true,
+                        'expanded' => false,
+                        'multiple' => false,
+                        'label' => 'Tipo de Domicilio'
+                    ])
+                    ->add('nombre')
                 ->end()
             ->end();
     }

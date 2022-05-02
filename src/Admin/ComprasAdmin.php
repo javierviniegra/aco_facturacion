@@ -46,17 +46,16 @@ final class ComprasAdmin extends AbstractAdmin
             ->add('fechaCompra')
             ->add('id_compra')
             ->add('litros')
-            ->add('precioLitro')
+            ->add('precioLitro', 'currency', ['currency' => 'MXN','locale' => 'sp',])
             ->add('iepsFactor')
-            ->add('iepsTotal')
-            ->add('iva')
-            ->add('subtotal')
-            ->add('total')
+            ->add('iepsTotal', 'currency', ['currency' => 'MXN','locale' => 'sp',])
+            ->add('iva', 'currency', ['currency' => 'MXN','locale' => 'sp',])
+            ->add('subtotal', 'currency', ['currency' => 'MXN','locale' => 'sp',], 'currency', ['currency' => 'MXN','locale' => 'sp',])
+            ->add('total', 'currency', ['currency' => 'MXN','locale' => 'sp',])
             ->add('fechaPago')
             ->add('numFactura')
             ->add('idTransaccion')
             ->add('fechaRecepcion')
-            ->add('observaciones')
             ->add(ListMapper::NAME_ACTIONS, null, [
                 'actions' => [
                     'show' => [],

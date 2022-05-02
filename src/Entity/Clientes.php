@@ -111,6 +111,66 @@ class Clientes
      */
     private $formasDePago;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $calle;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $numExterior;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $numInterior;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $colonia;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $codigoPostal;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $poblacion;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $municipio;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $telefono1;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $telefono2;
+
+    /**
+     * @ORM\Column(type="string", length=511, nullable=true)
+     */
+    private $observaciones;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Estados::class)
+     */
+    private $estado;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Paises::class)
+     */
+    private $pais;
+
     public function __construct()
     {
         $this->domicilio = new ArrayCollection();
@@ -395,6 +455,150 @@ class Clientes
     public function setFormasDePago(?FormasPagoClientes $formasDePago): self
     {
         $this->formasDePago = $formasDePago;
+
+        return $this;
+    }
+
+    public function getCalle(): ?string
+    {
+        return $this->calle;
+    }
+
+    public function setCalle(?string $calle): self
+    {
+        $this->calle = $calle;
+
+        return $this;
+    }
+
+    public function getNumExterior(): ?string
+    {
+        return $this->numExterior;
+    }
+
+    public function setNumExterior(?string $numExterior): self
+    {
+        $this->numExterior = $numExterior;
+
+        return $this;
+    }
+
+    public function getNumInterior(): ?string
+    {
+        return $this->numInterior;
+    }
+
+    public function setNumInterior(?string $numInterior): self
+    {
+        $this->numInterior = $numInterior;
+
+        return $this;
+    }
+
+    public function getColonia(): ?string
+    {
+        return $this->colonia;
+    }
+
+    public function setColonia(?string $colonia): self
+    {
+        $this->colonia = $colonia;
+
+        return $this;
+    }
+
+    public function getCodigoPostal(): ?string
+    {
+        return $this->codigoPostal;
+    }
+
+    public function setCodigoPostal(?string $codigoPostal): self
+    {
+        $this->codigoPostal = $codigoPostal;
+
+        return $this;
+    }
+
+    public function getPoblacion(): ?string
+    {
+        return $this->poblacion;
+    }
+
+    public function setPoblacion(?string $poblacion): self
+    {
+        $this->poblacion = $poblacion;
+
+        return $this;
+    }
+
+    public function getMunicipio(): ?string
+    {
+        return $this->municipio;
+    }
+
+    public function setMunicipio(?string $municipio): self
+    {
+        $this->municipio = $municipio;
+
+        return $this;
+    }
+
+    public function getTelefono1(): ?string
+    {
+        return $this->telefono1;
+    }
+
+    public function setTelefono1(?string $telefono1): self
+    {
+        $this->telefono1 = $telefono1;
+
+        return $this;
+    }
+
+    public function getTelefono2(): ?string
+    {
+        return $this->telefono2;
+    }
+
+    public function setTelefono2(?string $telefono2): self
+    {
+        $this->telefono2 = $telefono2;
+
+        return $this;
+    }
+
+    public function getObservaciones(): ?string
+    {
+        return $this->observaciones;
+    }
+
+    public function setObservaciones(string $observaciones): self
+    {
+        $this->observaciones = $observaciones;
+
+        return $this;
+    }
+
+    public function getEstado(): ?Estados
+    {
+        return $this->estado;
+    }
+
+    public function setEstado(?Estados $estado): self
+    {
+        $this->estado = $estado;
+
+        return $this;
+    }
+
+    public function getPais(): ?Paises
+    {
+        return $this->pais;
+    }
+
+    public function setPais(?Paises $pais): self
+    {
+        $this->pais = $pais;
 
         return $this;
     }

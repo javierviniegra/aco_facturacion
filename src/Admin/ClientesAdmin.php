@@ -53,8 +53,12 @@ final class ClientesAdmin extends AbstractAdmin
                 ->with('Profile', ['class' => 'col-md-6'])->end()
                 ->with('Status', ['class' => 'col-md-6'])->end()
             ->end()
-            ->tab('Domicilio')
-                ->with('Domicilios', ['class' => 'col-md-12'])->end()
+            ->tab('Domicilio Fiscal')
+                ->with('Dirección', ['class' => 'col-md-6'])->end()
+                ->with('Otros', ['class' => 'col-md-6'])->end()
+            ->end()
+            ->tab('Envios')
+                ->with('Envios', ['class' => 'col-md-12'])->end()
             ->end()
             ->tab('Administrativo')
                 ->with('SAT', ['class' => 'col-md-6'])->end()
@@ -85,6 +89,23 @@ final class ClientesAdmin extends AbstractAdmin
                     ->add('is_active')
                 ->end()
             ->end()
+            ->tab('Domicilio Fiscal')
+                ->with('Dirección')
+                    ->add('calle',null,['label' => 'Calle'])
+                    ->add('numExterior',null,['label' => '# Exterior'])
+                    ->add('numInterior',null,['label' => '# Interior'])
+                    ->add('colonia',null,['label' => 'Colonia'])
+                    ->add('codigoPostal',null,['label' => 'C.P.'])
+                    ->add('municipio',null,['label' => 'Alcaldía o Municipio'])
+                    ->add('estado', null, ['required' => false,'label' => 'Estado'])
+                    ->add('pais', null, ['required' => false,'label' => 'País'])
+                ->end()
+                ->with('Otros')
+                    ->add('telefono1',null,['label' => 'Teléfono 1'])
+                    ->add('telefono2',null,['label' => 'Teléfono 2'])
+                    ->add('observaciones',null,['label' => 'Observaciones'])                
+                ->end()
+            ->end()
             ->tab('Administrativo')
                 ->with('SAT')
                     ->add('usoCfdi', ModelType::class, [
@@ -108,12 +129,12 @@ final class ClientesAdmin extends AbstractAdmin
                     ->add('diasCredito',null,['label' => 'Días de Crédito'])
                 ->end()
             ->end()
-            ->tab('Domicilio')
-                ->with('Domicilios')
+            ->tab('Envios')
+                ->with('Envios')
                     ->add('domicilio', CollectionType::class, [
                         'by_reference' => false,
                         'required' => true,
-                        'label' => 'Listado de Domicilios'
+                        'label' => 'Direcciones de Envío'
                     ],
                     [
                         'edit' => 'inline',
