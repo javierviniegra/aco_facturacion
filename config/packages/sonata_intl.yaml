@@ -2,7 +2,7 @@ sonata_intl:
     timezone:
         default: America/Mexico_City
         locales:
-            sp_MX:    America/Mexico_City
+            es_MX:    America/Mexico_City
             en: America/Denver
         detectors:
             - sonata.intl.timezone_detector.user
