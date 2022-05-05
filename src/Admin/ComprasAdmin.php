@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\PercentType;
 
 final class ComprasAdmin extends AbstractAdmin
 {
@@ -47,7 +48,7 @@ final class ComprasAdmin extends AbstractAdmin
             ->add('id_compra')
             ->add('litros')
             ->add('precioLitro', 'currency', ['currency' => 'MXN'])
-            ->add('iepsFactor','percentage')
+            ->add('iepsFactor','percent')
             ->add('iepsTotal', 'currency', ['currency' => 'MXN'])
             ->add('iva', 'currency', ['currency' => 'MXN'])
             ->add('subtotal', 'currency', ['currency' => 'MXN'])
@@ -91,12 +92,13 @@ final class ComprasAdmin extends AbstractAdmin
                             'expanded' => false,
                             'multiple' => false,
                     ])
-                    ->add('litros', NumberType::class, ['label' => 'Litros','required' => false])
+                    ->add('litros', NumberType::class, ['label' => 'Litros','required' => false,'grouping' => true])
                     ->add('precioLitro', MoneyType::class, [
-                        'currency' => 'MXP',
+                        'currency' => 'MXN',
                         'divisor' => 100,
                         'label' => 'Precio por litro',
-                        'required' => false
+                        'required' => false,
+                        'grouping' => true
                     ])
                     ->add('producto', ModelType::class, [
                             'required' => false,
@@ -104,28 +106,32 @@ final class ComprasAdmin extends AbstractAdmin
                             'multiple' => false,
                     ])
                     ->add('requiereIeps',null,['label' => 'Requiere IEPS','required' => false])
-                    ->add('iepsFactor', NumberType::class, ['label' => 'Factor IEPS','required' => false])
+                    ->add('iepsFactor', PercentType::class, ['label' => 'Factor IEPS','required' => false])
                 ->end()
                 ->with('Cálculos')
                     ->add('iepsTotal', MoneyType::class, [
-                        'currency' => 'MXP',
+                        'currency' => 'MXN',
                         'divisor' => 100,
                         'label' => 'IEPS Total',
+                        'grouping' => true
                     ])
                     ->add('iva', MoneyType::class, [
-                        'currency' => 'MXP',
+                        'currency' => 'MXN',
                         'divisor' => 100,
                         'label' => 'IVA',
+                        'grouping' => true
                     ])
                     ->add('subtotal', MoneyType::class, [
-                        'currency' => 'MXP',
+                        'currency' => 'MXN',
                         'divisor' => 100,
                         'label' => 'Subtotal',
+                        'grouping' => true
                     ])
                     ->add('total', MoneyType::class, [
-                        'currency' => 'MXP',
+                        'currency' => 'MXN',
                         'divisor' => 100,
                         'label' => 'Total',
+                        'grouping' => true
                     ])
                 ->end()
             ->end()
