@@ -8,4 +8,4 @@ sonata_user:
             class:           App\Admin\UserAdmin
             #class:          Sonata\UserBundle\Admin\Entity\UserAdmin
             #controller:     Sonata\AdminBundle\Controller\CRUDController
-            translation:    SonataUserBundle
+            translation:     SonataUserBundle

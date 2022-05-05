@@ -96,9 +96,13 @@ final class ClientesAdmin extends AbstractAdmin
                     ->add('numInterior',null,['label' => '# Interior'])
                     ->add('colonia',null,['label' => 'Colonia'])
                     ->add('codigoPostal',null,['label' => 'C.P.'])
-                    ->add('municipio',null,['label' => 'Alcaldía o Municipio'])
+                    ->add('alcaldia', ModelType::class, [
+                        'expanded' => false,
+                        'multiple' => false,
+                        'label' => 'Alcaldía o Municipio'
+                    ])
                     ->add('estado', null, ['required' => false,'label' => 'Estado'])
-                    ->add('pais', null, ['required' => false,'label' => 'País'])
+                    ->add('pais', null, ['required' => true,'label' => 'País'])
                 ->end()
                 ->with('Otros')
                     ->add('telefono1',null,['label' => 'Teléfono 1'])
@@ -114,7 +118,7 @@ final class ClientesAdmin extends AbstractAdmin
                         'multiple' => false,
                         'label' => 'Uso del CFDI'
                     ])
-                    ->add('formasDePago', ModelType::class, [
+                    ->add('formasPago', ModelType::class, [
                         'required' => true,
                         'expanded' => false,
                         'multiple' => false,

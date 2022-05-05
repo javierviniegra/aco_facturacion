@@ -229,3 +229,10 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Catálogos, label: FormasPagoClientes }
         public: true
+
+    admin.municipios:
+        class: App\Admin\MunicipiosAdmin
+        arguments: [~, App\Entity\Municipios, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Municipios }
+        public: true

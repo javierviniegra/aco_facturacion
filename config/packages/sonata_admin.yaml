@@ -22,7 +22,7 @@ sonata_admin:
                 items:
                     - admin.uso_cfdi
                     - admin.tipo_domicilio
-                    - admin.formas_pago_clientes
+                    - admin.formas_pago
                 roles: ['ROLE_ADMIN', 'ROLE_SONATA_ADMIN']
             Compras:
                 label:                Compras
@@ -40,6 +40,7 @@ sonata_admin:
             Otros:
                 label:                Otros
                 items:
+                    - admin.municipios
                     - admin.estados
                     - admin.paises
                 roles: ['ROLE_ADMIN', 'ROLE_SONATA_ADMIN']

@@ -69,36 +69,38 @@ final class DomiciliosAdmin extends AbstractAdmin
         $form
             ->tab('Dirección')
                 ->with('Entrega', ['class' => 'col-md-6'])->end()
-                ->with('Otros', ['class' => 'col-md-6'])->end()
             ->end();
 
         $form
             ->tab('Dirección')
                 ->with('Entrega')
-                    ->add('calle',null,['label' => 'Calle'])
-                    ->add('numExterior',null,['label' => '# Exterior'])
-                    ->add('numInterior',null,['label' => '# Interior'])
-                    ->add('colonia',null,['label' => 'Colonia'])
-                    ->add('codigoPostal',null,['label' => 'C.P.'])
-                    //->add('poblacion',null,['label' => 'Población'])
-                    ->add('municipio',null,['label' => 'Alcaldía o Municipio'])
-                    //->add('estado',null,['label' => 'Estado'])
-                    //->add('pais',null,['label'=>'País'])
-                    ->add('estado1', null, ['required' => true,'label' => 'Estado'])
-                    ->add('pais1', null, ['required' => false,'label' => 'País'])
-                    ->add('nacionalidad',null,['label' => 'Nacionalidad'])
-                    ->add('telefono1',null,['label' => 'Teléfono 1'])
-                    ->add('telefono2',null,['label' => 'Teléfono 2'])
-                    ->add('observaciones',null,['label' => 'Observaciones'])
-                ->end()
-                ->with('Otros')
+                    ->add('nombre')
                     ->add('TipoDomicilio', ModelType::class, [
                         'required' => true,
                         'expanded' => false,
                         'multiple' => false,
                         'label' => 'Tipo de Domicilio'
                     ])
-                    ->add('nombre')
+                    ->add('georeferencia', null, ['required' => false,'label' => 'Georeferencia (ej. 41.40338; 2.17403)'])
+                    ->add('calle',null,['label' => 'Calle'])
+                    ->add('numExterior',null,['label' => '# Exterior'])
+                    ->add('numInterior',null,['label' => '# Interior'])
+                    ->add('colonia',null,['label' => 'Colonia'])
+                    ->add('codigoPostal',null,['label' => 'C.P.'])
+                    //->add('poblacion',null,['label' => 'Población'])
+                    ->add('alcaldia', ModelType::class, [
+                        'expanded' => false,
+                        'multiple' => false,
+                        'label' => 'Alcaldía o Municipio'
+                    ])
+                    //->add('estado',null,['label' => 'Estado'])
+                    //->add('pais',null,['label'=>'País'])
+                    ->add('estado1', null, ['required' => true,'label' => 'Estado'])
+                    ->add('pais1', null, ['required' => true,'label' => 'País'])
+                    //->add('nacionalidad',null,['label' => 'Nacionalidad'])
+                    ->add('telefono1',null,['label' => 'Teléfono 1'])
+                    ->add('telefono2',null,['label' => 'Teléfono 2'])
+                    ->add('observaciones',null,['label' => 'Observaciones'])
                 ->end()
             ->end();
     }

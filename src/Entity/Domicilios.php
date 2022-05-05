@@ -112,6 +112,16 @@ class Domicilios
     private $pais1;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $georeferencia;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Municipios::class)
+     */
+    private $alcaldia;
+
+    /**
      * @ORM\PrePersist
      */
     public function onPrePersist()
@@ -341,6 +351,30 @@ class Domicilios
     public function setPais1(?Paises $pais1): self
     {
         $this->pais1 = $pais1;
+
+        return $this;
+    }
+
+    public function getGeoreferencia(): ?string
+    {
+        return $this->georeferencia;
+    }
+
+    public function setGeoreferencia(?string $georeferencia): self
+    {
+        $this->georeferencia = $georeferencia;
+
+        return $this;
+    }
+
+    public function getAlcaldia(): ?Municipios
+    {
+        return $this->alcaldia;
+    }
+
+    public function setAlcaldia(?Municipios $alcaldia): self
+    {
+        $this->alcaldia = $alcaldia;
 
         return $this;
     }

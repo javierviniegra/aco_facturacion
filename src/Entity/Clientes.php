@@ -112,12 +112,12 @@ class Clientes
     private $formasDePago;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $calle;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $numExterior;
 
@@ -127,12 +127,12 @@ class Clientes
     private $numInterior;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $colonia;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $codigoPostal;
 
@@ -142,12 +142,12 @@ class Clientes
     private $poblacion;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $municipio;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $telefono1;
 
@@ -170,6 +170,16 @@ class Clientes
      * @ORM\ManyToOne(targetEntity=Paises::class)
      */
     private $pais;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Municipios::class)
+     */
+    private $alcaldia;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=FormasPago::class)
+     */
+    private $formasPago;
 
     public function __construct()
     {
@@ -599,6 +609,30 @@ class Clientes
     public function setPais(?Paises $pais): self
     {
         $this->pais = $pais;
+
+        return $this;
+    }
+
+    public function getAlcaldia(): ?Municipios
+    {
+        return $this->alcaldia;
+    }
+
+    public function setAlcaldia(?Municipios $alcaldia): self
+    {
+        $this->alcaldia = $alcaldia;
+
+        return $this;
+    }
+
+    public function getFormasPago(): ?FormasPago
+    {
+        return $this->formasPago;
+    }
+
+    public function setFormasPago(?FormasPago $formasPago): self
+    {
+        $this->formasPago = $formasPago;
 
         return $this;
     }
