@@ -47,7 +47,7 @@ final class ComprasAdmin extends AbstractAdmin
             ->add('id_compra')
             ->add('litros')
             ->add('precioLitro', 'currency', ['currency' => 'MXN'])
-            ->add('iepsFactor')
+            ->add('iepsFactor','percentage')
             ->add('iepsTotal', 'currency', ['currency' => 'MXN'])
             ->add('iva', 'currency', ['currency' => 'MXN'])
             ->add('subtotal', 'currency', ['currency' => 'MXN'])
