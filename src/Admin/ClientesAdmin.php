@@ -91,21 +91,22 @@ final class ClientesAdmin extends AbstractAdmin
             ->end()
             ->tab('Domicilio Fiscal')
                 ->with('Dirección')
-                    ->add('calle',null,['label' => 'Calle'])
-                    ->add('numExterior',null,['label' => '# Exterior'])
+                    ->add('calle',null,['label' => 'Calle','required'=>true])
+                    ->add('numExterior',null,['label' => '# Exterior','required'=>true])
                     ->add('numInterior',null,['label' => '# Interior'])
-                    ->add('colonia',null,['label' => 'Colonia'])
-                    ->add('codigoPostal',null,['label' => 'C.P.'])
+                    ->add('colonia',null,['label' => 'Colonia','required'=>true])
+                    ->add('codigoPostal',null,['label' => 'C.P.','required'=>true])
                     ->add('alcaldia', ModelType::class, [
+                        'required' => true,
                         'expanded' => false,
                         'multiple' => false,
                         'label' => 'Alcaldía o Municipio'
                     ])
-                    ->add('estado', null, ['required' => false,'label' => 'Estado'])
+                    ->add('estado', null, ['label' => 'Estado','required'=>true])
                     ->add('pais', null, ['required' => true,'label' => 'País'])
                 ->end()
                 ->with('Otros')
-                    ->add('telefono1',null,['label' => 'Teléfono 1'])
+                    ->add('telefono1',null,['label' => 'Teléfono 1','required'=>true])
                     ->add('telefono2',null,['label' => 'Teléfono 2'])
                     ->add('observaciones',null,['label' => 'Observaciones'])                
                 ->end()

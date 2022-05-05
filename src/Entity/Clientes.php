@@ -112,12 +112,12 @@ class Clientes
     private $formasDePago;
 
     /**
-     * @ORM\Column(type="string", length=512, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $calle;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $numExterior;
 
@@ -127,12 +127,12 @@ class Clientes
     private $numInterior;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $colonia;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $codigoPostal;
 
@@ -142,12 +142,12 @@ class Clientes
     private $poblacion;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $municipio;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $telefono1;
 
