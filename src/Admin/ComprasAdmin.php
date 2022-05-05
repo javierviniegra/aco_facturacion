@@ -43,19 +43,19 @@ final class ComprasAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $list): void
     {
         $list
-            ->add('fechaCompra')
+            ->add('fechaCompra','date')
             ->add('id_compra')
             ->add('litros')
             ->add('precioLitro', 'currency', ['currency' => 'MXN'])
             ->add('iepsFactor')
-            ->add('iepsTotal', 'currency', ['currency' => 'MXN','locale' => 'sp',])
-            ->add('iva', 'currency', ['currency' => 'MXN','locale' => 'sp',])
-            ->add('subtotal', 'currency', ['currency' => 'MXN','locale' => 'sp',])
-            ->add('total', 'currency', ['currency' => 'MXN','locale' => 'sp',])
-            ->add('fechaPago')
+            ->add('iepsTotal', 'currency', ['currency' => 'MXN'])
+            ->add('iva', 'currency', ['currency' => 'MXN'])
+            ->add('subtotal', 'currency', ['currency' => 'MXN'])
+            ->add('total', 'currency', ['currency' => 'MXN'])
+            ->add('fechaPago','date')
             ->add('numFactura')
             ->add('idTransaccion')
-            ->add('fechaRecepcion')
+            ->add('fechaRecepcion','date')
             ->add(ListMapper::NAME_ACTIONS, null, [
                 'actions' => [
                     'show' => [],
