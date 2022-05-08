@@ -26,12 +26,6 @@ final class ComprasAdmin extends AbstractAdmin
         $filter
             ->add('fechaCompra')
             ->add('id_compra')
-            ->add('litros')
-            ->add('precioLitro')
-            ->add('iepsFactor')
-            ->add('iepsTotal')
-            ->add('iva')
-            ->add('subtotal')
             ->add('total')
             ->add('fechaPago')
             ->add('numFactura')
@@ -46,9 +40,6 @@ final class ComprasAdmin extends AbstractAdmin
         $list
             ->add('fechaCompra','date')
             ->add('id_compra')
-            ->add('litros')
-            ->add('precioLitro', 'currency', ['currency' => 'MXN'])
-            ->add('iepsFactor','percent')
             ->add('iepsTotal', 'currency', ['currency' => 'MXN'])
             ->add('iva', 'currency', ['currency' => 'MXN'])
             ->add('subtotal', 'currency', ['currency' => 'MXN'])
@@ -72,6 +63,7 @@ final class ComprasAdmin extends AbstractAdmin
             ->tab('Compras')
                 ->with('Compras', ['class' => 'col-md-6'])->end()
                 ->with('Cálculos', ['class' => 'col-md-6'])->end()
+                ->with('Productos', ['class' => 'col-md-12'])->end()
             ->end()
             ->tab('Facturación')
                 ->with('Facturación', ['class' => 'col-md-6'])->end()
@@ -92,21 +84,6 @@ final class ComprasAdmin extends AbstractAdmin
                             'expanded' => false,
                             'multiple' => false,
                     ])
-                    ->add('litros', NumberType::class, ['label' => 'Litros','required' => false,'grouping' => true])
-                    ->add('precioLitro', MoneyType::class, [
-                        'currency' => 'MXN',
-                        'divisor' => 100,
-                        'label' => 'Precio por litro',
-                        'required' => false,
-                        'grouping' => true
-                    ])
-                    ->add('producto', ModelType::class, [
-                            'required' => false,
-                            'expanded' => false,
-                            'multiple' => false,
-                    ])
-                    ->add('requiereIeps',null,['label' => 'Requiere IEPS','required' => false])
-                    ->add('iepsFactor', PercentType::class, ['label' => 'Factor IEPS','required' => false])
                 ->end()
                 ->with('Cálculos')
                     ->add('iepsTotal', MoneyType::class, [
@@ -132,6 +109,17 @@ final class ComprasAdmin extends AbstractAdmin
                         'divisor' => 100,
                         'label' => 'Total',
                         'grouping' => true
+                    ])
+                ->end()
+                ->with('Productos')
+                    ->add('productos', CollectionType::class, [
+                        'by_reference' => false,
+                        'required' => true,
+                        'label' => 'Lista de Productos'
+                    ],
+                    [
+                        'edit' => 'inline',
+                        'inline' => 'table'
                     ])
                 ->end()
             ->end()

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ComprasRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -139,6 +141,16 @@ class Compras
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $requiereIeps;
+
+    /**
+     * @ORM\OneToMany(targetEntity=CompraProductos::class, mappedBy="compras")
+     */
+    private $productos;
+
+    public function __construct()
+    {
+        $this->productos = new ArrayCollection();
+    }
 
     /**
      * @ORM\PrePersist
@@ -452,6 +464,36 @@ class Compras
     public function setRequiereIeps(bool $requiereIeps): self
     {
         $this->requiereIeps = $requiereIeps;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CompraProductos>
+     */
+    public function getProductos(): Collection
+    {
+        return $this->productos;
+    }
+
+    public function addProducto(CompraProductos $producto): self
+    {
+        if (!$this->productos->contains($producto)) {
+            $this->productos[] = $producto;
+            $producto->setCompras($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProducto(CompraProductos $producto): self
+    {
+        if ($this->productos->removeElement($producto)) {
+            // set the owning side to null (unless already changed)
+            if ($producto->getCompras() === $this) {
+                $producto->setCompras(null);
+            }
+        }
 
         return $this;
     }

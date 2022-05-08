@@ -236,3 +236,12 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Municipios }
         public: true
+
+    admin.compra_productos:
+        class: App\Admin\CompraProductosAdmin
+        arguments: [~, App\Entity\CompraProductos, App\Controller\CompraProductosController]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: CompraProductos }
+        public: true
+        calls:
+            - [ setTemplate, [edit, compras/edit_productos.html.twig]]
