@@ -6,32 +6,55 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
+
         var idFormulario = '{{ idForma }}';
 
         $(document).ready( function() {
             $(document).change(function() {
+                var contador = 0;
 
-                var requiereIEPS = $('#{{ idForma ~ '_requiereIeps' }}').is(':checked')
-                var litros = parseFloat($('#{{ idForma ~ '_litros' }}').val());
-                var preciolitro = parseFloat($('#{{ idForma ~ '_precioLitro' }}').val());
-                var iepsfactor = parseFloat($('#{{ idForma ~ '_iepsFactor' }}').val());
-                //operaciones
-                var iepstotal = parseFloat(litros * iepsfactor).toFixed(2);
-                iepstotal = requiereIEPS ? iepstotal :  0; 
-                var subtotal = parseFloat(litros * preciolitro).toFixed(2);
-                var iva1 = parseFloat(subtotal) - parseFloat(iepstotal);
-                var iva = parseFloat(iva1 * 0.16).toFixed(2);
-                var total1 = parseFloat(iva) + parseFloat(subtotal);
-                var total = parseFloat(total1).toFixed(2);
-                iepstotal = isNaN(iepstotal) ? 0 : iepstotal;
-                subtotal = isNaN(subtotal) ? 0 : subtotal;
-                iva = isNaN(iva) ? 0 : iva;
-                total = isNaN(total) ? 0 : total;
+                var iepsTotales = 0;
+                var subtotales = 0;
+                var ivas = 0;
+                var totales = 0;
+
+                while ($('#' + idFormulario + '_productos_' + contador + '_litros').val() != null){
+                    var cantidad = $('#' + idFormulario + '_productos_' + contador + '_litros').val();
+                    var precio = $('#' + idFormulario + '_productos_' + contador + '_precioLitro').val();
+                    var reqIeps = $('#' + idFormulario + '_productos_' + contador + '_requiereIeps').is(':checked');
+                    var iepsFactor = $('#' + idFormulario + '_productos_' + contador + '_factorIeps').val();
+                    //operaciones
+                    iepsFactor = parseFloat(iepsFactor/100);
+                    var subtotal = parseFloat(cantidad * precio).toFixed(2);
+                    var iepstotal = parseFloat(subtotal * iepsFactor).toFixed(2);
+                    iepstotal = reqIeps ? iepstotal :  0; 
+                    var iva1 = parseFloat(subtotal) + parseFloat(iepstotal);
+                    var iva = parseFloat(iva1 * 0.16).toFixed(2);
+                    var total1 = parseFloat(iva) + parseFloat(subtotal);
+                    var total = parseFloat(total1).toFixed(2);
+                    iepstotal = isNaN(iepstotal) ? 0 : iepstotal;
+                    subtotal = isNaN(subtotal) ? 0 : subtotal;
+                    iva = isNaN(iva) ? 0 : iva;
+                    total = isNaN(total) ? 0 : total;
+                    //sumas
+                    $('#' + idFormulario + '_productos_' + contador + '_totalIeps').val(iepstotal);
+                    $('#' + idFormulario + '_productos_' + contador + '_iva').val(iva);
+                    $('#' + idFormulario + '_productos_' + contador + '_subtotal').val(subtotal);
+                    $('#' + idFormulario + '_productos_' + contador + '_total').val(total);
+                    //totales
+                    iepsTotales = parseFloat(iepstotal) + parseFloat(iepsTotales);
+                    subtotales = parseFloat(subtotal) + parseFloat(subtotales);
+                    ivas = parseFloat(iva) + parseFloat(ivas);
+                    totales = parseFloat(total) + parseFloat(totales);
+
+                    contador = contador + 1;
+                }
+
                 //meto resultados
-                $('#{{ idForma ~ '_iepsTotal' }}').val(iepstotal);
-                $('#{{ idForma ~ '_iva' }}').val(iva);
-                $('#{{ idForma ~ '_subtotal' }}').val(subtotal);
-                $('#{{ idForma ~ '_total' }}').val(total);
+                $('#' + idFormulario + '_iepsTotal').val(iepsTotales);
+                $('#' + idFormulario + '_iva').val(ivas);
+                $('#' + idFormulario + '_subtotal').val(subtotales);
+                $('#' + idFormulario + '_total').val(totales);
             });
         });
     </script>

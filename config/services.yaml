@@ -243,5 +243,3 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Catálogos, label: CompraProductos }
         public: true
-        calls:
-            - [ setTemplate, [edit, compras/edit_productos.html.twig]]

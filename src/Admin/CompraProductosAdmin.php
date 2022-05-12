@@ -63,11 +63,10 @@ final class CompraProductosAdmin extends AbstractAdmin
                     'expanded' => false,
                     'multiple' => false,
             ])
-            ->add('litros', NumberType::class, ['label' => 'Litros','required' => false,'grouping' => true])
+            ->add('litros', NumberType::class, ['label' => 'Cantidad','required' => false,'grouping' => true])
             ->add('precioLitro', MoneyType::class, [
                 'currency' => 'MXN',
-                'divisor' => 100,
-                'label' => 'Precio por litro',
+                'label' => 'Precio',
                 'required' => false,
                 'grouping' => true
             ])
@@ -80,25 +79,21 @@ final class CompraProductosAdmin extends AbstractAdmin
             ->add('factorIeps', PercentType::class, ['label' => 'Factor IEPS','required' => false])
             ->add('totalIeps', MoneyType::class, [
                 'currency' => 'MXN',
-                'divisor' => 100,
                 'label' => 'IEPS Total',
                 'grouping' => true
             ])
             ->add('iva', MoneyType::class, [
                 'currency' => 'MXN',
-                'divisor' => 100,
                 'label' => 'IVA',
                 'grouping' => true
             ])
             ->add('subtotal', MoneyType::class, [
                 'currency' => 'MXN',
-                'divisor' => 100,
                 'label' => 'Subtotal',
                 'grouping' => true
             ])
             ->add('total', MoneyType::class, [
                 'currency' => 'MXN',
-                'divisor' => 100,
                 'label' => 'Total',
                 'grouping' => true
             ])

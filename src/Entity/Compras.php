@@ -143,7 +143,7 @@ class Compras
     private $requiereIeps;
 
     /**
-     * @ORM\OneToMany(targetEntity=CompraProductos::class, mappedBy="compras")
+     * @ORM\OneToMany(targetEntity=CompraProductos::class, mappedBy="compras", cascade={"persist"})
      */
     private $productos;
 

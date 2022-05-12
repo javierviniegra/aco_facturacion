@@ -88,25 +88,21 @@ final class ComprasAdmin extends AbstractAdmin
                 ->with('Cálculos')
                     ->add('iepsTotal', MoneyType::class, [
                         'currency' => 'MXN',
-                        'divisor' => 100,
                         'label' => 'IEPS Total',
-                        'grouping' => true
+                        'grouping' => true 
                     ])
                     ->add('iva', MoneyType::class, [
                         'currency' => 'MXN',
-                        'divisor' => 100,
                         'label' => 'IVA',
                         'grouping' => true
                     ])
                     ->add('subtotal', MoneyType::class, [
                         'currency' => 'MXN',
-                        'divisor' => 100,
                         'label' => 'Subtotal',
                         'grouping' => true
                     ])
                     ->add('total', MoneyType::class, [
                         'currency' => 'MXN',
-                        'divisor' => 100,
                         'label' => 'Total',
                         'grouping' => true
                     ])
@@ -115,7 +111,10 @@ final class ComprasAdmin extends AbstractAdmin
                     ->add('productos', CollectionType::class, [
                         'by_reference' => false,
                         'required' => true,
-                        'label' => 'Lista de Productos'
+                        'label' => 'Lista de Productos',
+                        'attr'               => array(
+                            'class' => 'form-productos'
+                        )
                     ],
                     [
                         'edit' => 'inline',
@@ -168,9 +167,6 @@ final class ComprasAdmin extends AbstractAdmin
     {
         $show
             ->add('fechaCompra')
-            ->add('litros')
-            ->add('precioLitro')
-            ->add('iepsFactor')
             ->add('iepsTotal')
             ->add('iva')
             ->add('subtotal')
