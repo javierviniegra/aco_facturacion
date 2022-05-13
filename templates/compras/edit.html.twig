@@ -49,6 +49,7 @@
                     var subtotal = parseFloat(cantidad * precio);
                     var iepstotal = parseFloat(cantidad * iepsFactor);
                     var baseiva = parseFloat(subtotal-iepstotal);
+                    baseiva = reqIeps ? baseiva :  subtotal; 
                     iepstotal = reqIeps ? iepstotal :  0; 
                     //var iva1 = parseFloat(subtotal) + parseFloat(iepstotal);
                     var iva = parseFloat(baseiva * 0.16);//iva1 * 0.16);
