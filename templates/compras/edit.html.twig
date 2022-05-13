@@ -51,7 +51,7 @@
                     var baseiva = parseFloat(subtotal-iepstotal);
                     iepstotal = reqIeps ? iepstotal :  0; 
                     //var iva1 = parseFloat(subtotal) + parseFloat(iepstotal);
-                    var iva = parseFloat(subtotal * 0.16);//iva1 * 0.16);
+                    var iva = parseFloat(baseiva * 0.16);//iva1 * 0.16);
                     var total1 = parseFloat(iva) + parseFloat(subtotal);
                     var total = parseFloat(total1);
                     iepstotal = isNaN(iepstotal) ? 0 : iepstotal;
