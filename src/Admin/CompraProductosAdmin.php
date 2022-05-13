@@ -77,7 +77,12 @@ final class CompraProductosAdmin extends AbstractAdmin
                 'multiple' => false,
             ])
             ->add('requiereIeps',null,['label' => 'Requiere IEPS','required' => false])
-            ->add('factorIeps', PercentType::class, ['label' => 'Factor IEPS','required' => false])
+            ->add('factorIeps', NumberType::class, [
+                'label' => 'Factor IEPS',
+                'required' => false,
+                'grouping' => true,
+                'scale' => 6
+            ])
             ->add('totalIeps', MoneyType::class, [
                 'currency' => 'MXN',
                 'label' => 'IEPS Total',

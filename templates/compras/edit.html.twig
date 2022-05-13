@@ -45,12 +45,13 @@
                     var reqIeps = $('#' + idFormulario + '_productos_' + contador + '_requiereIeps').is(':checked');
                     var iepsFactor = $('#' + idFormulario + '_productos_' + contador + '_factorIeps').val();
                     //operaciones
-                    iepsFactor = parseFloat(iepsFactor/100);
+                    iepsFactor = realParseFloat(iepsFactor);
                     var subtotal = parseFloat(cantidad * precio);
-                    var iepstotal = parseFloat(subtotal * iepsFactor);
+                    var iepstotal = parseFloat(cantidad * iepsFactor);
+                    var baseiva = parseFloat(subtotal-iepstotal);
                     iepstotal = reqIeps ? iepstotal :  0; 
-                    var iva1 = parseFloat(subtotal) + parseFloat(iepstotal);
-                    var iva = parseFloat(iva1 * 0.16);
+                    //var iva1 = parseFloat(subtotal) + parseFloat(iepstotal);
+                    var iva = parseFloat(subtotal * 0.16);//iva1 * 0.16);
                     var total1 = parseFloat(iva) + parseFloat(subtotal);
                     var total = parseFloat(total1);
                     iepstotal = isNaN(iepstotal) ? 0 : iepstotal;
