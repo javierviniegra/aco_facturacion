@@ -89,22 +89,26 @@ final class ComprasAdmin extends AbstractAdmin
                     ->add('iepsTotal', MoneyType::class, [
                         'currency' => 'MXN',
                         'label' => 'IEPS Total',
-                        'grouping' => true 
+                        'grouping' => true ,
+                        'scale' => 6
                     ])
                     ->add('iva', MoneyType::class, [
                         'currency' => 'MXN',
                         'label' => 'IVA',
-                        'grouping' => true
+                        'grouping' => true,
+                        'scale' => 6
                     ])
                     ->add('subtotal', MoneyType::class, [
                         'currency' => 'MXN',
                         'label' => 'Subtotal',
-                        'grouping' => true
+                        'grouping' => true,
+                        'scale' => 6
                     ])
                     ->add('total', MoneyType::class, [
                         'currency' => 'MXN',
                         'label' => 'Total',
-                        'grouping' => true
+                        'grouping' => true,
+                        'scale' => 6
                     ])
                 ->end()
                 ->with('Productos')

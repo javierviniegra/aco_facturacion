@@ -7,6 +7,27 @@
     {{ parent() }}
     <script>
 
+        function realParseFloat(s)
+        {
+            s = s.replace(/[^\d,.-]/g, ''); // strip everything except numbers, dots, commas and negative sign
+            if (navigator.language.substring(0, 2) !== "de" && /^-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/.test(s)) // if not in German locale and matches #,###.######
+            {
+                s = s.replace(/,/g, ''); // strip out commas
+                return parseFloat(s); // convert to number
+            }
+            else if (/^-?(?:\d+|\d{1,3}(?:\.\d{3})+)(?:,\d+)?$/.test(s)) // either in German locale or not match #,###.###### and now matches #.###,########
+            {
+                s = s.replace(/\./g, ''); // strip out dots
+                s = s.replace(/,/g, '.'); // replace comma with dot
+                return parseFloat(s);
+            }
+            else // try #,###.###### anyway
+            {
+                s = s.replace(/,/g, ''); // strip out commas
+                return parseFloat(s); // convert to number
+            }
+        }
+
         var idFormulario = '{{ idForma }}';
 
         $(document).ready( function() {
@@ -19,19 +40,19 @@
                 var totales = 0;
 
                 while ($('#' + idFormulario + '_productos_' + contador + '_litros').val() != null){
-                    var cantidad = $('#' + idFormulario + '_productos_' + contador + '_litros').val();
-                    var precio = $('#' + idFormulario + '_productos_' + contador + '_precioLitro').val();
+                    var cantidad = realParseFloat($('#' + idFormulario + '_productos_' + contador + '_litros').val());
+                    var precio = realParseFloat($('#' + idFormulario + '_productos_' + contador + '_precioLitro').val());
                     var reqIeps = $('#' + idFormulario + '_productos_' + contador + '_requiereIeps').is(':checked');
                     var iepsFactor = $('#' + idFormulario + '_productos_' + contador + '_factorIeps').val();
                     //operaciones
                     iepsFactor = parseFloat(iepsFactor/100);
-                    var subtotal = parseFloat(cantidad * precio).toFixed(2);
-                    var iepstotal = parseFloat(subtotal * iepsFactor).toFixed(2);
+                    var subtotal = parseFloat(cantidad * precio);
+                    var iepstotal = parseFloat(subtotal * iepsFactor);
                     iepstotal = reqIeps ? iepstotal :  0; 
                     var iva1 = parseFloat(subtotal) + parseFloat(iepstotal);
-                    var iva = parseFloat(iva1 * 0.16).toFixed(2);
+                    var iva = parseFloat(iva1 * 0.16);
                     var total1 = parseFloat(iva) + parseFloat(subtotal);
-                    var total = parseFloat(total1).toFixed(2);
+                    var total = parseFloat(total1);
                     iepstotal = isNaN(iepstotal) ? 0 : iepstotal;
                     subtotal = isNaN(subtotal) ? 0 : subtotal;
                     iva = isNaN(iva) ? 0 : iva;

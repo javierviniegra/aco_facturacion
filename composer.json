@@ -72,6 +72,7 @@
         }
     },
     "require-dev": {
+        "symfony/debug-bundle": "4.4.*",
         "symfony/stopwatch": "4.4.*",
         "symfony/web-profiler-bundle": "4.4.*"
     }

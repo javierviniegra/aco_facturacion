@@ -68,7 +68,8 @@ final class CompraProductosAdmin extends AbstractAdmin
                 'currency' => 'MXN',
                 'label' => 'Precio',
                 'required' => false,
-                'grouping' => true
+                'grouping' => true,
+                'scale' => 6
             ])
             ->add('producto', ModelType::class, [
                 'required' => false,
@@ -80,22 +81,26 @@ final class CompraProductosAdmin extends AbstractAdmin
             ->add('totalIeps', MoneyType::class, [
                 'currency' => 'MXN',
                 'label' => 'IEPS Total',
-                'grouping' => true
+                'grouping' => true,
+                'scale' => 6
             ])
             ->add('iva', MoneyType::class, [
                 'currency' => 'MXN',
                 'label' => 'IVA',
-                'grouping' => true
+                'grouping' => true,
+                'scale' => 6
             ])
             ->add('subtotal', MoneyType::class, [
                 'currency' => 'MXN',
                 'label' => 'Subtotal',
-                'grouping' => true
+                'grouping' => true,
+                'scale' => 6
             ])
             ->add('total', MoneyType::class, [
                 'currency' => 'MXN',
                 'label' => 'Total',
-                'grouping' => true
+                'grouping' => true,
+                'scale' => 6
             ])
             ;
     }
