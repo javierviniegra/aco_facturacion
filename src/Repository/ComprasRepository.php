@@ -19,6 +19,14 @@ class ComprasRepository extends ServiceEntityRepository
         parent::__construct($registry, Compras::class);
     }
 
+
+    public function findLastCompraID()
+    {
+        $elCampo = $this->findBy(array(),array('id'=>'DESC'),1,0);
+
+        return $elCampo;
+    }
+
     // /**
     //  * @return Compras[] Returns an array of Compras objects
     //  */

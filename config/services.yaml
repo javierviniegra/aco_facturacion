@@ -160,7 +160,7 @@ services:
 
     admin.compras:
         class: App\Admin\ComprasAdmin
-        arguments: [~, App\Entity\Compras, App\Controller\ComprasController]
+        arguments: [~, App\Entity\Compras, App\Controller\ComprasController,'@doctrine.orm.default_entity_manager']
         tags:
             - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Compras }
         public: true

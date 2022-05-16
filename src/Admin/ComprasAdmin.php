@@ -17,9 +17,17 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\PercentType;
+use App\Repository\ComprasRepository;
 
 final class ComprasAdmin extends AbstractAdmin
 {
+    protected $em;
+
+    public function __construct($code, $class, $baseControllerName, $entityManager)
+    {
+         parent::__construct($code, $class, $baseControllerName);
+         $this->em = $entityManager;
+    }
 
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
@@ -58,6 +66,9 @@ final class ComprasAdmin extends AbstractAdmin
 
     protected function configureFormFields(FormMapper $form): void
     {
+        $repository = $this->em->getRepository('App:Compras');
+        $elLastID = str_pad(strval($repository->findLastCompraID()[0]->getId()+1),7,"0",STR_PAD_LEFT);
+
         // define group zoning
         $form
             ->tab('Compras')
@@ -73,11 +84,33 @@ final class ComprasAdmin extends AbstractAdmin
             ->end();
 
         $now = new \DateTime();
-
+        
+        if($this->getSubject()->getId() === null)
+            $form
+                ->tab('Compras')
+                    ->with('Compras')
+                        ->add('id_compra',null,[
+                            'label' => 'ID de Compra',
+                            'required' => true,
+                            'disabled' => true,
+                            'data' => "CC".date("Y")."-".$elLastID,
+                        ])
+                    ->end()
+                ->end();
+        else
+            $form
+                ->tab('Compras')
+                    ->with('Compras')
+                        ->add('id_compra',null,[
+                            'label' => 'ID de Compra',
+                            'required' => true,
+                            'disabled' => true,
+                        ])
+                    ->end()
+                ->end();
         $form
             ->tab('Compras')
                 ->with('Compras')
-                    ->add('id_compra',null,['label' => 'ID de Compra','required' => true])
                     ->add('fechaCompra', DateType::class, ['label' => 'Fecha de Compra', 'widget' => 'single_text','required' => false])
                     ->add('proveedor', ModelType::class, [
                             'required' => false,
