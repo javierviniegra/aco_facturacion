@@ -1,0 +1,74 @@
+{% extends '@SonataAdmin/standard_layout.html.twig' %}
+
+{% block title %}
+    {{ 'title_dashboard'|trans({}, 'SonataAdminBundle') }}
+{% endblock %}
+
+{% block breadcrumb %}
+    <div class="hidden-xs">
+        <ol class="nav navbar-top-links breadcrumb">
+            <li>
+                <a href="/admin">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li class="active">
+                <span>Controles Volumétricos</span>
+            </li>
+        </ol>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    <div class="col-md-4">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h4 class="box-title">Reporte por Día</h4>
+            </div>
+            <div class="box-body">
+                <div class="sonata-ba-collapsed-fields">
+                    <div id="" class="form-group">
+                        <label class="  control-label" for="reporteDia">Selecciona el Día</label>
+                        <div class="sonata-ba-field sonata-ba-field-standard-natural">
+                            <input type="date" id="reporteDia" name="" class="sonata-medium-date form-control" value="2022-01-30" /> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h4 class="box-title">Reporte por Periodo</h4>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="box-body">
+                        <div class="sonata-ba-collapsed-fields">
+                            <div id="" class="form-group">
+                                <label class="  control-label" for="reporteDia">Día 1</label>
+                                <div class="sonata-ba-field sonata-ba-field-standard-natural">
+                                    <input type="date" id="reporteDia" name="" class="sonata-medium-date form-control" value="2022-01-30" /> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="box-body">
+                        <div class="sonata-ba-collapsed-fields">
+                            <div id="" class="form-group">
+                                <label class="  control-label" for="reporteDia">Día 2</label>
+                                <div class="sonata-ba-field sonata-ba-field-standard-natural">
+                                    <input type="date" id="reporteDia" name="" class="sonata-medium-date form-control" value="2022-01-30" /> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

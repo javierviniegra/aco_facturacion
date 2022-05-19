@@ -28,6 +28,16 @@ class MenuBuilderListener
             ])->setExtras([
                 'icon' => '<i class="fa fa-bars"></i>'
             ]);
+            $child = $menu->addChild('dashboard1', [
+                'route' => 'dashboard1',
+                'label' => 'AI ACO (Dashboard #2)',
+            ])->setExtras([
+                'icon' => '<i class="fa fa-bars"></i>'
+            ]);
+            $child = $menu->addChild('Controles Volumétricos',[
+                'label'=> 'Controles Volumétricos',
+                'route'=>'cont_volumetricos'
+            ])->setExtras(['icon' => '<i class="fa fa-thermometer-0"></i>']);
             $child = $menu->addChild('Clientes',[
                 'label'=> 'Clientes',
                 'route'=>'admin_app_clientes_list'

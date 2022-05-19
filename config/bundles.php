@@ -22,4 +22,5 @@ return [
     Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
     Sonata\IntlBundle\SonataIntlBundle::class => ['all' => true],
     Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true],
+    CMEN\GoogleChartsBundle\CMENGoogleChartsBundle::class => ['all' => true],
 ];
