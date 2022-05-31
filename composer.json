@@ -21,6 +21,8 @@
         "symfony/swiftmailer-bundle": "^3.5",
         "symfony/var-dumper": "4.4.*",
         "symfony/yaml": "4.4.*",
+        "twig/extra-bundle": "^3.4",
+        "twig/intl-extra": "^3.4",
         "twig/twig": "^2.0",
         "vich/uploader-bundle": "^1.19"
     },

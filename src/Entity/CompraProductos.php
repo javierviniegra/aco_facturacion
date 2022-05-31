@@ -80,6 +80,31 @@ class CompraProductos
     private $compras;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $recibido;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $fechaRecepcion;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Almacenajes::class)
+     */
+    private $almacenaje;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=SonataUserUser::class)
+     */
+    private $quienRecibe;
+
+    /**
+     * @ORM\Column(type="string", length=512, nullable=true)
+     */
+    private $observaciones;
+
+    /**
      * @ORM\PrePersist
      */
     public function onPrePersist()
@@ -246,6 +271,66 @@ class CompraProductos
     public function setCompras(?Compras $compras): self
     {
         $this->compras = $compras;
+
+        return $this;
+    }
+
+    public function getRecibido(): ?bool
+    {
+        return $this->recibido;
+    }
+
+    public function setRecibido(?bool $recibido): self
+    {
+        $this->recibido = $recibido;
+
+        return $this;
+    }
+
+    public function getFechaRecepcion(): ?\DateTimeInterface
+    {
+        return $this->fechaRecepcion;
+    }
+
+    public function setFechaRecepcion(?\DateTimeInterface $fechaRecepcion): self
+    {
+        $this->fechaRecepcion = $fechaRecepcion;
+
+        return $this;
+    }
+
+    public function getAlmacenaje(): ?Almacenajes
+    {
+        return $this->almacenaje;
+    }
+
+    public function setAlmacenaje(?Almacenajes $almacenaje): self
+    {
+        $this->almacenaje = $almacenaje;
+
+        return $this;
+    }
+
+    public function getQuienRecibe(): ?SonataUserUser
+    {
+        return $this->quienRecibe;
+    }
+
+    public function setQuienRecibe(?SonataUserUser $quienRecibe): self
+    {
+        $this->quienRecibe = $quienRecibe;
+
+        return $this;
+    }
+
+    public function getObservaciones(): ?string
+    {
+        return $this->observaciones;
+    }
+
+    public function setObservaciones(?string $observaciones): self
+    {
+        $this->observaciones = $observaciones;
 
         return $this;
     }

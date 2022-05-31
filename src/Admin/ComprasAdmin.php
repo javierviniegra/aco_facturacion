@@ -9,6 +9,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Route\RouteCollectionInterface;
 use Sonata\Form\Type\DatePickerType;
 use Sonata\AdminBundle\Form\Type\ModelType;
 use Sonata\Form\Type\CollectionType;
@@ -38,7 +39,6 @@ final class ComprasAdmin extends AbstractAdmin
             ->add('fechaPago')
             ->add('numFactura')
             ->add('idTransaccion')
-            ->add('fechaRecepcion')
             ->add('observaciones')
             ;
     }
@@ -55,9 +55,11 @@ final class ComprasAdmin extends AbstractAdmin
             ->add('fechaPago','date')
             ->add('numFactura')
             ->add('idTransaccion')
-            ->add('fechaRecepcion','date')
             ->add(ListMapper::NAME_ACTIONS, null, [
                 'actions' => [
+                    'recepcion' => [
+                        'template' => 'CRUD/list__action_recepcion.html.twig',
+                    ],
                     'show' => [],
                     'edit' => [],
                 ],
@@ -79,9 +81,9 @@ final class ComprasAdmin extends AbstractAdmin
             ->tab('Facturación')
                 ->with('Facturación', ['class' => 'col-md-6'])->end()
             ->end()
-            ->tab('Recepción')
+            /*->tab('Recepción')
                 ->with('General', ['class' => 'col-md-6'])->end()
-            ->end();
+            ->end()*/;
 
         $now = new \DateTime();
         
@@ -181,7 +183,7 @@ final class ComprasAdmin extends AbstractAdmin
                     ])
                 ->end()
             ->end()
-            ->tab('Recepción')
+            /*->tab('Recepción')
                 ->with('General')
                     ->add('fechaRecepcion', DateTimeType::class, ['label' => 'Fecha y Hora de Recepción', 'widget' => 'single_text','required' => false])
                     ->add('almacenaje', ModelType::class, [
@@ -196,7 +198,7 @@ final class ComprasAdmin extends AbstractAdmin
                     ])
                     ->add('observaciones',null, ['label' => 'Observaciones','required' => false])
                 ->end()
-            ->end()
+            ->end()*/
             ;
     }
 
@@ -211,8 +213,15 @@ final class ComprasAdmin extends AbstractAdmin
             ->add('fechaPago')
             ->add('numFactura')
             ->add('idTransaccion')
-            ->add('fechaRecepcion')
-            ->add('observaciones')
+            /*->add('fechaRecepcion')
+            ->add('observaciones')*/
             ;
+    }
+
+    //https://symfony.com/bundles/SonataAdminBundle/current/cookbook/recipe_custom_action.html
+    protected function configureRoutes(RouteCollectionInterface $collection): void
+    {
+        $collection
+            ->add('recepcion', $this->getRouterIdParameter().'/recepcion');
     }
 }
