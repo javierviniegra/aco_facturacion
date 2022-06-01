@@ -85,7 +85,7 @@ final class ComprasAdmin extends AbstractAdmin
                 ->with('General', ['class' => 'col-md-6'])->end()
             ->end()*/;
 
-        $now = new \DateTime();
+        $now = new \DateTime(); 
         
         if($this->getSubject()->getId() === null)
             $form
@@ -222,6 +222,9 @@ final class ComprasAdmin extends AbstractAdmin
     protected function configureRoutes(RouteCollectionInterface $collection): void
     {
         $collection
-            ->add('recepcion', $this->getRouterIdParameter().'/recepcion');
+            ->add('recepcion', $this->getRouterIdParameter().'/recepcion')
+            ->add('recepcionAlta', $this->getRouterIdParameter().'/recepcion/{id_prod}/alta')
+            ->add('recepcionMostrar', $this->getRouterIdParameter().'/recepcion/{id_prod}/mostrar');;
     }
+
 }

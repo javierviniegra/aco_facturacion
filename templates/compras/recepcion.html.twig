@@ -123,15 +123,18 @@
 									{% endif %}
             					</td>
             					<td class="sonata-ba-list-field sonata-ba-list-field-actions" objectid="{{producto.id}}">
-                                    <div class="btn-group">                  
+                                    <div class="btn-group">
+                                    {% if producto.fechaRecepcion != NULL %}                  
         								<a href="#" class="btn btn-sm btn-default view_link" title="Mostrar">
                     						<i class="fa fa-eye" aria-hidden="true"></i>
                             				Mostrar
             							</a>
-                    					<a href="#" class="btn btn-sm btn-default edit_link" title="Recibir">
+                                    {% else %}
+                    					<a href="{{ path('admin_app_compras_recepcionAlta', {'id': objeto.id, 'id_prod': producto.id}) }}" class="btn btn-sm btn-default edit_link" title="Recibir">
                     						<i class="fa fa-pencil" aria-hidden="true"></i>
                             				Recibir
             							</a>
+                                    {% endif %}
             						</div>
             					</td>
         						</tr>

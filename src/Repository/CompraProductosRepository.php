@@ -45,6 +45,16 @@ class CompraProductosRepository extends ServiceEntityRepository
         }
     }
 
+    public function findOneById($value): ?CompraProductos
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.id = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
     // /**
     //  * @return CompraProductos[] Returns an array of CompraProductos objects
     //  */
