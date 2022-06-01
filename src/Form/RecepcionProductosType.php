@@ -24,7 +24,10 @@ class RecepcionProductosType extends AbstractType
                 'label' => 'Persona Recibio'
             ])
             ->add('fechaRecepcion',DateTimeType::class,[
-                'label' => 'Fecha y Hora de Recepción'
+                'label' => 'Fecha y Hora de Recepción',
+                'widget' => 'single_text',
+                //'html5' => false,
+                'attr' => ['class' => 'js-datepicker'],
             ])
             ->add('observaciones', TextareaType::class)
            ->add('submit', SubmitType::class, [

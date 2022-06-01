@@ -91,6 +91,9 @@
                                                                 <div class="sonata-ba-collapsed-fields">
                                                                     {{ form_row(form.observaciones) }}
                                                                 </div>
+                                                                <div class="sonata-ba-collapsed-fields">
+                                                                    {{ form_row(form.submit) }}
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -106,11 +109,10 @@
                 </div>
             </div>
             {{ form_rest(form) }}
-            <div class="sonata-ba-form-actions well well-small form-actions stuck">
-            </div>
         {{ form_end(form) }}
         </div>
-    </section>              
+    </section> 
+
     {# NEXT_MAJOR: Remove the admin_pool argument #}
     {{ sonata_block_render_event('sonata.admin.dashboard.top', { 'admin_pool': sonata_admin.adminPool('sonata_deprecation_mute') }) }}
 
