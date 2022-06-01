@@ -125,7 +125,7 @@
             					<td class="sonata-ba-list-field sonata-ba-list-field-actions" objectid="{{producto.id}}">
                                     <div class="btn-group">
                                     {% if producto.fechaRecepcion != NULL %}                  
-        								<a href="#" class="btn btn-sm btn-default view_link" title="Mostrar">
+        								<a href="{{ path('admin_app_compras_recepcionMostrar', {'id': objeto.id, 'id_prod': producto.id}) }}" class="btn btn-sm btn-default view_link" title="Mostrar">
                     						<i class="fa fa-eye" aria-hidden="true"></i>
                             				Mostrar
             							</a>

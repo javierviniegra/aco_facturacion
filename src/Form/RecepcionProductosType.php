@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -18,16 +19,16 @@ class RecepcionProductosType extends AbstractType
     {
         $builder
             ->add('almacenaje',null,[
-                'label' => 'Almacenaje'
+                'label' => 'Almacenaje',
+                'required' => true
             ])
             ->add('quienRecibe',null,[
                 'label' => 'Persona Recibio'
             ])
-            ->add('fechaRecepcion',DateTimeType::class,[
-                'label' => 'Fecha y Hora de Recepción',
+            ->add('fechaRecepcion',DateType::class,[
+                'label' => 'Fecha de Recepción',
                 'widget' => 'single_text',
-                //'html5' => false,
-                'attr' => ['class' => 'js-datepicker'],
+                'attr' => ['class' => 'js-datetimepicker'],
             ])
             ->add('observaciones', TextareaType::class)
            ->add('submit', SubmitType::class, [

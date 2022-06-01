@@ -51,14 +51,14 @@ final class ComprasController extends CRUDController
      * @param $id_prod
      * @param $id
      */
-    public function recepcionAltaAction(Request $request,$id_prod, $id): Response
+    public function recepcionAltaAction(Request $request, $id_prod, $id): Response
     {
         $objeto = $this->admin->getSubject();
         $em = $this->getDoctrine()->getManager();
 
 
         $producto =  $em->getRepository(CompraProductos::class)
-                    ->findOneById($id);
+                    ->findOneById($id_prod);
         $form = $this->createForm(RecepcionProductosType::class, $producto);
         $form->handleRequest($request);
         
@@ -82,18 +82,17 @@ final class ComprasController extends CRUDController
      * @param $id_prod
      * @param $id
      */
-    public function recepcionMostrarAction($id_prod, $id): Response
+    public function recepcionMostrarAction(Request $request, $id_prod, $id): Response
     {
         $objeto = $this->admin->getSubject();
+        $em = $this->getDoctrine()->getManager();
 
+        $producto =  $em->getRepository(CompraProductos::class)
+                    ->findOneById($id_prod);
 
-        $repository = $this->getDoctrine()->getManager();
-        $producto =  $repository->getRepository(Productos::class, 'Productos')
-                    ->findOneById($id);
-        dump($productos);
-
-        return $this->render('compras/recepcion_alta.html.twig', [
+        return $this->render('compras/recepcion_mostrar.html.twig', [
             'objeto' => $objeto,
+            'producto' => $producto
         ]);
     }
 }

@@ -59,7 +59,6 @@
                     
     <section class="content">
         <div class="sonata-ba-form">
-        {{ form_start(form) }} 
             <div class="row">
                 <div class="col-md-12">
                     <div class="nav-tabs-custom">
@@ -68,9 +67,6 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="">
                                     <div class="box-body  container-fluid">
-                                        <div class="my-custom-class-for-errors">
-                                            {{ form_errors(form) }}
-                                        </div>
                                         <div class="sonata-ba-collapsed-fields">
                                             <div class="row">
                                                 <div class="col-md-12">
@@ -78,21 +74,18 @@
                                                         <div class="box-body">
                                                             <div class="col-md-6">
                                                                 <div class="sonata-ba-collapsed-fields">
-                                                                    {{ form_row(form.almacenaje) }}
+                                                                    Fecha de Recepción: {{ producto.fechaRecepcion|date('d-m-Y')}}
                                                                 </div>
                                                                 <div class="sonata-ba-collapsed-fields">
-                                                                    {{ form_row(form.quienRecibe) }}
+                                                                    Persona Recibió: {{ producto.quienRecibe}}
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="sonata-ba-collapsed-fields">
-                                                                    {{ form_row(form.fechaRecepcion) }}
+                                                                    Almacenaje: {{ producto.almacenaje}}
                                                                 </div>
                                                                 <div class="sonata-ba-collapsed-fields">
-                                                                    {{ form_row(form.observaciones) }}
-                                                                </div>
-                                                                <div class="sonata-ba-collapsed-fields">
-                                                                    {{ form_row(form.submit) }}
+                                                                    Observaciones: {{ producto.observaciones}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -108,8 +101,6 @@
                     </div>
                 </div>
             </div>
-            {{ form_rest(form) }}
-        {{ form_end(form) }}
         </div>
     </section> 
 
