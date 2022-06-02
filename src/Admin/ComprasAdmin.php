@@ -94,8 +94,11 @@ final class ComprasAdmin extends AbstractAdmin
                         ->add('id_compra',null,[
                             'label' => 'ID de Compra',
                             'required' => true,
-                            'disabled' => true,
+                            'disabled'  => false,
                             'data' => "CC".date("Y")."-".$elLastID,
+                            'attr' => array(
+                                'readonly' => true,
+                            )
                         ])
                     ->end()
                 ->end();
@@ -106,14 +109,17 @@ final class ComprasAdmin extends AbstractAdmin
                         ->add('id_compra',null,[
                             'label' => 'ID de Compra',
                             'required' => true,
-                            'disabled' => true,
+                            'disabled'  => false,
+                            'attr' => array(
+                                'readonly' => true,
+                            )
                         ])
                     ->end()
                 ->end();
         $form
             ->tab('Compras')
                 ->with('Compras')
-                    ->add('fechaCompra', DateType::class, ['label' => 'Fecha de Compra', 'widget' => 'single_text','required' => false])
+                    ->add('fechaCompra', DateType::class, ['label' => 'Fecha de Compra', 'widget' => 'single_text','required' => true])
                     ->add('proveedor', ModelType::class, [
                             'required' => false,
                             'expanded' => false,

@@ -172,7 +172,10 @@ class Compras
 
     public function __toString()
     {
-        return $this->getIdCompra();
+        if (is_null($this->getIdCompra()))
+            return "";
+        else
+            return $this->getIdCompra();
     }
 
     public function getId(): ?int
