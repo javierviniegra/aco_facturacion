@@ -6,6 +6,7 @@ namespace App\Admin;
 
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
@@ -231,6 +232,38 @@ final class ComprasAdmin extends AbstractAdmin
             ->add('recepcion', $this->getRouterIdParameter().'/recepcion')
             ->add('recepcionAlta', $this->getRouterIdParameter().'/recepcion/{id_prod}/alta')
             ->add('recepcionMostrar', $this->getRouterIdParameter().'/recepcion/{id_prod}/mostrar');;
+    }
+
+
+
+    //override de la funcion del query que genera la lista
+    /*protected function configureQuery(ProxyQueryInterface $query): ProxyQueryInterface
+    {
+        $query = parent::configureQuery($query);
+
+        $rootAlias = current($query->getRootAliases());
+
+        $query->andWhere(
+            $query->expr()->neq($rootAlias . '.is_deleted', ':borrado')
+        );
+        $query->setParameter('borrado', '1');
+
+        return $query;
+    }*/
+    public function createQuery($context = 'list')
+    {
+        $query = parent::createQuery($context);
+        $rootAlias = $query->getRootAliases()[0];
+
+        $query->andWhere(
+            $query->expr()->neq($rootAlias.'.is_deleted', ':deleted')
+        );
+        $query->orWhere(
+            $query->expr()->isNull($rootAlias.'.is_deleted')
+        );
+
+        $query->setParameter(':deleted', '1');
+        return $query;
     }
 
 }

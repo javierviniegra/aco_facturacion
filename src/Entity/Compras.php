@@ -147,6 +147,21 @@ class Compras
      */
     private $productos;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $is_deleted;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=SonataUserUser::class)
+     */
+    private $quien_borro;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $fecha_borrado;
+
     public function __construct()
     {
         $this->productos = new ArrayCollection();
@@ -160,6 +175,7 @@ class Compras
         $this->created_at = new \DateTime();
         $this->updated_at = new \DateTime();
         $this->is_active = True;
+        $this->is_deleted = False;
     }
 
     /**
@@ -497,6 +513,42 @@ class Compras
                 $producto->setCompras(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsDeleted(): ?bool
+    {
+        return $this->is_deleted;
+    }
+
+    public function setIsDeleted(?bool $is_deleted): self
+    {
+        $this->is_deleted = $is_deleted;
+
+        return $this;
+    }
+
+    public function getQuienBorro(): ?SonataUserUser
+    {
+        return $this->quien_borro;
+    }
+
+    public function setQuienBorro(?SonataUserUser $quien_borro): self
+    {
+        $this->quien_borro = $quien_borro;
+
+        return $this;
+    }
+
+    public function getFechaBorrado(): ?\DateTimeInterface
+    {
+        return $this->fecha_borrado;
+    }
+
+    public function setFechaBorrado(?\DateTimeInterface $fecha_borrado): self
+    {
+        $this->fecha_borrado = $fecha_borrado;
 
         return $this;
     }

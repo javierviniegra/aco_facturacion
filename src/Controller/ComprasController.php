@@ -11,10 +11,42 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Repository\CompraProductosRepository; 
 use App\Entity\CompraProductos; 
 use App\Form\RecepcionProductosType;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 //https://symfony.com/bundles/SonataAdminBundle/current/cookbook/recipe_custom_action.html
 final class ComprasController extends CRUDController
 {
+
+    //override para hacer delete de las compras
+    public function batchActionDelete(\Sonata\AdminBundle\Datagrid\ProxyQueryInterface $query)
+    {
+        if (false === $this->admin->isGranted('DELETE')) {
+            throw new AccessDeniedException();
+        }
+
+        $em = $this->getDoctrine()->getManager();
+
+        //usuario loggeado
+        $user = $this->getUser();
+
+        $res = $query->execute();
+
+        if (count($res)) {
+            foreach ($res as $registro) {
+                $registro->setIsDeleted(true);
+                $registro->setFechaBorrado(new \DateTime());
+                $registro->setQuienBorro($user);
+                $em->flush();
+            }
+
+            $this->addFlash('sonata_flash_success', 'Elemento marcado como borrado');
+        }
+
+        return new RedirectResponse(
+            $this->admin->generateUrl('list',
+                $this->admin->getFilterParameters())
+        );
+    }
 
     /**
      * @param $id
