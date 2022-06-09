@@ -19,8 +19,7 @@ class HomeController extends AbstractController
      */
     public function index(Request $request)
     {
-
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('sonata_admin_dashboard');
 
     }
 
