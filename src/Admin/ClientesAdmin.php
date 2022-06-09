@@ -6,6 +6,7 @@ namespace App\Admin;
 
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
@@ -35,9 +36,6 @@ final class ClientesAdmin extends AbstractAdmin
             ->add('nombreComercial',null,['label' => 'Nombre Comercial'])
             ->add('rfc',null,['label' => 'RFC'])
             ->add('razonSocial',null,['label' => 'Razón Social'])
-            ->add('razon',null,['label' => 'Persona'])
-            ->add('is_active',null,['label' => 'Activo?'])
-            ->add('telefono1',null,['label' => 'Teléfono 1'])
             ->add(ListMapper::NAME_ACTIONS, null, [
                 'actions' => [
                     'show' => [],
@@ -165,11 +163,84 @@ final class ClientesAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $show): void
     {
         $show
-            ->add('rfc')
-            ->add('nombreComercial')
-            ->add('razonSocial')
-            ->add('razon')
-            ->add('is_active')
-            ;
+            ->tab('Cliente')
+                ->with('Profile', ['class' => 'col-md-6'])->end()
+                ->with('Status', ['class' => 'col-md-6'])->end()
+            ->end()
+            ->tab('Domicilio Fiscal')
+                ->with('Dirección', ['class' => 'col-md-6'])->end()
+                ->with('Otros', ['class' => 'col-md-6'])->end()
+            ->end()
+            ->tab('Envios')
+                ->with('Envios', ['class' => 'col-md-12'])->end()
+            ->end()
+            ->tab('Administrativo')
+                ->with('SAT', ['class' => 'col-md-6'])->end()
+                ->with('Crédito', ['class' => 'col-md-6'])->end()
+            ->end()
+            ->tab('Contacto')
+                ->with('Contactos', ['class' => 'col-md-12'])->end()
+            ->end();
+
+        $show
+            ->tab('Cliente')
+                ->with('Profile')
+                    ->add('rfc',null,['label' => 'RFC'])
+                    ->add('nombreComercial',null,['label' => 'Nombre Comercial'])
+                    ->add('razonSocial',null,['label' => 'Razón Social'])
+                    ->add('razon',null,['label' => 'Persona'])
+                ->end()
+                ->with('Status')
+                    ->add('is_active')
+                ->end()
+            ->end()
+            ->tab('Domicilio Fiscal')
+                ->with('Dirección')
+                    ->add('calle',null,['label' => 'Calle','required'=>true])
+                    ->add('numExterior',null,['label' => '# Exterior','required'=>true])
+                    ->add('numInterior',null,['label' => '# Interior'])
+                    ->add('colonia',null,['label' => 'Colonia','required'=>true])
+                    ->add('codigoPostal',null,['label' => 'C.P.','required'=>true])
+                    ->add('alcaldia',null,['label' => 'Alcaldía o Municipio'])
+                    ->add('estado', null, ['label' => 'Estado','required'=>true])
+                    ->add('pais', null, ['required' => true,'label' => 'País'])
+                ->end()
+                ->with('Otros')
+                    ->add('telefono1',null,['label' => 'Teléfono 1','required'=>true])
+                    ->add('telefono2',null,['label' => 'Teléfono 2'])
+                    ->add('observaciones',null,['label' => 'Observaciones'])                
+                ->end()
+            ->end()
+            ->tab('Administrativo')
+                ->with('SAT')
+                    ->add('usoCfdi',null,['label' => 'Uso del CFDI'])
+                    ->add('formasPago',null,['label' => 'Forma de Pago'])
+                    ->add('email1_factura',null,['label' => 'Email para envío de Facturas 1'])
+                    ->add('email2_factura',null,['label' => 'Email para envío de Facturas 2'])
+                    ->add('email3_factura',null,['label' => 'Email para envío de Facturas 3'])
+                ->end()
+                ->with('Crédito')
+                    ->add('diasCredito',null,['label' => 'Días de Crédito'])
+                ->end()
+            ->end()
+            ->tab('Envios')
+                ->with('Envios')
+                    ->add('domicilio',null, ['label' => 'Direcciones de Envío'])
+                ->end()
+            ->end()
+            ->tab('Contacto')
+                ->with('Contactos')
+                    ->add('contactos',null, ['label' => 'Listado de Contactos'])
+                ->end()
+            ->end();
     }
+
+    //override de la funcion del query que genera el orden de la lista 
+    protected function configureDefaultSortValues(array &$sortValues): void
+    {
+        $sortValues[DatagridInterface::PAGE] = 1;
+        $sortValues[DatagridInterface::SORT_ORDER] = 'ASC';
+        $sortValues[DatagridInterface::SORT_BY] = 'razonSocial';
+    }
+
 }

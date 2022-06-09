@@ -234,22 +234,7 @@ final class ComprasAdmin extends AbstractAdmin
             ->add('recepcionMostrar', $this->getRouterIdParameter().'/recepcion/{id_prod}/mostrar');;
     }
 
-
-
     //override de la funcion del query que genera la lista
-    /*protected function configureQuery(ProxyQueryInterface $query): ProxyQueryInterface
-    {
-        $query = parent::configureQuery($query);
-
-        $rootAlias = current($query->getRootAliases());
-
-        $query->andWhere(
-            $query->expr()->neq($rootAlias . '.is_deleted', ':borrado')
-        );
-        $query->setParameter('borrado', '1');
-
-        return $query;
-    }*/
     public function createQuery($context = 'list')
     {
         $query = parent::createQuery($context);
