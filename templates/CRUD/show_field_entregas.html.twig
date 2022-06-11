@@ -1,0 +1,29 @@
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+
+{% block field %}
+    <table class="table table-responsive">
+    <th>
+        <td>Nombre</td>
+        <td>Domicilio</td>
+        <td>Estado</td>
+        <td>Municipio</td>
+        <td>Telefono</td>
+        <td>Observaciones</td>
+    </th>
+    {% for domicilio in value %}
+        <tr>
+            <td>
+                <a href="{{ path('admin_app_domicilios_show', {'id': domicilio.id}) }}">{{ domicilio.id }}</a>
+            </td>
+            <td>{{ domicilio.nombre }}</td>
+            <td>{{ domicilio.calle ~ " #" ~ domicilio.numExterior ~ " int." ~ domicilio.numInterior ~ " Col: " ~ domicilio.colonia}}</td>
+            <td>{{ domicilio.estado1 }}</td>
+            <td>{{ domicilio.alcaldia }}</td>
+            <td>{{ domicilio.telefono1 }}</td>
+            <td>{{ domicilio.observaciones }}</td>
+        </tr>
+    {% else %}
+        <tr>Sin Domicilios de Entrega</tr>
+    {% endfor %}
+    </table>
+{% endblock %}

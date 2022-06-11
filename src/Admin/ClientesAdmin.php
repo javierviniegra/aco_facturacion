@@ -188,7 +188,7 @@ final class ClientesAdmin extends AbstractAdmin
                     ->add('rfc',null,['label' => 'RFC'])
                     ->add('nombreComercial',null,['label' => 'Nombre Comercial'])
                     ->add('razonSocial',null,['label' => 'Razón Social'])
-                    ->add('razon',null,['label' => 'Persona'])
+                    ->add('razon',null,['label' => 'Persona','template' => 'CRUD/show_field_razon.html.twig'])
                 ->end()
                 ->with('Status')
                     ->add('is_active')
@@ -225,12 +225,12 @@ final class ClientesAdmin extends AbstractAdmin
             ->end()
             ->tab('Envios')
                 ->with('Envios')
-                    ->add('domicilio',null, ['label' => 'Direcciones de Envío'])
+                    ->add('domicilio',null, ['label' => 'Direcciones de Envío','template' => 'CRUD/show_field_entregas.html.twig'])
                 ->end()
             ->end()
             ->tab('Contacto')
                 ->with('Contactos')
-                    ->add('contactos',null, ['label' => 'Listado de Contactos'])
+                    ->add('contactos',null, ['label' => 'Listado de Contactos','template' => 'CRUD/show_field_contactos.html.twig'])
                 ->end()
             ->end();
     }

@@ -1,0 +1,24 @@
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+
+
+    {%- block field -%}
+        {% apply spaceless %}
+            {% set collapse = field_description.option('collapse') %}
+            {% if collapse %}
+                <div class="sonata-readmore"
+                      data-readmore-height="{{ collapse.height|default(40) }}"
+                      data-readmore-more="{{ collapse.more|default('read_more')|trans({}, 'SonataAdminBundle') }}"
+                      data-readmore-less="{{ collapse.less|default('read_less')|trans({}, 'SonataAdminBundle') }}">
+                    {% block field_value %}
+                        {% if field_description.option('safe', false) %}{{ value|raw }}{% else %}{{ value|nl2br }}{% endif %}
+                    {% endblock %}
+                </div>
+            {% else %}
+            	{% if value == '1' %}
+            		Física
+            	{% else %}
+            		Moral
+            	{% endif %}
+            {% endif %}
+        {% endapply %}
+    {%- endblock -%}
