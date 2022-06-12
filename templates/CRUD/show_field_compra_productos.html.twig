@@ -1,0 +1,27 @@
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+
+{% block field %}
+    <table class="table table-responsive">
+    <th>
+        <td>Producto</td>
+        <td>Cantidad</td>
+        <td>Precio</td>
+        <td>Subtotal</td>
+        <td>Total</td>
+    </th>
+    {% for producto in value %}
+        <tr>
+            <td>
+                <a href="{{ path('admin_app_compraproductos_show', {'id': producto.id}) }}">{{ producto.id }}</a>
+            </td>
+            <td>{{ producto.producto }}</td>
+            <td>{{ producto.litros }}</td>
+            <td>${{ producto.precioLitro|format_currency('MXP')|replace({"MXP": ""}) }}</td>
+            <td>${{ producto.subtotal|format_currency('MXP')|replace({"MXP": ""}) }}</td>
+            <td>${{ producto.total|format_currency('MXP')|replace({"MXP": ""}) }}</td>
+        </tr>
+    {% else %}
+        <tr>Sin Productos</tr>
+    {% endfor %}
+    </table>
+{% endblock %}

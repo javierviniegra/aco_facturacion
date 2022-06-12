@@ -96,3 +96,7 @@ form:
     new_password_confirmation: 'Repita la contraseña'
 
 export_format_pdf: PDF
+
+btn_filter: Buscar
+link_filters: Buscador
+btn_advanced_filters: Búsquedas Avanzadas

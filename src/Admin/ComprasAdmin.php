@@ -36,6 +36,7 @@ final class ComprasAdmin extends AbstractAdmin
         $filter
             ->add('fechaCompra')
             ->add('id_compra')
+            ->add('proveedor')
             ->add('total')
             ->add('fechaPago')
             ->add('numFactura')
@@ -49,13 +50,14 @@ final class ComprasAdmin extends AbstractAdmin
         $list
             ->add('fechaCompra','date')
             ->add('id_compra')
-            ->add('iepsTotal', 'currency', ['currency' => 'MXN'])
-            ->add('iva', 'currency', ['currency' => 'MXN'])
+            ->add('proveedor')
+            //->add('iepsTotal', 'currency', ['currency' => 'MXN'])
+            //->add('iva', 'currency', ['currency' => 'MXN'])
             ->add('subtotal', 'currency', ['currency' => 'MXN'])
             ->add('total', 'currency', ['currency' => 'MXN'])
             ->add('fechaPago','date')
             ->add('numFactura')
-            ->add('idTransaccion')
+            //->add('idTransaccion')
             ->add(ListMapper::NAME_ACTIONS, null, [
                 'actions' => [
                     'recepcion' => [
@@ -190,38 +192,56 @@ final class ComprasAdmin extends AbstractAdmin
                     ])
                 ->end()
             ->end()
-            /*->tab('Recepción')
-                ->with('General')
-                    ->add('fechaRecepcion', DateTimeType::class, ['label' => 'Fecha y Hora de Recepción', 'widget' => 'single_text','required' => false])
-                    ->add('almacenaje', ModelType::class, [
-                            'required' => false,
-                            'expanded' => false,
-                            'multiple' => false,
-                    ])
-                    ->add('personaRecibio', ModelType::class, [
-                            'required' => false,
-                            'expanded' => false,
-                            'multiple' => false,
-                    ])
-                    ->add('observaciones',null, ['label' => 'Observaciones','required' => false])
-                ->end()
-            ->end()*/
             ;
     }
 
     protected function configureShowFields(ShowMapper $show): void
     {
+        $repository = $this->em->getRepository('App:Compras');
+        $elLastID = str_pad(strval($repository->findLastCompraID()[0]->getId()+1),7,"0",STR_PAD_LEFT);
+
+        // define group zoning
         $show
-            ->add('fechaCompra')
-            ->add('iepsTotal')
-            ->add('iva')
-            ->add('subtotal')
-            ->add('total')
-            ->add('fechaPago')
-            ->add('numFactura')
-            ->add('idTransaccion')
-            /*->add('fechaRecepcion')
-            ->add('observaciones')*/
+            ->tab('Compras')
+                ->with('Compras', ['class' => 'col-md-6'])->end()
+                ->with('Cálculos', ['class' => 'col-md-6'])->end()
+                ->with('Productos', ['class' => 'col-md-12'])->end()
+            ->end()
+            ->tab('Facturación')
+                ->with('Facturación', ['class' => 'col-md-6'])->end()
+            ->end();
+        
+        $show
+            ->tab('Compras')
+                ->with('Compras')
+                    ->add('id_compra',null,['label' => 'ID de Compra'])
+                ->end()
+            ->end()
+            ->tab('Compras')
+                ->with('Compras')
+                    ->add('fechaCompra', null, ['label' => 'Fecha de Compra'])
+                    ->add('proveedor')
+                ->end()
+                ->with('Cálculos')
+                    ->add('iepsTotal', MoneyType::class, ['label' => 'IEPS Total','template' => 'CRUD/show_field_moneda.html.twig'])
+                    ->add('iva', MoneyType::class, ['label' => 'IVA','template' => 'CRUD/show_field_moneda.html.twig'])
+                    ->add('subtotal', MoneyType::class, ['label' => 'Subtotal','template' => 'CRUD/show_field_moneda.html.twig'])
+                    ->add('total', MoneyType::class, ['label' => 'Total','template' => 'CRUD/show_field_moneda.html.twig'])
+                ->end()
+                ->with('Productos')
+                    ->add('productos', null, ['label' => 'Lista de Productos','template' => 'CRUD/show_field_compra_productos.html.twig'])
+                ->end()
+            ->end()
+            ->tab('Facturación')
+                ->with('Facturación')
+                    ->add('fechaPago', null, ['label' => 'Fecha de Pago'])
+                    ->add('numFactura',null, ['label' => 'Número de Factura'])
+                    ->add('formaPago', ModelType::class, ['label' => 'Forma de Pago'])
+                    ->add('banco', ModelType::class)
+                    ->add('idTransaccion',null, ['label' => 'ID de transacción'])
+                    ->add('estatusPago', ModelType::class, ['label' => 'Estatus de Pago'])
+                ->end()
+            ->end()
             ;
     }
 
@@ -249,6 +269,14 @@ final class ComprasAdmin extends AbstractAdmin
 
         $query->setParameter(':deleted', '1');
         return $query;
+    }
+
+    //override de la funcion del query que genera el orden de la lista 
+    protected function configureDefaultSortValues(array &$sortValues): void
+    {
+        $sortValues[DatagridInterface::PAGE] = 1;
+        $sortValues[DatagridInterface::SORT_ORDER] = 'DESC';
+        $sortValues[DatagridInterface::SORT_BY] = 'created_at';
     }
 
 }

@@ -1,0 +1,5 @@
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+
+{% block field %}
+    ${{value|format_currency('MXP')|replace({"MXP": ""})}}
+{% endblock %}

@@ -50,7 +50,6 @@ final class CompraProductosAdmin extends AbstractAdmin
             ->add(ListMapper::NAME_ACTIONS, null, [
                 'actions' => [
                     'show' => [],
-                    'edit' => [],
                 ],
             ]);
     }

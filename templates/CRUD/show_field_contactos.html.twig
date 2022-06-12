@@ -14,7 +14,7 @@
     {% for contacto in value %}
         <tr>
             <td>
-                <a href="{{ path('admin_app_domicilios_show', {'id': contacto.id}) }}">{{ contacto.id }}</a>
+                <a href="{{ path('admin_app_clientecontactos_show', {'id': contacto.id}) }}">{{ contacto.id }}</a>
             </td>
             <td>{{ contacto.nombre }}</td>
             <td>{{ contacto.puesto }}</td>
