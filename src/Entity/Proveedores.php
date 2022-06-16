@@ -111,7 +111,7 @@ class Proveedores
     private $telefono2;
 
     /**
-     * @ORM\OneToMany(targetEntity=ProveedorContactos::class, mappedBy="proveedores")
+     * @ORM\OneToMany(targetEntity=ProveedorContactos::class, mappedBy="proveedores",cascade={"persist"})
      */
     private $contactos;
 

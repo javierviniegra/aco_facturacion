@@ -1,0 +1,31 @@
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+
+{% block field %}
+    <table class="table table-responsive">
+    <th>
+        <td>Nombre</td>
+        <td>Puesto</td>
+        <td>Teléfono 1</td>
+        <td>Teléfono 2</td>
+        <td>Celular</td>
+        <td>Email</td>
+        <td>Observaciones</td>
+    </th>
+    {% for contacto in value %}
+        <tr>
+            <td>
+                <a href="{{ path('admin_app_proveedorcontactos_show', {'id': contacto.id}) }}">{{ contacto.id }}</a>
+            </td>
+            <td>{{ contacto.nombre }}</td>
+            <td>{{ contacto.puesto }}</td>
+            <td>{{ contacto.telefono1 }}</td>
+            <td>{{ contacto.telefono2 }}</td>
+            <td>{{ contacto.celular }}</td>
+            <td><a href="mailto:{{ contacto.email }}">{{ contacto.email }}</a></td>
+            <td>{{ contacto.observaciones }}</td>
+        </tr>
+    {% else %}
+        <tr>Sin Contactos</tr>
+    {% endfor %}
+    </table>
+{% endblock %}
