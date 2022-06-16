@@ -9,6 +9,7 @@
         "doctrine/dbal": "^2.13",
         "sonata-project/admin-bundle": "^3.76",
         "sonata-project/doctrine-orm-admin-bundle": "^3.8",
+        "sonata-project/form-extensions": "^1.17",
         "sonata-project/intl-bundle": "^2.12",
         "sonata-project/user-bundle": "^4.12",
         "symfony/apache-pack": "^1.0",

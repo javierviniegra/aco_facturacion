@@ -12,6 +12,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Route\RouteCollectionInterface;
 use Sonata\Form\Type\DatePickerType;
+use Sonata\Form\Type\DateTimePickerType;
 use Sonata\AdminBundle\Form\Type\ModelType;
 use Sonata\Form\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -48,14 +49,14 @@ final class ComprasAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $list): void
     {
         $list
-            ->add('fechaCompra','date')
+            ->add('fechaCompra','datetime')
             ->add('id_compra')
             ->add('proveedor')
             //->add('iepsTotal', 'currency', ['currency' => 'MXN'])
             //->add('iva', 'currency', ['currency' => 'MXN'])
             ->add('subtotal', 'currency', ['currency' => 'MXN'])
             ->add('total', 'currency', ['currency' => 'MXN'])
-            ->add('fechaPago','date')
+            ->add('fechaPago','datetime')
             ->add('numFactura')
             //->add('idTransaccion')
             ->add(ListMapper::NAME_ACTIONS, null, [
@@ -83,10 +84,7 @@ final class ComprasAdmin extends AbstractAdmin
             ->end()
             ->tab('Facturación')
                 ->with('Facturación', ['class' => 'col-md-6'])->end()
-            ->end()
-            /*->tab('Recepción')
-                ->with('General', ['class' => 'col-md-6'])->end()
-            ->end()*/;
+            ->end();
 
         $now = new \DateTime(); 
         
@@ -122,7 +120,7 @@ final class ComprasAdmin extends AbstractAdmin
         $form
             ->tab('Compras')
                 ->with('Compras')
-                    ->add('fechaCompra', DateType::class, ['label' => 'Fecha de Compra', 'widget' => 'single_text','required' => true])
+                    ->add('fechaCompra', DateTimePickerType::class, ['label' => 'Fecha de Compra','format'            => 'dd.MM.yyyy HH:mm','required' => true,'dp_use_current'    => false])
                     ->add('proveedor', ModelType::class, [
                             'required' => false,
                             'expanded' => false,
@@ -172,7 +170,7 @@ final class ComprasAdmin extends AbstractAdmin
             ->end()
             ->tab('Facturación')
                 ->with('Facturación')
-                    ->add('fechaPago', DateType::class, ['label' => 'Fecha de Pago', 'widget' => 'single_text','required' => false])
+                    ->add('fechaPago', DateTimePickerType::class, ['label' => 'Fecha de Pago','format'            => 'dd.MM.yyyy HH:mm','required' => false,'dp_use_current'    => false])
                     ->add('numFactura',null, ['label' => 'Número de Factura'])
                     ->add('formaPago', ModelType::class, [
                             'required' => false,
@@ -196,7 +194,7 @@ final class ComprasAdmin extends AbstractAdmin
     }
 
     protected function configureShowFields(ShowMapper $show): void
-    {
+    { 
         $repository = $this->em->getRepository('App:Compras');
         $elLastID = str_pad(strval($repository->findLastCompraID()[0]->getId()+1),7,"0",STR_PAD_LEFT);
 
@@ -219,7 +217,7 @@ final class ComprasAdmin extends AbstractAdmin
             ->end()
             ->tab('Compras')
                 ->with('Compras')
-                    ->add('fechaCompra', null, ['label' => 'Fecha de Compra'])
+                    ->add('fechaCompra', DateTimeType::class, ['label' => 'Fecha de Compra'])
                     ->add('proveedor')
                 ->end()
                 ->with('Cálculos')
@@ -234,7 +232,7 @@ final class ComprasAdmin extends AbstractAdmin
             ->end()
             ->tab('Facturación')
                 ->with('Facturación')
-                    ->add('fechaPago', null, ['label' => 'Fecha de Pago'])
+                    ->add('fechaPago', DateTimeType::class, ['label' => 'Fecha de Pago'])
                     ->add('numFactura',null, ['label' => 'Número de Factura'])
                     ->add('formaPago', ModelType::class, ['label' => 'Forma de Pago'])
                     ->add('banco', ModelType::class)
