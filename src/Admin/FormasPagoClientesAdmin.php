@@ -9,6 +9,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 final class FormasPagoClientesAdmin extends AbstractAdmin
 {
@@ -62,5 +63,13 @@ final class FormasPagoClientesAdmin extends AbstractAdmin
             ->add('created_at')
             ->add('updated_at')
             ;
+    }
+    
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->remove('edit');
+        $collection->remove('delete');
+        $collection->remove('export');
+        $collection->remove('list');
     }
 }

@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\PercentType;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 final class CompraProductosAdmin extends AbstractAdmin
 {
@@ -112,17 +113,35 @@ final class CompraProductosAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $show): void
     {
         $show
-            ->add('producto')
-            ->add('litros')
-            ->add('precioLitro')
-            ->add('requiereIeps')
-            ->add('factorIeps')
-            ->add('totalIeps')
-            ->add('iva')
-            ->add('subtotal')
-            ->add('total')
-            ->add('created_at')
-            ->add('updated_at')
+            ->tab('Producto')
+                ->with('Valor', ['class' => 'col-md-6'])->end()
+                ->with('Impuestos', ['class' => 'col-md-6'])->end()
+            ->end();
+
+        $show
+            ->tab('Producto')
+                ->with('Valor')
+                    ->add('producto',null,['label' => 'Producto'])
+                    ->add('litros',null,['label' => 'Cantidad'])
+                    ->add('precioLitro',null,['label' => 'Precio','template'=>'CRUD/show_field_moneda.html.twig'])
+                    ->add('subtotal',null,['label' => 'SubTotal','template'=>'CRUD/show_field_moneda.html.twig'])
+                    ->add('total',null,['label' => 'Total','template'=>'CRUD/show_field_moneda.html.twig'])
+                ->end()
+                ->with('Impuestos')
+                    ->add('requiereIeps',null,['label' => 'Requiere Ieps'])
+                    ->add('factorIeps',null,['label' => 'Factor'])
+                    ->add('totalIeps',null,['label' => 'Total','template'=>'CRUD/show_field_moneda.html.twig'])
+                    ->add('iva',null,['label' => 'IVA','template'=>'CRUD/show_field_moneda.html.twig'])
+                ->end()
+            ->end()
             ;
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->remove('edit');
+        $collection->remove('delete');
+        $collection->remove('export');
+        $collection->remove('list');
     }
 }

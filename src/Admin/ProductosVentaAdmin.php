@@ -11,6 +11,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 final class ProductosVentaAdmin extends AbstractAdmin
 {
@@ -64,5 +65,13 @@ final class ProductosVentaAdmin extends AbstractAdmin
             ->add('precioLitro')
             ->add('precioFlete')
             ;
+    }
+    
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->remove('edit');
+        $collection->remove('delete');
+        $collection->remove('export');
+        $collection->remove('list');
     }
 }
