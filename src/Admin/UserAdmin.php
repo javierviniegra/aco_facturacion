@@ -37,6 +37,7 @@ class UserAdmin extends BaseUserAdmin
             ->addIdentifier('username')
             ->add('email')
             ->add('groups')
+            ->add('funcion_usuario')
             ->add('enabled', null, ['editable' => true])
             ->add('createdAt');
 
@@ -145,7 +146,7 @@ class UserAdmin extends BaseUserAdmin
                     ])
                 ->end()
                 ->with('Personal')
-                    ->add('funcion', null, ['required' => false,'label' => 'Función'])
+                    ->add('funcion_usuario', ModelType::class, ['required' => false,'label' => 'Función'])
                     ->add('firstname', null, ['required' => false])
                     ->add('lastname', null, ['required' => false,'label' => 'Apellido Paterno'])
                     ->add('lastname_2', null, ['required' => false,'label' => 'Apellido Materno'])

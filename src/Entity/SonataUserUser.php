@@ -14,6 +14,7 @@ use Doctrine\Common\Collections\Collection;
  * @ORM\Entity
  * @Vich\Uploadable
  * @ORM\Table(name="fos_user__user")
+ * @ORM\HasLifecycleCallbacks()
  */
 class SonataUserUser extends BaseUser
 {
@@ -44,7 +45,7 @@ class SonataUserUser extends BaseUser
      */
     private $rfc;
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=false)
      * @var int|null
      */
     private $rfcSize;
@@ -269,14 +270,30 @@ class SonataUserUser extends BaseUser
     private $vigencia;
 
     /**
-     * @ORM\ManyToOne(targetEntity=TiposLicencia::class)
+     * @ORM\ManyToOne(targetEntity=TiposLicencia::class,cascade={"persist"})
      */
     private $tipo_licencia;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=UserFuncion::class,cascade={"persist"})
+     */
+    private $funcion_usuario;
 
 
     public function __toString()
     {
         return $this->getFirstname()." ".$this->getLastname()." - ".$this->getUsername();
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->rfcSize = "_";
+        $this->curpSize = "_";
+        $this->domicilioSize = "_";
+        $this->fotografiaSize = "_";
     }
 
     public function __construct()
@@ -837,6 +854,18 @@ class SonataUserUser extends BaseUser
     public function setTipoLicencia(?TiposLicencia $tipo_licencia): self
     {
         $this->tipo_licencia = $tipo_licencia;
+
+        return $this;
+    }
+
+    public function getFuncionUsuario(): ?UserFuncion
+    {
+        return $this->funcion_usuario;
+    }
+
+    public function setFuncionUsuario(?UserFuncion $funcion_usuario): self
+    {
+        $this->funcion_usuario = $funcion_usuario;
 
         return $this;
     }
