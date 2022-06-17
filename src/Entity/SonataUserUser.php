@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Sonata\UserBundle\Entity\BaseUser;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use App\Validator as ConexionAssert; //para validar el RFC
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -226,6 +227,7 @@ class SonataUserUser extends BaseUser
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @ConexionAssert\IsRfc
      */
     private $rfc_field;
 
