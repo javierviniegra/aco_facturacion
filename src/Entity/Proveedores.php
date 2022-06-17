@@ -6,6 +6,8 @@ use App\Repository\ProveedoresRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Validator as ConexionAssert; //para validar el RFC
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProveedoresRepository::class)
@@ -42,6 +44,7 @@ class Proveedores
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @ConexionAssert\IsRfc
      */
     private $rfc;
 
