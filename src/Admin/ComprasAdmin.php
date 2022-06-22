@@ -155,7 +155,7 @@ final class ComprasAdmin extends AbstractAdmin
                     ->add('productos', CollectionType::class, [
                         'by_reference' => false,
                         'required' => true,
-                        'label' => 'Lista de Productos',
+                        'label' => false,
                         'attr'               => array(
                             'class' => 'form-productos'
                         )

@@ -1,6 +1,5 @@
 vich_uploader:
     db_driver: orm
-
     mappings:
         domicilio_image:
             uri_prefix: /files/domicilio
@@ -17,4 +16,20 @@ vich_uploader:
         fotografia_image:
             uri_prefix: /files/fotografia
             upload_destination: '%kernel.project_dir%/public/files/fotografia'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        foto_factura_image:
+            uri_prefix: /files/foto_factura
+            upload_destination: '%kernel.project_dir%/public/files/foto_factura'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        foto_verificacion_image:
+            uri_prefix: /files/foto_verificacion
+            upload_destination: '%kernel.project_dir%/public/files/foto_verificacion'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        tarjeta_circulacion_image:
+            uri_prefix: /files/foto_tarjetacirc
+            upload_destination: '%kernel.project_dir%/public/files/foto_tarjetacirc'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        foto_tenencia_image:
+            uri_prefix: /files/foto_tenencia
+            upload_destination: '%kernel.project_dir%/public/files/foto_tenencia'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

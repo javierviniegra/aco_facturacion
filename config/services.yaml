@@ -245,3 +245,45 @@ services:
         public: true
         calls:
             - [ setTemplate, [show, "compra_productos/show.html.twig"]]
+
+    admin.tipo_camion:
+        class: App\Admin\TipoCamionAdmin
+        arguments: [~, App\Entity\TipoCamion, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: TipoCamion }
+        public: true
+
+    admin.tarjetas_circulacion:
+        class: App\Admin\TarjetasCirculacionAdmin
+        arguments: [~, App\Entity\TarjetasCirculacion, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: TarjetasCirculacion }
+        public: true
+
+    admin.tenencias:
+        class: App\Admin\TenenciasAdmin
+        arguments: [~, App\Entity\Tenencias, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Tenencias }
+        public: true
+
+    admin.verificaciones:
+        class: App\Admin\VerificacionesAdmin
+        arguments: [~, App\Entity\Verificaciones, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Verificaciones }
+        public: true
+
+    admin.seguros_auto:
+        class: App\Admin\SegurosAutoAdmin
+        arguments: [~, App\Entity\SegurosAuto, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: SegurosAuto }
+        public: true
+
+    admin.inventarios_infraestructura:
+        class: App\Admin\InventariosInfraestructuraAdmin
+        arguments: [~, App\Entity\InventariosInfraestructura, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: InventariosInfraestructura }
+        public: true

@@ -10,6 +10,7 @@ back to list: Regresar
 Create: Crear
 Your name: Nombre
 Id: Id
+None: Sin Datos
 Nombre: Nombre
 Matricula: Matrícula
 Imagen: 	Imagen
@@ -100,6 +101,16 @@ Proveedor Contactos List: Contactos de Proveedores
 Comprador Contactos List: Contactos de Compradores
 User Funcion List: Funciones de Usuario
 User Funcion Create: Funcion de Usuario
+Inventarios Infraestructura List: Inventarios de Infraestructura
+Inventarios Infraestructura Create: Inventario de Infraestructura
+Verificaciones List: Verificaciones
+Verificaciones Create: Nueva Verificación
+Tenencias List: Tenencias
+Tenencias Create: Nueva Tenencia
+Seguros Auto List: Seguros de Auto
+Seguros Auto Create: Nuevo Seguro de Auto
+Tipo Camion List: Tipo de Camión
+Tipo Camion Create: Nuevo Tipo de Camión
 
 MetodosPago: Métodos de Pago
 FormasPago: Formas de Pago

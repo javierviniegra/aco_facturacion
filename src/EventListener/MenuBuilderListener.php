@@ -45,7 +45,7 @@ class MenuBuilderListener
             $child = $menu->addChild('Ventas',[
                 'label'=> 'Ventas',
                 'route'=>'admin_app_ventas_list'
-            ])->setExtras(['icon' => '<i class="fa fa-truck"></i>']);
+            ])->setExtras(['icon' => '<i class="fa fa-credit-card"></i>']);
             $child = $menu->addChild('Proveedores',[
                 'label'=> 'Proveedores',
                 'route'=>'admin_app_proveedores_list'
@@ -56,6 +56,10 @@ class MenuBuilderListener
                 'label'=> 'Productos',
                 'route'=>'admin_app_productos_list'
             ]);
+            $child1->addChild('Ventas',[
+                'label'=> 'Infraestructura',
+                'route'=>'admin_app_inventariosinfraestructura_list'
+            ])->setExtras(['icon' => '<i class="fa fa-truck"></i>']);
             $child = $menu->addChild('sonata_user', [
                 'label' => 'RRHH',
                 'route' => 'admin_app_sonatauseruser_list'
