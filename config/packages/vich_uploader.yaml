@@ -29,6 +29,10 @@ vich_uploader:
             uri_prefix: /files/foto_tarjetacirc
             upload_destination: '%kernel.project_dir%/public/files/foto_tarjetacirc'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        foto_seguros_image:
+            uri_prefix: /files/foto_segurosauto
+            upload_destination: '%kernel.project_dir%/public/files/foto_segurosauto'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
         foto_tenencia_image:
             uri_prefix: /files/foto_tenencia
             upload_destination: '%kernel.project_dir%/public/files/foto_tenencia'

@@ -76,6 +76,7 @@ final class InventariosInfraestructuraAdmin extends AbstractAdmin
                     ->add('is_active')
                     ->add('id_transporte',null,['label'=>'ID del Transporte'])
                     ->add('tipo_camion', ModelType::class, [
+                            'label' => 'Tipo de Camión',
                             'required' => true,
                             'expanded' => false,
                             'multiple' => false,
@@ -142,7 +143,51 @@ final class InventariosInfraestructuraAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $show): void
     {
         $show
-            ->add('is_active')
+            ->tab('Unidad')
+                ->with('Datos', ['class' => 'col-md-6'])->end()
+                ->with('Factura', ['class' => 'col-md-6'])->end()
+                ->with('Seguro', ['class' => 'col-md-12'])->end()
+                ->with('Tarjeta de Circulación', ['class' => 'col-md-12'])->end()
+                ->with('Verificaciones', ['class' => 'col-md-12'])->end()
+                ->with('Tenencias', ['class' => 'col-md-12'])->end()
+                ->with('Otros', ['class' => 'col-md-12'])->end()
+            ->end();
+
+        $show
+            ->tab('Unidad')
+                ->with('Datos')
+                    ->add('is_active')
+                    ->add('id_transporte',null,['label'=>'ID del Transporte'])
+                    ->add('tipo_camion', null, ['label' => 'Tipo de Camión'])
+                    ->add('unidad')
+                    ->add('serie',null,['label'=>'# de Serie'])
+                    ->add('permiso_sct',null,['label'=>'# de Permiso SCT'])
+                    ->add('modelo')
+                    ->add('placa',null,['label'=>'# de Placa'])
+                    ->add('capacidad')
+                    ->add('domos',null,['label'=>'# de Domos'])
+                ->end()
+                ->with('Factura')
+                    ->add('facturaField',null,['label'=>'# de Factura'])
+                    ->add('facturaFile', VichFileType::class, ['required' => false,'label' => 'Factura (PDF)'])
+                ->end()
+                ->with('Seguro')
+                    ->add('SeguroAuto', null, ['label' => false,])
+                ->end()
+                ->with('Tarjeta de Circulación')
+                    ->add('tarjeta_circulacion')
+                ->end()
+                ->with('Verificaciones')
+                    ->add('verificaciones')
+                ->end()
+                ->with('Tenencias')
+                    ->add('tenencias')
+                ->end()
+                ->with('Otros')
+                    ->add('equipo_especial')
+                    ->add('observaciones')
+                ->end()
+            ->end()
             ;
     }
 }

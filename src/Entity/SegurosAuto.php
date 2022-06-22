@@ -49,7 +49,7 @@ class SegurosAuto
      *     mimeTypes = {"application/pdf", "application/x-pdf"},
      *     mimeTypesMessage = "Please upload a valid PDF"
      * )
-     * @Vich\UploadableField(mapping="tarjeta_circulacion_image", fileNameProperty="fotografia", size="fotografia_size")
+     * @Vich\UploadableField(mapping="foto_seguros_image", fileNameProperty="fotografia", size="fotografia_size")
      * @var File|null
      */
     private $fotografiaFile;
@@ -128,7 +128,8 @@ class SegurosAuto
     {
         $this->fotografiaFile = $fotografiaFile;
 
-        if (null !== $fotografiaFile) {
+        //if (null !== $fotografiaFile) {  //esto arregla el error de que no s esuben archivos en colecciones o relaciones de archivos
+        if ($fotografiaFile) {
             $this->updatedAt = new \DateTime();
         }
     }

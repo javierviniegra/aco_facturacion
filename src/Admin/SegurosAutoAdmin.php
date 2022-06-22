@@ -62,7 +62,7 @@ final class SegurosAutoAdmin extends AbstractAdmin
                     ->add('vigencia', DatePickerType::class, ['label' => 'Vigencia','format' => 'dd.MM.yyyy','required' => true,'dp_use_current'    => false])
                 ->end()
                 ->with('Fotografía')
-                    ->add('fotografiaFile', VichImageType::class, ['required' => false,'label' => 'Fotografía (PDF)'])
+                    ->add('fotografiaFile', VichImageType::class, ['required' => false,'label' => 'Fotografía (PDF)','allow_file_upload'=>true,'allow_delete'=>true,'by_reference'=>true])
                 ->end()
             ;
     }

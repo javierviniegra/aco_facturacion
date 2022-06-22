@@ -132,7 +132,8 @@ class Tenencias
     {
         $this->fotografiaFile = $fotografiaFile;
 
-        if (null !== $fotografiaFile) {
+        //if (null !== $fotografiaFile) {  //esto arregla el error de que no s esuben archivos en colecciones o relaciones de archivos
+        if ($fotografiaFile) {
             $this->updatedAt = new \DateTime();
         }
     }
