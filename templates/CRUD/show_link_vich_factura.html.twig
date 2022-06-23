@@ -1,0 +1,5 @@
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+
+{% block field %}
+    <a href="{{ vich_uploader_asset(object,'facturaFile') }}" target="_blank">Descargar</a>
+{% endblock %}

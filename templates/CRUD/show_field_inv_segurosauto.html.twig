@@ -12,7 +12,7 @@
             <td></td>
             <td>{{ value.numero }}</td>
             <td>{{ value.vigencia|date('d-m-Y H:i:s')  }}</td>
-            <td>${{ value.fotografia }}</td>
+            <td><a href="{{ vich_uploader_asset(value,'fotografiaFile') }}" target="_blank">Descargar</a></td>
         </tr>
     {% else %}
         <tr>Sin Campos</tr>

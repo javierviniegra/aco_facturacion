@@ -10,9 +10,9 @@
     {% for campo in value %}
         <tr>
             <td></td>
-            <td>{{ campo.monto|format_currency('MXP')|replace({"MXP": ""}) }}</td>
+            <td>${{ campo.monto|format_currency('MXP')|replace({"MXP": ""}) }}</td>
             <td>{{ campo.fecha|date('d-m-Y H:i:s') }}</td>
-            <td>${{ campo.fotografia }}</td>
+            <td><a href="{{ vich_uploader_asset(campo,'fotografiaFile') }}" target="_blank">Descargar</a></td>
         </tr>
     {% else %}
         <tr>Sin Campos</tr>
