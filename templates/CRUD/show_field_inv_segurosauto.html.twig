@@ -1,0 +1,21 @@
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+
+{% block field %}
+    <table class="table table-responsive">
+    <th>
+        <td>Póliza</td>
+        <td>Vigencia</td>
+        <td>Fotografía</td>
+    </th>
+    {% if value is not empty %}
+        <tr>
+            <td></td>
+            <td>{{ value.numero }}</td>
+            <td>{{ value.vigencia|date('d-m-Y H:i:s')  }}</td>
+            <td>${{ value.fotografia }}</td>
+        </tr>
+    {% else %}
+        <tr>Sin Campos</tr>
+    {% endif %}
+    </table>
+{% endblock %}

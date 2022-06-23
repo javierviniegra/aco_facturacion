@@ -1,0 +1,21 @@
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+
+{% block field %}
+    <table class="table table-responsive">
+    <th>
+        <td>Monto</td>
+        <td>Vigencia</td>
+        <td>Fotografía</td>
+    </th>
+    {% for campo in value %}
+        <tr>
+            <td></td>
+            <td>{{ campo.monto|format_currency('MXP')|replace({"MXP": ""}) }}</td>
+            <td>{{ campo.fecha|date('d-m-Y H:i:s') }}</td>
+            <td>${{ campo.fotografia }}</td>
+        </tr>
+    {% else %}
+        <tr>Sin Campos</tr>
+    {% endfor %}
+    </table>
+{% endblock %}
