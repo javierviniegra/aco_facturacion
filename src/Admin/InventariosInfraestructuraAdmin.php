@@ -61,13 +61,19 @@ final class InventariosInfraestructuraAdmin extends AbstractAdmin
     {
         $form
             ->tab('Unidad')
-                ->with('Datos', ['class' => 'col-md-6'])->end()
-                ->with('Factura', ['class' => 'col-md-6'])->end()
-                ->with('Seguro', ['class' => 'col-md-12'])->end()
+                ->with('Datos', ['class' => 'col-md-12'])->end()
                 ->with('Tarjeta de Circulación', ['class' => 'col-md-12'])->end()
+                ->with('Otros', ['class' => 'col-md-12'])->end()
+            ->end()
+            ->tab('Facturación')
+                ->with('Factura', ['class' => 'col-md-6'])->end()
+            ->end()
+            ->tab('Seguro')
+                ->with('General', ['class' => 'col-md-12'])->end()
+            ->end()
+            ->tab('Trámites Vehiculares')
                 ->with('Verificaciones', ['class' => 'col-md-12'])->end()
                 ->with('Tenencias', ['class' => 'col-md-12'])->end()
-                ->with('Otros', ['class' => 'col-md-12'])->end()
             ->end();
 
         $form
@@ -89,15 +95,6 @@ final class InventariosInfraestructuraAdmin extends AbstractAdmin
                     ->add('capacidad')
                     ->add('domos',null,['label'=>'# de Domos'])
                 ->end()
-                ->with('Factura')
-                    ->add('facturaField',null,['label'=>'# de Factura'])
-                    ->add('facturaFile', VichFileType::class, ['required' => false,'label' => 'Factura (PDF)'])
-                ->end()
-                ->with('Seguro')
-                    ->add('SeguroAuto', AdminType::class, [
-                        'label' => false,
-                    ])
-                ->end()
                 ->with('Tarjeta de Circulación')
                     ->add('tarjeta_circulacion', AdminType::class, [
                         'label' => false,
@@ -106,6 +103,28 @@ final class InventariosInfraestructuraAdmin extends AbstractAdmin
                             'class' => 'form-productos'
                         )                    ])
                 ->end()
+                ->with('Otros')
+                    ->add('equipo_especial')
+                    ->add('observaciones')
+                ->end()
+            ->end()
+            ->tab('Facturación')
+                ->with('Factura')
+                    ->add('facturaField',null,['label'=>'# de Factura'])
+                    ->add('facturaFile', VichFileType::class, ['required' => false,'label' => 'Factura (PDF)'])
+                ->end()
+            ->end()
+            ->tab('Seguro')
+                ->with('General')
+                    ->add('SeguroAuto', AdminType::class, [
+                        'label' => false,
+
+                        'attr'               => array(
+                            'class' => 'form-productos'
+                        )                    ])
+                ->end()
+            ->end()
+            ->tab('Trámites Vehiculares')
                 ->with('Verificaciones')
                     ->add('verificaciones', CollectionType::class, [
                         'by_reference' => true,
@@ -132,10 +151,6 @@ final class InventariosInfraestructuraAdmin extends AbstractAdmin
                         'inline' => 'table'
                     ])
                 ->end()
-                ->with('Otros')
-                    ->add('equipo_especial')
-                    ->add('observaciones')
-                ->end()
             ->end()
             ;
     }
@@ -144,13 +159,19 @@ final class InventariosInfraestructuraAdmin extends AbstractAdmin
     {
         $show
             ->tab('Unidad')
-                ->with('Datos', ['class' => 'col-md-6'])->end()
-                ->with('Factura', ['class' => 'col-md-6'])->end()
-                ->with('Seguro', ['class' => 'col-md-12'])->end()
+                ->with('Datos', ['class' => 'col-md-12'])->end()
                 ->with('Tarjeta de Circulación', ['class' => 'col-md-12'])->end()
+                ->with('Otros', ['class' => 'col-md-12'])->end()
+            ->end()
+            ->tab('Facturación')
+                ->with('Factura', ['class' => 'col-md-6'])->end()
+            ->end()
+            ->tab('Seguro')
+                ->with('General', ['class' => 'col-md-12'])->end()
+            ->end()
+            ->tab('Trámites Vehiculares')
                 ->with('Verificaciones', ['class' => 'col-md-12'])->end()
                 ->with('Tenencias', ['class' => 'col-md-12'])->end()
-                ->with('Otros', ['class' => 'col-md-12'])->end()
             ->end();
 
         $show
@@ -167,25 +188,31 @@ final class InventariosInfraestructuraAdmin extends AbstractAdmin
                     ->add('capacidad')
                     ->add('domos',null,['label'=>'# de Domos'])
                 ->end()
+                ->with('Tarjeta de Circulación')
+                    ->add('tarjeta_circulacion',null,['label' => false,'template' => 'CRUD/show_field_inv_tarjetacirculacion.html.twig'])
+                ->end()
+                ->with('Otros')
+                    ->add('equipo_especial')
+                    ->add('observaciones')
+                ->end()
+            ->end()
+            ->tab('Facturación')
                 ->with('Factura')
                     ->add('facturaField',null,['label'=>'# de Factura'])
                     ->add('facturaFile', null, ['required' => false,'label' => 'Factura (PDF)','template' => 'CRUD/show_link_vich_factura.html.twig'])
                 ->end()
-                ->with('Seguro')
+            ->end()
+            ->tab('Seguro')
+                ->with('General')
                     ->add('SeguroAuto', null, ['label' => false,'template' => 'CRUD/show_field_inv_segurosauto.html.twig'])
                 ->end()
-                ->with('Tarjeta de Circulación')
-                    ->add('tarjeta_circulacion',null,['label' => false,'template' => 'CRUD/show_field_inv_tarjetacirculacion.html.twig'])
-                ->end()
+            ->end()
+            ->tab('Trámites Vehiculares')
                 ->with('Verificaciones')
                     ->add('verificaciones',null,['label' => false,'template' => 'CRUD/show_field_inv_verificaciones.html.twig'])
                 ->end()
                 ->with('Tenencias')
                     ->add('tenencias',null,['label' => false,'template' => 'CRUD/show_field_inv_tenencias.html.twig'])
-                ->end()
-                ->with('Otros')
-                    ->add('equipo_especial')
-                    ->add('observaciones')
                 ->end()
             ->end()
             ;
