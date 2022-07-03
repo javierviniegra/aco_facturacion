@@ -287,3 +287,10 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Catálogos, label: InventariosInfraestructura }
         public: true
+
+    admin.regimenes_fiscales:
+        class: App\Admin\RegimenesFiscalesAdmin
+        arguments: [~, App\Entity\RegimenesFiscales, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: RegimenesFiscales }
+        public: true

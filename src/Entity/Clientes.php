@@ -184,6 +184,11 @@ class Clientes
      */
     private $formasPago;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=RegimenesFiscales::class)
+     */
+    private $regimen_fiscal;
+
     public function __construct()
     {
         $this->domicilio = new ArrayCollection();
@@ -636,6 +641,18 @@ class Clientes
     public function setFormasPago(?FormasPago $formasPago): self
     {
         $this->formasPago = $formasPago;
+
+        return $this;
+    }
+
+    public function getRegimenFiscal(): ?RegimenesFiscales
+    {
+        return $this->regimen_fiscal;
+    }
+
+    public function setRegimenFiscal(?RegimenesFiscales $regimen_fiscal): self
+    {
+        $this->regimen_fiscal = $regimen_fiscal;
 
         return $this;
     }

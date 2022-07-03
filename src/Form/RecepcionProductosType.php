@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use App\Form\Type\TemperatureType;
 
 class RecepcionProductosType extends AbstractType
 {
@@ -23,7 +24,15 @@ class RecepcionProductosType extends AbstractType
                 'required' => true
             ])
             ->add('quienRecibe',null,[
-                'label' => 'Persona Recibio'
+                'label' => 'Persona que Recibio'
+            ])
+            ->add('temperatura',null,[//TemperatureType::class,[
+                'label' => 'Temperatura °C',
+                'required' => false
+            ])
+            ->add('presion_absoluta',null,[
+                'label' => 'Presión Absoluta',
+                'required' => false
             ])
             ->add('fechaRecepcion',DateType::class,[
                 'label' => 'Fecha de Recepción',

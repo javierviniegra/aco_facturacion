@@ -82,6 +82,12 @@ final class ClientesAdmin extends AbstractAdmin
                         ],
                         'label_attr' => array('class' => 'checkbox-inline'),
                     ])
+                    ->add('regimen_fiscal', ModelType::class, [
+                        'required' => false,
+                        'expanded' => false,
+                        'multiple' => false,
+                        'label' => 'Régimen Fiscal'
+                    ])
                 ->end()
                 ->with('Status')
                     ->add('is_active')
@@ -189,6 +195,7 @@ final class ClientesAdmin extends AbstractAdmin
                     ->add('nombreComercial',null,['label' => 'Nombre Comercial'])
                     ->add('razonSocial',null,['label' => 'Razón Social'])
                     ->add('razon',null,['label' => 'Persona','template' => 'CRUD/show_field_razon.html.twig'])
+                    ->add('regimen_fiscal',null,['label' => 'Régimen Fiscal'])
                 ->end()
                 ->with('Status')
                     ->add('is_active')

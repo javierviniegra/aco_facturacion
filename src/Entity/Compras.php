@@ -162,6 +162,16 @@ class Compras
      */
     private $fecha_borrado;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $temperatura;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $presion_absoluta;
+
     public function __construct()
     {
         $this->productos = new ArrayCollection();
@@ -549,6 +559,30 @@ class Compras
     public function setFechaBorrado(?\DateTimeInterface $fecha_borrado): self
     {
         $this->fecha_borrado = $fecha_borrado;
+
+        return $this;
+    }
+
+    public function getTemperatura(): ?float
+    {
+        return $this->temperatura;
+    }
+
+    public function setTemperatura(?float $temperatura): self
+    {
+        $this->temperatura = $temperatura;
+
+        return $this;
+    }
+
+    public function getPresionAbsoluta(): ?float
+    {
+        return $this->presion_absoluta;
+    }
+
+    public function setPresionAbsoluta(?float $presion_absoluta): self
+    {
+        $this->presion_absoluta = $presion_absoluta;
 
         return $this;
     }

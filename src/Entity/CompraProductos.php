@@ -105,6 +105,16 @@ class CompraProductos
     private $observaciones;
 
     /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $temperatura;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $presion_absoluta;
+
+    /**
      * @ORM\PrePersist
      */
     public function onPrePersist()
@@ -331,6 +341,30 @@ class CompraProductos
     public function setObservaciones(?string $observaciones): self
     {
         $this->observaciones = $observaciones;
+
+        return $this;
+    }
+
+    public function getTemperatura(): ?float
+    {
+        return $this->temperatura;
+    }
+
+    public function setTemperatura(?float $temperatura): self
+    {
+        $this->temperatura = $temperatura;
+
+        return $this;
+    }
+
+    public function getPresionAbsoluta(): ?float
+    {
+        return $this->presion_absoluta;
+    }
+
+    public function setPresionAbsoluta(?float $presion_absoluta): self
+    {
+        $this->presion_absoluta = $presion_absoluta;
 
         return $this;
     }

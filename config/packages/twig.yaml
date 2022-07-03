@@ -6,3 +6,4 @@ twig:
     form_themes: 
         - 'bootstrap_4_layout.html.twig'
         - '@SonataForm/Form/datepicker.html.twig'
+        - 'views/Form/temperature.html.twig'
