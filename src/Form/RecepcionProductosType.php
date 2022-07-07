@@ -26,7 +26,7 @@ class RecepcionProductosType extends AbstractType
             ->add('quienRecibe',null,[
                 'label' => 'Persona que Recibio'
             ])
-            ->add('temperatura',null,[//TemperatureType::class,[
+            ->add('temperatura',TemperatureType::class,[
                 'label' => 'Temperatura °C',
                 'required' => false
             ])

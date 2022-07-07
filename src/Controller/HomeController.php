@@ -11,6 +11,10 @@ use CMEN\GoogleChartsBundle\GoogleCharts\Charts\LineChart;
 use CMEN\GoogleChartsBundle\GoogleCharts\Options\PieChart\PieSlice;
 use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
 use CMEN\GoogleChartsBundle\GoogleCharts\Charts\ComboChart;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Sonata\Form\Type\DatePickerType;
+use Sonata\Form\Type\DateTimePickerType;
+ use Symfony\Component\HttpFoundation\JsonResponse; 
 
 class HomeController extends AbstractController
 {
@@ -45,104 +49,36 @@ class HomeController extends AbstractController
     /**
      * @Route("/controles_volumetricos", name="cont_volumetricos")
      */
-    public function controlesAction(): Response
+    public function controlesAction(Request $request): Response
     {
+        $defaultData = ['message' => 'Generando JSON'];
+        $form = $this->createFormBuilder($defaultData)
+           ->add('dia1', DatePickerType::class, ['label' => 'Elige la fecha','format' => 'dd.MM.yyyy','required' => true,'dp_use_current'    => false])
+           ->add('submit', SubmitType::class, [
+                'label' => 'Generar',
+                'attr' => ['class' => 'save, button primary'],
+            ])
+            ->getForm();
+        $form->handleRequest($request);
+
         $tokenInterface = $this->get('security.token_storage')->getToken();
         $isAuthenticated = $tokenInterface->getRoles();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $response_1dia = $this->controlesJson();
+            dump($response_1dia);
+            return $response_1dia;
+        }
 
         if(!empty($isAuthenticated))//reviso que roles tiene
             return $this->render('home/controles.html.twig', [
                 'user' => $this->getUser(),
+                'form1' => $form->createView()
             ]);
         else //no tiene roles
             return $this->redirectToRoute('sonata_user_admin_security_login');
     }
-
-
-    /**
-     * @Route("/precios", name="dent_precios")
-     */
-    public function preciosAction(): Response
-    {
-        $tokenInterface = $this->get('security.token_storage')->getToken();
-        $isAuthenticated = $tokenInterface->getRoles();
-
-        if(!empty($isAuthenticated))//reviso que roles tiene
-            return $this->render('home/precios.html.twig', [
-                'user' => $this->getUser(),
-            ]);
-        else //no tiene roles
-            return $this->redirectToRoute('sonata_user_admin_security_login');
-
-    }
-
-    /**
-     * @Route("/scanners", name="dent_scanners")
-     */
-    public function scannersAction(): Response
-    {
-        $tokenInterface = $this->get('security.token_storage')->getToken();
-        $isAuthenticated = $tokenInterface->getRoles();
-
-        if(!empty($isAuthenticated))//reviso que roles tiene
-            return $this->render('home/scanners.html.twig', [
-                'user' => $this->getUser(),
-            ]);
-        else //no tiene roles
-            return $this->redirectToRoute('sonata_user_admin_security_login');
-
-    }
-
-    /**
-     * @Route("/casos", name="dent_casos")
-     */
-    public function casosAction(): Response
-    {
-        $tokenInterface = $this->get('security.token_storage')->getToken();
-        $isAuthenticated = $tokenInterface->getRoles();
-
-        if(!empty($isAuthenticated))//reviso que roles tiene
-            return $this->render('home/casos.html.twig', [
-                'user' => $this->getUser(),
-            ]);
-        else //no tiene roles
-            return $this->redirectToRoute('sonata_user_admin_security_login');
-
-    }
-
-    /**
-     * @Route("/preguntas", name="dent_preguntas")
-     */
-    public function preguntasAction(): Response
-    {
-        $tokenInterface = $this->get('security.token_storage')->getToken();
-        $isAuthenticated = $tokenInterface->getRoles();
-
-        if(!empty($isAuthenticated))//reviso que roles tiene
-            return $this->render('home/preguntas.html.twig', [
-                'user' => $this->getUser(),
-            ]);
-        else //no tiene roles
-            return $this->redirectToRoute('sonata_user_admin_security_login');
-
-    }
-
-    /**
-     * @Route("/empresa", name="dent_empresa")
-     */
-    public function empresaAction(): Response
-    {
-        $tokenInterface = $this->get('security.token_storage')->getToken();
-        $isAuthenticated = $tokenInterface->getRoles();
-
-        if(!empty($isAuthenticated))//reviso que roles tiene
-            return $this->render('home/empresa.html.twig', [
-                'user' => $this->getUser(),
-            ]);
-        else //no tiene roles
-            return $this->redirectToRoute('sonata_user_admin_security_login');
-
-    }
+ 
 
     private function grafica1()
     {
@@ -225,5 +161,35 @@ class HomeController extends AbstractController
         $combo->getOptions()->setHeight(300);
 
         return $combo;
+    }
+
+    private function controlesJson(): Response
+    {
+        $response = new Response();
+        $response->setContent(json_encode([
+            "Version"=>$this->getParameter('app.controles.version'),
+            "RfcContribuyente"=>$this->getParameter('app.controles.rfccontribuyente'),
+            "RfcRepresentanteLegal"=>$this->getParameter('app.controles.rfcrepresentantelegal'),
+            "RfcProveedor"=>"XXX000000XXX",
+            "Caracter"=>"permisionario",
+            "ModalidadPermiso"=>"PER5",
+            "NumPermiso"=>$this->getParameter('app.controles.numpermiso'),
+            "ClaveInstalacion"=>"DIS",
+            "DescripcionInstalacion"=>"Almacenamiento y distribución de diesel, capacidad 78000 litros",
+            "GeolocalizacionLatitud"=>"19.352236",
+            "GeolocalizacionLongitud"=>"-99.0388373",
+            "NumeroPozos"=>"0",
+            "NumeroTanques"=>"3",
+            "NumeroDuctosEntradaSalida"=>"2",
+            "NumeroDuctosTransporteDistribucion"=>"0",
+            "NumeroDispensarios"=>"0",
+            "FechaYHoraCorte"=>"2022-03-11T14:26:17",
+            "ClaveProducto"=>"PR03",
+            "ClaveSubProducto"=>"SP23",
+            "DieselConCombustibleNoFosil"=>"Sï",
+            "ComposDeCombustibleNoFosilEnDiesel"=>"10",
+        ]));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 }

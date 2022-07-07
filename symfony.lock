@@ -84,6 +84,21 @@
     "knplabs/knp-menu-bundle": {
         "version": "v3.1.0"
     },
+    "knplabs/knp-snappy": {
+        "version": "v1.4.1"
+    },
+    "knplabs/knp-snappy-bundle": {
+        "version": "1.9",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.5",
+            "ref": "c81bdcf4a9d4e7b1959071457f9608631865d381"
+        },
+        "files": [
+            "./config/packages/knp_snappy.yaml"
+        ]
+    },
     "nikic/php-parser": {
         "version": "v4.13.0"
     },
@@ -341,6 +356,9 @@
     },
     "symfony/polyfill-php81": {
         "version": "v1.23.0"
+    },
+    "symfony/process": {
+        "version": "v4.4.41"
     },
     "symfony/property-access": {
         "version": "v4.4.30"

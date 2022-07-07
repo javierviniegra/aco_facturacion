@@ -12,6 +12,7 @@ use App\Repository\CompraProductosRepository;
 use App\Entity\CompraProductos; 
 use App\Form\RecepcionProductosType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Routing\Router;
 
 //https://symfony.com/bundles/SonataAdminBundle/current/cookbook/recipe_custom_action.html
 final class ComprasController extends CRUDController
@@ -45,6 +46,47 @@ final class ComprasController extends CRUDController
         return new RedirectResponse(
             $this->admin->generateUrl('list',
                 $this->admin->getFilterParameters())
+        );
+    }
+
+    public function pdfAction(Request $request)
+    {
+        $id = $request->get($this->admin->getIdParameter());
+
+        $object = $this->admin->getObject($id);
+
+        if (!$object) {
+            throw $this->createNotFoundException(sprintf('unable to find the object with id : %s', $id));
+        }
+
+        $this->admin->checkAccess('show', $object);
+
+        $this->admin->setSubject($object);
+
+        $response = $this->render('admin/pdf.html.twig', [
+                'action' => 'print',
+                'object' => $object,
+                'elements' => $this->admin->getShow(),
+            ]);
+
+        $cacheDir = $this->container->getParameter('kernel.cache_dir');
+        $name = tempnam($cacheDir.DIRECTORY_SEPARATOR, '_print');
+        file_put_contents($name, $response->getContent());
+        $hash = base64_encode($name);
+
+        $options['viewport-size'] = '769x900';
+
+        $url = $this->container->get('router')->generate('app_print', ['hash' => $hash], Router::ABSOLUTE_URL);
+
+        $pdf = $this->container->get('knp_snappy.pdf')->getOutput($url, $options);
+
+        return new Response(
+            $pdf,
+            200,
+            [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'filename="show.pdf"',
+            ]
         );
     }
 

@@ -5,6 +5,10 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: es_MX
+    app.controles.version: '%env(APP_CONTR_VERSION)%'
+    app.controles.rfccontribuyente: '%env(APP_CONTR_RFCCONTR)%'
+    app.controles.rfcrepresentantelegal: '%env(APP_CONTR_RFCREPR)%'
+    app.controles.numpermiso: '%env(APP_CONTR_NUMPERMISO)%'
 
 services:
     # default configuration for services in *this* file

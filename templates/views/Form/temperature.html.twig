@@ -1,12 +1,8 @@
 {% block temperature_widget %}
     {% spaceless %}
-        <div class="input-group">                    
-            <input type="text" {{ block('widget_container_attributes') }} class="form-control">
-            {% for child in form %}
-                    {{ form_widget(child) }}
-                    {{ form_label(child) }}
-            {% endfor %}
-            <span class="input-group-addon">°C</span>    
-        </div>
+    <div class="input-group" style="background-color:red;">
+            {{ block('form_widget_simple') }}
+            <span class="input-group-addon">°C</span>
+    </div>
     {% endspaceless %}
 {% endblock %}

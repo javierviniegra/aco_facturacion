@@ -13,6 +13,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\Form\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Sonata\AdminBundle\Form\Type\ModelType;
+use Sonata\AdminBundle\Route\RouteCollectionInterface;
 
 final class ClientesAdmin extends AbstractAdmin
 {
@@ -40,7 +41,9 @@ final class ClientesAdmin extends AbstractAdmin
                 'actions' => [
                     'show' => [],
                     'edit' => [],
-                ],
+                    'clone' => [
+                        'template' => 'CRUD/list__action_imprimir.html.twig',]
+                ]
             ]);
     }
 
@@ -250,4 +253,10 @@ final class ClientesAdmin extends AbstractAdmin
         $sortValues[DatagridInterface::SORT_BY] = 'razonSocial';
     }
 
+    //https://symfony.com/bundles/SonataAdminBundle/current/cookbook/recipe_custom_action.html
+    protected function configureRoutes(RouteCollectionInterface $collection): void
+    {
+        $collection
+            ->add('pdf', $this->getRouterIdParameter().'/pdf');
+    }
 }

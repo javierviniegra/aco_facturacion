@@ -1,0 +1,15 @@
+{% extends 'CRUD/show_no_interface.html.twig' %}
+
+{% block html %}
+    <!DOCTYPE html>
+    <html lang="sp" dir="ltr">
+    {% block head %}
+        {{ parent() }}
+    {% endblock %}
+    <body style="background: none">
+    {% block sonata_admin_content %}
+        {{ parent() }}
+    {% endblock %}
+    </body>
+    </html>
+{% endblock %}
