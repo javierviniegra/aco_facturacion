@@ -193,6 +193,7 @@ final class ComprasAdmin extends AbstractAdmin
 
     protected function configureShowFields(ShowMapper $show): void
     { 
+
         $repository = $this->em->getRepository('App:Compras');
         $elLastID = str_pad(strval($repository->findLastCompraID()[0]->getId()+1),7,"0",STR_PAD_LEFT);
 
@@ -215,7 +216,7 @@ final class ComprasAdmin extends AbstractAdmin
             ->end()
             ->tab('Compras')
                 ->with('Compras')
-                    ->add('fechaCompra', DateTimePickerType::class, ['label' => 'Fecha de Compra'])
+                    ->add('fechaCompra', null, ['label' => 'Fecha de Compra'])
                     ->add('proveedor')
                 ->end()
                 ->with('Cálculos')
@@ -230,7 +231,7 @@ final class ComprasAdmin extends AbstractAdmin
             ->end()
             ->tab('Facturación')
                 ->with('Facturación')
-                    ->add('fechaPago', DateTimePickerType::class, ['label' => 'Fecha de Pago'])
+                    ->add('fechaPago', null, ['label' => 'Fecha de Pago'])
                     ->add('numFactura',null, ['label' => 'Número de Factura'])
                     ->add('formaPago', ModelType::class, ['label' => 'Forma de Pago'])
                     ->add('banco', ModelType::class)
