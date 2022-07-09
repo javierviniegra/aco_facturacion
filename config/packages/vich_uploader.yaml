@@ -37,3 +37,7 @@ vich_uploader:
             uri_prefix: /files/foto_tenencia
             upload_destination: '%kernel.project_dir%/public/files/foto_tenencia'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        combustible_image:
+            uri_prefix: /files/img_combustible
+            upload_destination: '%kernel.project_dir%/public/files/img_combustible'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

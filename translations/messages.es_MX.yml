@@ -41,6 +41,7 @@ Dashboard: Tablero
 Create New: Nuevo Registro
 no records found: No se encontraron registros
 Tools: Herramientas
+Image: Imagen
 events:  
     by:  
         year: Eventos por Año
@@ -114,6 +115,8 @@ Tipo Camion Create: Nuevo Tipo de Camión
 Regimenes Fiscales List: Régimenes Fiscales
 Regimenes Fiscales Create: Nuevo Régimen Fiscal
 RegimenesFiscales : Régimen Fiscal
+Combustibles List: Combustibles
+Combustibles Create: Nuevo Combustible
 
 MetodosPago: Métodos de Pago
 FormasPago: Formas de Pago

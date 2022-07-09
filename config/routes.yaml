@@ -16,3 +16,7 @@ fos_user_register_register:
 
 logout:
     path: /logout
+
+sonata_admin_dashboard:
+    controller: 'App\Controller\CoreController::dashboardAction'
+    path: /admin/dashboard

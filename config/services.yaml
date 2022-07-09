@@ -298,3 +298,10 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Catálogos, label: RegimenesFiscales }
         public: true
+
+    admin.combustibles:
+        class: App\Admin\CombustiblesAdmin
+        arguments: [~, App\Entity\Combustibles, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Combustibles }
+        public: true

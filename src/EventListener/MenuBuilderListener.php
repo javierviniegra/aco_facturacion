@@ -60,6 +60,10 @@ class MenuBuilderListener
                 'label'=> 'Tanques',
                 'route'=>'admin_app_almacenajes_list'
             ]);
+            $child1->addChild('combustibles',[
+                'label'=> 'Combustibles',
+                'route'=>'admin_app_combustibles_list'
+            ]);
             $child1->addChild('Ventas',[
                 'label'=> 'Infraestructura',
                 'route'=>'admin_app_inventariosinfraestructura_list'

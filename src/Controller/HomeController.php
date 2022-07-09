@@ -23,8 +23,7 @@ class HomeController extends AbstractController
      */
     public function index(Request $request)
     {
-            return $this->redirectToRoute('sonata_admin_dashboard');
-
+        return $this->redirectToRoute('sonata_admin_dashboard');
     }
 
     /**
@@ -66,7 +65,6 @@ class HomeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $response_1dia = $this->controlesJson();
-            dump($response_1dia);
             return $response_1dia;
         }
 

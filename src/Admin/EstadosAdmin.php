@@ -54,9 +54,15 @@ final class EstadosAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $show): void
     {
         $show
-            ->add('nombre')
-            ->add('created_at')
-            ->add('updated_at')
-            ;
+            ->tab('General')
+                ->with('Others', ['class' => 'col-md-12'])->end()
+            ->end();
+
+        $show
+            ->tab('General')
+                ->with('Others')
+                    ->add('nombre')
+                ->end()
+            ->end();
     }
 }

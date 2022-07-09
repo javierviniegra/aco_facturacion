@@ -1,7 +1,19 @@
+{% extends '@SonataAdmin/standard_layout.html.twig' %}
 
-{% extends base_template %}
+{% block title %}
+    {{ 'title_dashboard'|trans({}, 'SonataAdminBundle') }}
+{% endblock %}
 
-{% block title %}{{ 'title_dashboard'|trans({}, 'SonataAdminBundle') }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .sonata-ba-content{      
+            min-height: xxx;
+            overflow: hidden;
+        }
+    </style>
+{% endblock %}
+
 {% block breadcrumb %}
     <div class="hidden-xs">
         <ol class="nav navbar-top-links breadcrumb">
@@ -16,89 +28,31 @@
         </ol>
     </div>
 {% endblock %}
+
 {% block content %}
 
-    {% set has_left = false %}
-    {% for block in blocks.left %}
-        {% if block.roles|length == 0 or is_granted_affirmative(block.roles) %}
-            {% set has_left = true %}
-        {% endif %}
-    {% endfor %}
-
-    {% set has_center = false %}
-    {% for block in blocks.center %}
-        {% if block.roles|length == 0 or is_granted_affirmative(block.roles) %}
-            {% set has_center = true %}
-        {% endif %}
-    {% endfor %}
-
-    {% set has_right = false %}
-    {% for block in blocks.right %}
-        {% if block.roles|length == 0 or is_granted_affirmative(block.roles) %}
-            {% set has_right = true %}
-        {% endif %}
-    {% endfor %}
-
-    {% set has_top = false %}
-    {% for block in blocks.top %}
-        {% if block.roles|length == 0 or is_granted_affirmative(block.roles) %}
-            {% set has_top = true %}
-        {% endif %}
-    {% endfor %}
-
-    {% set has_bottom = false %}
-    {% for block in blocks.bottom %}
-        {% if block.roles|length == 0 or is_granted_affirmative(block.roles) %}
-            {% set has_bottom = true %}
-        {% endif %}
-    {% endfor %}
-
-    {# NEXT_MAJOR: Remove the admin_pool argument #}
-    {{ sonata_block_render_event('sonata.admin.dashboard.top', { 'admin_pool': sonata_admin.adminPool('sonata_deprecation_mute') }) }}
-
-    {% if has_top %}
-        <div class="row">
-            {% for block in blocks.top %}
-                {% if block.roles|length == 0 or is_granted_affirmative(block.roles) %}
-                    <div class="{{ block.class }}">
-                        {{ sonata_block_render({ 'type': block.type, 'settings': block.settings}) }}
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
-    {% endif %}
-
     <div class="row">
-        {% set width_left = 4 %}
-        {% set width_right = 4 %}
-        {% set width_center = 4 %}
+        {% for gasolina in combustibles %}
+          <div class="col-lg-4 col-6">
 
-        {# if center block is not present we make left and right ones wider #}
-        {% if not has_center %}
-            {% set width_left = 6 %}
-            {% set width_right = 6 %}
-        {% endif %}
-
-        {# if there is no right and left block present we make center one full width #}
-        {% if not has_left and not has_right %}
-            {% set width_center = 12 %}
-        {% endif %}
-         {% include 'home/dashboard_up.html.twig' %}
+            <div class="small-box bg-dark">
+              <div class="inner">
+                <div class="row bg-black">
+                    <div class="col-md-8">
+                        <img class="img img-responsive float-left" src="{{ vich_uploader_asset(gasolina,'combustible_file') }}"/>
+                    </div>
+                    <div class="col-md-4 bg-black">
+                        <h3>${{ gasolina.precio }}</h3>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
     </div>
 
-    {% if has_bottom %}
-        <div class="row">
-            {% for block in blocks.bottom %}
-                {% if block.roles|length == 0 or is_granted_affirmative(block.roles) %}
-                    <div class="{{ block.class }}">
-                        {{ sonata_block_render({ 'type': block.type, 'settings': block.settings}) }}
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
-    {% endif %}
+{% endblock %}
 
-    {# NEXT_MAJOR: Remove the admin_pool argument #}
-    {{ sonata_block_render_event('sonata.admin.dashboard.bottom', { 'admin_pool': sonata_admin.adminPool('sonata_deprecation_mute') }) }}
 
+{% block footer %}
 {% endblock %}
