@@ -51,6 +51,34 @@
         {% endfor %}
     </div>
 
+
+
+    <div class="row bg-secondary">
+        {% for tanque in tanques %}
+            {% set alarma = "bg-info" %}
+            {% if tanque.total < tanque.alertaMinimo or tanque.total > tanque.alertaMaximo %}
+                {% set alarma = "bg-danger" %}
+            {% endif %}
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header {{ alarma }} text-center">
+                        <h2>{{ tanque.total }} lts.</h2>
+                    </div>
+                    <div class="card-body text-center">
+                        {% if tanque.capacidad < 10000 %}
+                        <img src="{{ asset('images/contenedor_small.png') }}" class="img img-responsive  center-block" />
+                        {% else %}
+                        <img src="{{ asset('images/contenedor_big.png') }}" class="img img-responsive  center-block" />
+                        {% endif %}
+                    </div>
+                    <div class="card-footer {{ alarma }} text-center">
+                        {{ tanque.nombre }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
 {% endblock %}
 
 

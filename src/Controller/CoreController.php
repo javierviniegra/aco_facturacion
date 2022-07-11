@@ -13,9 +13,11 @@ class CoreController extends BaseCoreController
     public function dashboardAction()
     {
     	$combustibles = $this->getDoctrine()->getRepository('App:Combustibles')->findAll();
+        $tanques = $this->getDoctrine()->getRepository('App:Almacenajes')->findAll();
 
         return $this->render('home/dashboard.html.twig', [
             'combustibles' => $combustibles,
+            'tanques' => $tanques
         ]);
     }
 }

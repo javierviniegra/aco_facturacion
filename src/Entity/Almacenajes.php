@@ -38,6 +38,26 @@ class Almacenajes
      */
     private $is_active;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $capacidad;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $alerta_maximo;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $alerta_minimo;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $total;
+
 
     /**
      * @ORM\PrePersist
@@ -111,6 +131,54 @@ class Almacenajes
     public function setIsActive(bool $is_active): self
     {
         $this->is_active = $is_active;
+
+        return $this;
+    }
+
+    public function getCapacidad(): ?float
+    {
+        return $this->capacidad;
+    }
+
+    public function setCapacidad(?float $capacidad): self
+    {
+        $this->capacidad = $capacidad;
+
+        return $this;
+    }
+
+    public function getAlertaMaximo(): ?float
+    {
+        return $this->alerta_maximo;
+    }
+
+    public function setAlertaMaximo(?float $alerta_maximo): self
+    {
+        $this->alerta_maximo = $alerta_maximo;
+
+        return $this;
+    }
+
+    public function getAlertaMinimo(): ?float
+    {
+        return $this->alerta_minimo;
+    }
+
+    public function setAlertaMinimo(?float $alerta_minimo): self
+    {
+        $this->alerta_minimo = $alerta_minimo;
+
+        return $this;
+    }
+
+    public function getTotal(): ?float
+    {
+        return $this->total;
+    }
+
+    public function setTotal(?float $total): self
+    {
+        $this->total = $total;
 
         return $this;
     }
