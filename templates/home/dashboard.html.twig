@@ -55,9 +55,11 @@
 
     <div class="row bg-secondary">
         {% for tanque in tanques %}
-            {% set alarma = "bg-info" %}
-            {% if tanque.total < tanque.alertaMinimo or tanque.total > tanque.alertaMaximo %}
-                {% set alarma = "bg-danger" %}
+            {% set alarma = "bg-danger" %}
+            {% if tanque.total > tanque.alertaMinimo %}
+                {% if tanque.total < tanque.alertaMaximo %}
+                    {% set alarma = "bg-success" %}
+                {% endif %}
             {% endif %}
             <div class="col-md-4">
                 <div class="card">

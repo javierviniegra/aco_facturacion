@@ -58,25 +58,25 @@ final class AlmacenajesAdmin extends AbstractAdmin
                         'label' => 'Total',
                         'required' => false,
                         'grouping' => true,
-                        'scale' => 6
+                        'scale' => 2
                     ])
                     ->add('capacidad', NumberType::class, [
                         'label' => 'Capácidad Máxima',
                         'required' => false,
                         'grouping' => true,
-                        'scale' => 6
+                        'scale' => 2
                     ])
                     ->add('alerta_minimo', NumberType::class, [
                         'label' => 'Alerta Mínimo',
                         'required' => false,
                         'grouping' => true,
-                        'scale' => 6
+                        'scale' => 2
                     ])
                     ->add('alerta_maximo', NumberType::class, [
                         'label' => 'Alerta Máximo',
                         'required' => false,
                         'grouping' => true,
-                        'scale' => 6
+                        'scale' => 2
                     ])
                 ->end()
             ->end();
