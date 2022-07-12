@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Router;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\AdminBundle\Controller\CRUDController;
 
-class CombustiblesController extends CRUDControllers
+class CombustiblesController extends AbstractController
 {
     /**
      * @Route("/combustibles", name="app_combustibles")
