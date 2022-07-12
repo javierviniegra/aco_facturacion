@@ -55,6 +55,7 @@
 
     <div class="row bg-secondary">
         {% for tanque in tanques %}
+        {% if tanque.isActive == true %}
             {% set alarma = "bg-danger" %}
             {% if tanque.total > tanque.alertaMinimo %}
                 {% if tanque.total < tanque.alertaMaximo %}
@@ -78,6 +79,7 @@
                     </div>
                 </div>
             </div>
+        {% endif %}
         {% endfor %}
     </div>
 

@@ -157,7 +157,7 @@ services:
 
     admin.almacenajes:
         class: App\Admin\AlmacenajesAdmin
-        arguments: [~, App\Entity\Almacenajes, ~]
+        arguments: [~, App\Entity\Almacenajes, App\Controller\AlmacenajesController,'@doctrine.orm.default_entity_manager']
         tags:
             - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Almacenajes }
         public: true

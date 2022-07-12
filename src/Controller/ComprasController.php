@@ -19,6 +19,32 @@ final class ComprasController extends CRUDController
 {
 
     //override para hacer delete de las compras
+    public function deleteAction($id)
+    {
+        if (false === $this->admin->isGranted('DELETE')) {
+            throw new AccessDeniedException();
+        }
+
+        $em = $this->getDoctrine()->getManager();
+
+        //usuario loggeado
+        $user = $this->getUser();
+
+        $registro = $this->getDoctrine()->getRepository('App:Compras')->find($id);
+
+        $registro->setIsDeleted(true);
+        $registro->setFechaBorrado(new \DateTime());
+        $registro->setQuienBorro($user);
+        $em->flush();
+
+        $this->addFlash('sonata_flash_success', 'Elemento marcado como borrado');
+
+        return new RedirectResponse(
+            $this->admin->generateUrl('list',
+                $this->admin->getFilterParameters())
+        );
+    }
+    //override para hacer delete de las compras
     public function batchActionDelete(\Sonata\AdminBundle\Datagrid\ProxyQueryInterface $query)
     {
         if (false === $this->admin->isGranted('DELETE')) {
