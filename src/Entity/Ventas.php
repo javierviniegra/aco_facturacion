@@ -46,7 +46,7 @@ class Ventas
     private $cliente;
 
     /**
-     * @ORM\OneToMany(targetEntity=ProductosVenta::class, mappedBy="ventas")
+     * @ORM\OneToMany(targetEntity=ProductosVenta::class, mappedBy="ventas",cascade={"persist"})
      */
     private $productosVenta;
 
@@ -134,6 +134,26 @@ class Ventas
      * @ORM\Column(type="string", length=512, nullable=true)
      */
     private $observacionesEntrega;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Clientes::class)
+     */
+    private $rfc;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=FormasPago::class)
+     */
+    private $forma_pago;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=MetodosPago::class)
+     */
+    private $metodo_pago;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $flete;
 
     public function __construct()
     {
@@ -457,6 +477,30 @@ class Ventas
     public function setObservacionesEntrega(?string $observacionesEntrega): self
     {
         $this->observacionesEntrega = $observacionesEntrega;
+
+        return $this;
+    }
+
+    public function getRfc(): ?Clientes
+    {
+        return $this->rfc;
+    }
+
+    public function setRfc(?Clientes $rfc): self
+    {
+        $this->rfc = $rfc;
+
+        return $this;
+    }
+
+    public function getFlete(): ?float
+    {
+        return $this->flete;
+    }
+
+    public function setFlete(?float $flete): self
+    {
+        $this->flete = $flete;
 
         return $this;
     }

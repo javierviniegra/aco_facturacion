@@ -80,7 +80,7 @@ class MenuBuilderListener
             ])->setExtras(['icon' => '<i class="fa fa-thermometer-0"></i>']);
             $child = $menu->addChild('Reportes')->setExtras(['icon' => '<i class="fa fa-bar-chart"></i>']);
             $child->addChild('historicoscombustibles',[
-                'label'=> 'Historicos Combustibles',
+                'label'=> 'Históricos Combustibles',
                 'route'=>'admin_app_historicoscombustibles_list'
             ]);
 

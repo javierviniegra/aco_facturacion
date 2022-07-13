@@ -12,6 +12,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Sonata\AdminBundle\Route\RouteCollection;
+use Sonata\AdminBundle\Form\Type\ModelType;
 
 final class ProductosVentaAdmin extends AbstractAdmin
 {
@@ -28,6 +29,7 @@ final class ProductosVentaAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $list): void
     {
         $list
+            ->add('producto')
             ->add('litros')
             ->add('precioLitro')
             ->add('precioFlete')
@@ -42,18 +44,13 @@ final class ProductosVentaAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $form): void
     {
         $form
-            ->add('litros', NumberType::class, ['label' => 'Litros','required' => true])
+            ->add('producto',ModelType::class)
+            ->add('litros', NumberType::class, ['label' => 'Cantidad','required' => true])
             ->add('precioLitro', MoneyType::class, [
                         'currency' => 'MXP',
                         'divisor' => 100,
-                        'label' => 'Precio por litro',
+                        'label' => 'Precio',
                         'required' => true
-                    ])
-            ->add('precioFlete', MoneyType::class, [
-                        'currency' => 'MXP',
-                        'divisor' => 100,
-                        'label' => 'Precio del Flete',
-                        'required' => false
                     ])
             ;
     }
