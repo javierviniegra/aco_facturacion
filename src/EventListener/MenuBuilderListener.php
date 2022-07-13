@@ -79,6 +79,10 @@ class MenuBuilderListener
                 'route'=>'cont_volumetricos'
             ])->setExtras(['icon' => '<i class="fa fa-thermometer-0"></i>']);
             $child = $menu->addChild('Reportes')->setExtras(['icon' => '<i class="fa fa-bar-chart"></i>']);
+            $child->addChild('historicoscombustibles',[
+                'label'=> 'Historicos Combustibles',
+                'route'=>'admin_app_historicoscombustibles_list'
+            ]);
 
     }
 }

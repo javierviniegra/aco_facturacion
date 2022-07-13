@@ -29,7 +29,7 @@ class HistoricosCombustibles
     private $valor;
 
     /**
-     * @ORM\ManyToOne(targetEntity=SonataUserUSer::class)
+     * @ORM\ManyToOne(targetEntity=SonataUserUser::class)
      */
     private $usuario;
 
@@ -52,6 +52,7 @@ class HistoricosCombustibles
     {
         $this->combustible = $combustible;
 
+
         return $this;
     }
 
@@ -67,12 +68,12 @@ class HistoricosCombustibles
         return $this;
     }
 
-    public function getUsuario(): ?SonataUserUSer
+    public function getUsuario(): ?SonataUserUser
     {
         return $this->usuario;
     }
 
-    public function setUsuario(?SonataUserUSer $usuario): self
+    public function setUsuario(?SonataUserUser $usuario): self
     {
         $this->usuario = $usuario;
 

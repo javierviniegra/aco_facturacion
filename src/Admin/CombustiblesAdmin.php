@@ -60,7 +60,7 @@ final class CombustiblesAdmin extends AbstractAdmin
                         'currency' => 'MXN',
                         'label' => 'IVA',
                         'grouping' => true,
-                        'scale' => 6
+                        'scale' => 2
                     ])
                 ->end()
                 ->with('Image')

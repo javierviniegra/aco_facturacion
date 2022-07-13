@@ -301,7 +301,14 @@ services:
 
     admin.combustibles:
         class: App\Admin\CombustiblesAdmin
-        arguments: [~, App\Entity\Combustibles, ~]
+        arguments: [~, App\Entity\Combustibles, App\Controller\CombustiblesController,'@doctrine.orm.default_entity_manager']
         tags:
             - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Combustibles }
+        public: true
+
+    admin.historicos_combustibles:
+        class: App\Admin\HistoricosCombustiblesAdmin
+        arguments: [~, App\Entity\HistoricosCombustibles, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: HistoricosCombustibles }
         public: true
