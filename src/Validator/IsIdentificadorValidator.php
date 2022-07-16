@@ -7,12 +7,12 @@ use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Exception\UnexpectedValueException;
 
-class IsRfcValidator extends ConstraintValidator
+class IsIdentificadorValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
-        if (!$constraint instanceof IsRfc) {
-            throw new UnexpectedTypeException($constraint, IsRfc::class);
+        if (!$constraint instanceof IsIdentificador) {
+            throw new UnexpectedTypeException($constraint, IsIdentificador::class);
         }
 
         // custom constraints should ignore null and empty values to allow
@@ -29,19 +29,12 @@ class IsRfcValidator extends ConstraintValidator
             // throw new UnexpectedValueException($value, 'string|int');
         }
 
-        //valido el RFC
-        if( !preg_match('/^([A-ZÑ&]{3,4})(?:- )?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01]))(?:- )?(([A-Z\d]{2})([A\d]))?$/', strtoupper($value)) ) {
+        //valido el Identificador de Envío
+        if( !preg_match('/^([af0-9A-F]{8}-[a-f0-9A-F]{4}-[a-f0-9A-F]{4}-[a-f0-9A-F]{4}-[a-f0-9A-F]{12})?$/', strtoupper($value)) ) {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('{{ string }}', $value)
                 ->addViolation();
 		}
-
-        if (!preg_match('/^[a-zA-Z0-9]+$/', $value, $matches)) {
-            // the argument must be a string or an object implementing __toString()
-            $this->context->buildViolation($constraint->message)
-                ->setParameter('{{ string }}', $value)
-                ->addViolation();
-        }
     }
 }
 

@@ -6,6 +6,8 @@ use App\Repository\ComprasRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Validator as ConexionAssert; //para validar el Identficador de Envío
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ComprasRepository::class) 
@@ -171,6 +173,12 @@ class Compras
      * @ORM\Column(type="float", nullable=true)
      */
     private $presion_absoluta;
+
+    /**
+     * @ORM\Column(type="string", length=36, nullable=true)
+     * @ConexionAssert\IsIdentificador
+     */
+    private $identificador_envio;
 
     public function __construct()
     {
@@ -583,6 +591,18 @@ class Compras
     public function setPresionAbsoluta(?float $presion_absoluta): self
     {
         $this->presion_absoluta = $presion_absoluta;
+
+        return $this;
+    }
+
+    public function getIdentificadorEnvio(): ?string
+    {
+        return $this->identificador_envio;
+    }
+
+    public function setIdentificadorEnvio(?string $identificador_envio): self
+    {
+        $this->identificador_envio = $identificador_envio;
 
         return $this;
     }

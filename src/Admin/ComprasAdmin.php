@@ -170,6 +170,7 @@ final class ComprasAdmin extends AbstractAdmin
                 ->with('Facturación')
                     ->add('fechaPago', DateTimePickerType::class, ['label' => 'Fecha de Pago','format'            => 'dd.MM.yyyy HH:mm','required' => false,'dp_use_current'    => false])
                     ->add('numFactura',null, ['label' => 'Número de Factura'])
+                    ->add('identificador_envio',null, ['label' => 'Identificador de Envío', 'required' => false])
                     ->add('formaPago', ModelType::class, [
                             'required' => false,
                             'expanded' => false,
