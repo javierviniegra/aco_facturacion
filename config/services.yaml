@@ -317,5 +317,5 @@ services:
         class: App\Admin\MetodosPagoVentasAdmin
         arguments: [~, App\Entity\MetodosPagoVentas, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: MetodosPagoVentas }
+            - { name: sonata.admin, manager_type: orm, group: Catálogos, label: MetodosPagoVentas }
         public: true
