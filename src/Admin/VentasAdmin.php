@@ -72,7 +72,7 @@ final class VentasAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $form): void
     {
         $repository = $this->em->getRepository('App:Ventas');
-        if (defined($repository->findLastVentaID()[0]))
+        if (defined($repository->findLastVentaID()))
             $elLastID = str_pad(strval($repository->findLastVentaID()[0]->getId()+1),7,"0",STR_PAD_LEFT);
         else
             $elLastID = "0";

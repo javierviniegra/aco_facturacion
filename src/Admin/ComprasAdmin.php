@@ -71,7 +71,7 @@ final class ComprasAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $form): void
     {
         $repository = $this->em->getRepository('App:Compras');
-        if (defined($repository->findLastCompraID()[0]))
+        if (defined($repository->findLastCompraID()))
             $elLastID = str_pad(strval($repository->findLastCompraID()[0]->getId()+1),7,"0",STR_PAD_LEFT);
         else
             $elLastID = "0";
