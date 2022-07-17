@@ -10,8 +10,9 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-final class MetodosPagoAdmin extends AbstractAdmin
+final class MetodosPagoVentasAdmin extends AbstractAdmin
 {
+
 
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {

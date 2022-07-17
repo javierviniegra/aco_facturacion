@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\MetodosPagoRepository;
+use App\Repository\MetodosPagoVentasRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=MetodosPagoRepository::class)
+ * @ORM\Entity(repositoryClass=MetodosPagoVentasRepository::class)
  * @ORM\HasLifecycleCallbacks()
  */
-class MetodosPago
+class MetodosPagoVentas
 {
     /**
      * @ORM\Id
@@ -38,6 +38,7 @@ class MetodosPago
      */
     private $is_active;
 
+
     public function __construct()
     {
         $this->is_active = True;
@@ -65,7 +66,6 @@ class MetodosPago
     {
         return $this->getNombre();
     }
-
 
     public function getId(): ?int
     {

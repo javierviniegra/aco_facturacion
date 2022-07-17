@@ -201,7 +201,7 @@ services:
 
     admin.ventas:
         class: App\Admin\VentasAdmin
-        arguments: [~, App\Entity\Ventas, ~]
+        arguments: [~, App\Entity\Ventas, ~,'@doctrine.orm.default_entity_manager']
         tags:
             - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Ventas }
         public: true
@@ -311,4 +311,11 @@ services:
         arguments: [~, App\Entity\HistoricosCombustibles, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Catálogos, label: HistoricosCombustibles }
+        public: true
+
+    admin.metodos_pago_ventas:
+        class: App\Admin\MetodosPagoVentasAdmin
+        arguments: [~, App\Entity\MetodosPagoVentas, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: MetodosPagoVentas }
         public: true

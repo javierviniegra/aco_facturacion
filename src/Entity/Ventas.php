@@ -155,6 +155,11 @@ class Ventas
      */
     private $flete;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=MetodosPagoVentas::class)
+     */
+    private $metodo_pago1;
+
     public function __construct()
     {
         $this->productosVenta = new ArrayCollection();
@@ -501,6 +506,18 @@ class Ventas
     public function setFlete(?float $flete): self
     {
         $this->flete = $flete;
+
+        return $this;
+    }
+
+    public function getMetodoPago1(): ?MetodosPagoVentas
+    {
+        return $this->metodo_pago1;
+    }
+
+    public function setMetodoPago1(?MetodosPagoVentas $metodo_pago1): self
+    {
+        $this->metodo_pago1 = $metodo_pago1;
 
         return $this;
     }

@@ -19,6 +19,14 @@ class VentasRepository extends ServiceEntityRepository
         parent::__construct($registry, Ventas::class);
     }
 
+
+    public function findLastVentaID()
+    {
+        $elCampo = $this->findBy(array(),array('id'=>'DESC'),1,0);
+
+        return $elCampo;
+    }
+
     // /**
     //  * @return Ventas[] Returns an array of Ventas objects
     //  */

@@ -117,6 +117,8 @@ Regimenes Fiscales Create: Nuevo Régimen Fiscal
 RegimenesFiscales : Régimen Fiscal
 Combustibles Create: Nuevo Combustible
 Historicos Combustibles List: Historicos Combustibles
+Metodos Pago Ventas List: Métodos de Pago para Ventas
+Metodos Pago Ventas Create: Método de Pago para Ventas
 
 MetodosPago: Métodos de Pago
 FormasPago: Formas de Pago

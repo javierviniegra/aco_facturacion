@@ -17,9 +17,18 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Sonata\Form\Type\DateTimePickerType;
+use App\Repository\VentasRepository;
 
 final class VentasAdmin extends AbstractAdmin
 {
+    protected $em;
+
+    public function __construct($code, $class, $baseControllerName, $entityManager)
+    {
+         parent::__construct($code, $class, $baseControllerName);
+         $this->em = $entityManager;
+    }
+
 
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
@@ -62,6 +71,9 @@ final class VentasAdmin extends AbstractAdmin
 
     protected function configureFormFields(FormMapper $form): void
     {
+        $repository = $this->em->getRepository('App:Ventas');
+        $elLastID = str_pad(strval($repository->findLastVentaID()[0]->getId()+1),7,"0",STR_PAD_LEFT);
+
         // define group zoning
         $form
             ->tab('Ventas')
@@ -81,6 +93,35 @@ final class VentasAdmin extends AbstractAdmin
 
         $now = new \DateTime();
 
+        if($this->getSubject()->getId() === null)
+            $form
+                ->tab('Ventas')
+                    ->with('Ventas')
+                        ->add('id_venta',null,[
+                            'label' => 'ID de Venta',
+                            'required' => true,
+                            'disabled'  => false,
+                            'data' => "OV".date("Y")."-".$elLastID,
+                            'attr' => array(
+                                'readonly' => true,
+                            )
+                        ])
+                    ->end()
+                ->end();
+        else
+            $form
+                ->tab('Ventas')
+                    ->with('Ventas')
+                        ->add('id_venta',null,[
+                            'label' => 'ID de Venta',
+                            'required' => true,
+                            'disabled'  => false,
+                            'attr' => array(
+                                'readonly' => true,
+                            )
+                        ])
+                    ->end()
+                ->end();
         $form
             ->tab('Ventas')
                 ->with('Ventas')
@@ -115,7 +156,7 @@ final class VentasAdmin extends AbstractAdmin
                 ->end()
                 ->with('Pagos')
                     ->add('formaPago',ModelType::class,['label'=>'Forma de Pago'])
-                    ->add('metodoPago',ModelType::class,['label'=>'Método de Pago'])
+                    ->add('metodo_pago1',ModelType::class,['label'=>'Método de Pago'])
                 ->end()
             ->end()
             ->tab('Entrega')
