@@ -75,7 +75,7 @@ final class VentasAdmin extends AbstractAdmin
         if (!empty($repository->findLastVentaID()))
             $elLastID = str_pad(strval($repository->findLastVentaID()[0]->getId()+1),7,"0",STR_PAD_LEFT);
         else
-            $elLastID = new array();
+            $elLastID = array();
 
         // define group zoning
         $form

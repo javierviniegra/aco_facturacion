@@ -74,7 +74,7 @@ final class ComprasAdmin extends AbstractAdmin
         if (!empty($repository->findLastCompraID()))
             $elLastID = str_pad(strval($repository->findLastCompraID()[0]->getId()+1),7,"0",STR_PAD_LEFT);
         else
-            $elLastID = new array();
+            $elLastID = array();
 
         // define group zoning
         $form
