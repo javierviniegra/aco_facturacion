@@ -6,17 +6,20 @@ namespace App\Admin;
 
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Route\RouteCollectionInterface;
 use Sonata\Form\Type\DatePickerType;
+use Sonata\Form\Type\DateTimePickerType;
 use Sonata\AdminBundle\Form\Type\ModelType;
 use Sonata\Form\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
-use Sonata\Form\Type\DateTimePickerType;
+use Symfony\Component\Form\Extension\Core\Type\PercentType;
 use App\Repository\VentasRepository;
 
 final class VentasAdmin extends AbstractAdmin
@@ -34,13 +37,13 @@ final class VentasAdmin extends AbstractAdmin
     {
         $filter
             ->add('id_venta')
-            //->add('fecha',DateType::class, ['widget' => 'single_text','required' => true])
             ->add('id_factura')
             ->add('serie')
             ->add('folio')
             ->add('rfc',null,['label'=>'Cliente'])
             ->add('fechaFactura')
             ->add('tipoEntrega')
+            ->add('total')
             ->add('id_pedido')
             ->add('id_camion')
             ->add('quienEntrega')
@@ -58,7 +61,8 @@ final class VentasAdmin extends AbstractAdmin
         $list
             ->add('id_venta')
             ->add('fecha')
-            ->add('rfc',null,['label'=>'Cliente'])
+            ->add('subtotal', 'currency', ['currency' => 'MXN'])
+            ->add('total', 'currency', ['currency' => 'MXN'])
             ->add('ordenCompletada',null,['label' => 'Orden Completada'])
             ->add('created_at')
             ->add(ListMapper::NAME_ACTIONS, null, [
@@ -83,7 +87,8 @@ final class VentasAdmin extends AbstractAdmin
         // define group zoning
         $form
             ->tab('Ventas')
-                ->with('Ventas', ['class' => 'col-md-12'])->end()
+                ->with('Ventas', ['class' => 'col-md-6'])->end()
+                ->with('Cálculos', ['class' => 'col-md-6'])->end()
                 ->with('Productos', ['class' => 'col-md-12'])->end()
             ->end()
             ->tab('Facturación')
@@ -133,18 +138,41 @@ final class VentasAdmin extends AbstractAdmin
                 ->with('Ventas')
                     ->add('fecha', DateType::class, ['label' => 'Fecha de Venta', 'widget' => 'single_text','required' => true])
                     ->add('rfc',ModelType::class,['label'=>'Cliente'])
-                    ->add('flete',MoneyType::class, [
+                ->end()
+                ->with('Cálculos')
+                    ->add('iepsTotal', MoneyType::class, [
                         'currency' => 'MXN',
-                        'label' => 'Precio del Flete',
+                        'label' => 'IEPS Total',
+                        'grouping' => true ,
+                        'scale' => 6
+                    ])
+                    ->add('iva', MoneyType::class, [
+                        'currency' => 'MXN',
+                        'label' => 'IVA',
                         'grouping' => true,
-                        'scale' => 2
+                        'scale' => 6
+                    ])
+                    ->add('subtotal', MoneyType::class, [
+                        'currency' => 'MXN',
+                        'label' => 'Subtotal',
+                        'grouping' => true,
+                        'scale' => 6
+                    ])
+                    ->add('total', MoneyType::class, [
+                        'currency' => 'MXN',
+                        'label' => 'Total',
+                        'grouping' => true,
+                        'scale' => 6
                     ])
                 ->end()
                 ->with('Productos')
                     ->add('productosVenta', CollectionType::class, [
                         'by_reference' => false,
-                        'required' => false,
-                        'label' => 'Productos'
+                        'required' => true,
+                        'label' => false,
+                        'attr'               => array(
+                            'class' => 'form-productos'
+                        )
                     ],
                     [
                         'edit' => 'inline',
@@ -188,6 +216,9 @@ final class VentasAdmin extends AbstractAdmin
 
     protected function configureShowFields(ShowMapper $show): void
     {
+        $repository = $this->em->getRepository('App:Compras');
+        $elLastID = str_pad(strval($repository->findLastCompraID()[0]->getId()+1),7,"0",STR_PAD_LEFT);
+        
         $show
             ->add('id_venta')
             ->add('fecha')
@@ -209,5 +240,30 @@ final class VentasAdmin extends AbstractAdmin
             ->add('created_at')
             ->add('updated_at')
             ;
+    }
+
+    //override de la funcion del query que genera la lista
+    public function createQuery($context = 'list')
+    {
+        $query = parent::createQuery($context);
+        $rootAlias = $query->getRootAliases()[0];
+
+        $query->andWhere(
+            $query->expr()->neq($rootAlias.'.is_deleted', ':deleted')
+        );
+        $query->orWhere(
+            $query->expr()->isNull($rootAlias.'.is_deleted')
+        );
+
+        $query->setParameter(':deleted', '1');
+        return $query;
+    }
+
+    //override de la funcion del query que genera el orden de la lista 
+    protected function configureDefaultSortValues(array &$sortValues): void
+    {
+        $sortValues[DatagridInterface::PAGE] = 1;
+        $sortValues[DatagridInterface::SORT_ORDER] = 'DESC';
+        $sortValues[DatagridInterface::SORT_BY] = 'created_at';
     }
 }

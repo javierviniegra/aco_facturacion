@@ -46,6 +46,47 @@ class Ventas
     private $cliente;
 
     /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $litros;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $precioLitro;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Productos::class)
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $producto;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $iepsFactor;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $iepsTotal;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $iva;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $subtotal;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $total;
+
+    /**
      * @ORM\OneToMany(targetEntity=ProductosVenta::class, mappedBy="ventas",cascade={"persist"})
      */
     private $productosVenta;
@@ -160,6 +201,21 @@ class Ventas
      */
     private $metodo_pago1;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $is_deleted;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=SonataUserUser::class)
+     */
+    private $quien_borro;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $fecha_borrado;
+
     public function __construct()
     {
         $this->productosVenta = new ArrayCollection();
@@ -172,6 +228,7 @@ class Ventas
     {
         $this->created_at = new \DateTime();
         $this->updated_at = new \DateTime();
+        $this->is_deleted = False;
     }
 
     /**
@@ -184,7 +241,10 @@ class Ventas
 
     public function __toString()
     {
-        return $this->getIdVenta();
+        if (is_null($this->getIdVenta()))
+            return "";
+        else
+            return $this->getIdVenta();
     }
 
     public function getId(): ?int
@@ -248,6 +308,102 @@ class Ventas
     public function setCliente(?Clientes $cliente): self
     {
         $this->cliente = $cliente;
+
+        return $this;
+    }
+
+    public function getLitros(): ?float
+    {
+        return $this->litros;
+    }
+
+    public function setLitros(?float $litros): self
+    {
+        $this->litros = $litros;
+
+        return $this;
+    }
+
+    public function getPrecioLitro(): ?float
+    {
+        return $this->precioLitro;
+    }
+
+    public function setPrecioLitro(?float $precioLitro): self
+    {
+        $this->precioLitro = $precioLitro;
+
+        return $this;
+    }
+
+    public function getProducto(): ?Productos
+    {
+        return $this->producto;
+    }
+
+    public function setProducto(?Productos $producto): self
+    {
+        $this->producto = $producto;
+
+        return $this;
+    }
+
+    public function getIepsFactor(): ?float
+    {
+        return $this->iepsFactor;
+    }
+
+    public function setIepsFactor(?float $iepsFactor): self
+    {
+        $this->iepsFactor = $iepsFactor;
+
+        return $this;
+    }
+
+    public function getIepsTotal(): ?float
+    {
+        return $this->iepsTotal;
+    }
+
+    public function setIepsTotal(?float $iepsTotal): self
+    {
+        $this->iepsTotal = $iepsTotal;
+
+        return $this;
+    }
+
+    public function getIva(): ?float
+    {
+        return $this->iva;
+    }
+
+    public function setIva(?float $iva): self
+    {
+        $this->iva = $iva;
+
+        return $this;
+    }
+
+    public function getSubtotal(): ?float
+    {
+        return $this->subtotal;
+    }
+
+    public function setSubtotal(?float $subtotal): self
+    {
+        $this->subtotal = $subtotal;
+
+        return $this;
+    }
+
+    public function getTotal(): ?float
+    {
+        return $this->total;
+    }
+
+    public function setTotal(?float $total): self
+    {
+        $this->total = $total;
 
         return $this;
     }
@@ -521,4 +677,41 @@ class Ventas
 
         return $this;
     }
+
+    public function getIsDeleted(): ?bool
+    {
+        return $this->is_deleted;
+    }
+
+    public function setIsDeleted(?bool $is_deleted): self
+    {
+        $this->is_deleted = $is_deleted;
+
+        return $this;
+    }
+
+    public function getQuienBorro(): ?SonataUserUser
+    {
+        return $this->quien_borro;
+    }
+
+    public function setQuienBorro(?SonataUserUser $quien_borro): self
+    {
+        $this->quien_borro = $quien_borro;
+
+        return $this;
+    }
+
+    public function getFechaBorrado(): ?\DateTimeInterface
+    {
+        return $this->fecha_borrado;
+    }
+
+    public function setFechaBorrado(?\DateTimeInterface $fecha_borrado): self
+    {
+        $this->fecha_borrado = $fecha_borrado;
+
+        return $this;
+    }
+
 }

@@ -201,10 +201,12 @@ services:
 
     admin.ventas:
         class: App\Admin\VentasAdmin
-        arguments: [~, App\Entity\Ventas, ~,'@doctrine.orm.default_entity_manager']
+        arguments: [~, App\Entity\Ventas, App\Controller\VentasController,'@doctrine.orm.default_entity_manager']
         tags:
             - { name: sonata.admin, manager_type: orm, group: Catálogos, label: Ventas }
         public: true
+        calls:
+            - [ setTemplate, [edit, ventas/edit.html.twig]]
 
     admin.estados:
         class: App\Admin\EstadosAdmin
