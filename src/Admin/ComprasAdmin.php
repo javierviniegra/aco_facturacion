@@ -74,7 +74,7 @@ final class ComprasAdmin extends AbstractAdmin
         if (!empty($repository->findLastCompraID()))
             $elLastID = str_pad(strval($repository->findLastCompraID()[0]->getId()+1),7,"0",STR_PAD_LEFT);
         else
-            $elLastID = 0;
+            $elLastID = "0000001";
 
         // define group zoning
         $form
@@ -89,7 +89,7 @@ final class ComprasAdmin extends AbstractAdmin
 
         $now = new \DateTime(); 
         
-        if($this->getSubject()->getId() === null)
+        if($this->getSubject()->getId() === null || $elLastID === "0000001")
             $form
                 ->tab('Compras')
                     ->with('Compras')

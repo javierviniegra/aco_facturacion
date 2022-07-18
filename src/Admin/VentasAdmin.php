@@ -96,7 +96,7 @@ final class VentasAdmin extends AbstractAdmin
 
         $now = new \DateTime();
 
-        if($this->getSubject()->getId() === null)
+        if($this->getSubject()->getId() === null || $elLastID === "0000001")
             $form
                 ->tab('Ventas')
                     ->with('Ventas')
