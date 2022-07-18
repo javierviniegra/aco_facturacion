@@ -72,10 +72,13 @@ final class VentasAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $form): void
     {
         $repository = $this->em->getRepository('App:Ventas');
+        $primero = false;
         if (!empty($repository->findLastVentaID()))
             $elLastID = str_pad(strval($repository->findLastVentaID()[0]->getId()+1),7,"0",STR_PAD_LEFT);
-        else
+        else{
+            $primero = true;
             $elLastID = "0000001";
+        }
 
         // define group zoning
         $form
@@ -96,7 +99,7 @@ final class VentasAdmin extends AbstractAdmin
 
         $now = new \DateTime();
 
-        if($this->getSubject()->getId() === null || $elLastID === "0000001")
+        if($this->getSubject()->getId() === null || $primero == true)
             $form
                 ->tab('Ventas')
                     ->with('Ventas')
@@ -128,7 +131,6 @@ final class VentasAdmin extends AbstractAdmin
         $form
             ->tab('Ventas')
                 ->with('Ventas')
-                    ->add('id_venta',null,['label' => 'ID de Venta','required' => true])
                     ->add('fecha', DateType::class, ['label' => 'Fecha de Venta', 'widget' => 'single_text','required' => true])
                     ->add('rfc',ModelType::class,['label'=>'Cliente'])
                     ->add('flete',MoneyType::class, [
