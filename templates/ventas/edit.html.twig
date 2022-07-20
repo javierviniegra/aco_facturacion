@@ -38,18 +38,17 @@
                 var subtotales = 0;
                 var ivas = 0;
                 var totales = 0;
-                var flete = 0;
+                var retenciones = 0;
 
                 while ($('#' + idFormulario + '_productosVenta_' + contador + '_litros').val() != null){
                     var cantidad = realParseFloat($('#' + idFormulario + '_productosVenta_' + contador + '_litros').val());
                     var precio = realParseFloat($('#' + idFormulario + '_productosVenta_' + contador + '_precioLitro').val());
                     var reqIeps = $('#' + idFormulario + '_productosVenta_' + contador + '_requiereIeps').is(':checked');
                     var iepsFactor = $('#' + idFormulario + '_productosVenta_' + contador + '_factorIeps').val();
-                    var flete = realParseFloat($('#' + idFormulario + '_productosVenta_' + contador + '_precioFlete').val());
+                    var retencion = realParseFloat($('#' + idFormulario + '_productosVenta_' + contador + '_retencion').val());
                     //operaciones
                     iepsFactor = realParseFloat(iepsFactor);
                     var subtotal = parseFloat(cantidad * precio);
-                    var subtotal = parseFloat(flete + subtotal)
                     var iepstotal = parseFloat(cantidad * iepsFactor);
                     var baseiva = parseFloat(subtotal-iepstotal);
                     baseiva = reqIeps ? baseiva :  subtotal; 
@@ -62,12 +61,14 @@
                     subtotal = isNaN(subtotal) ? 0 : subtotal;
                     iva = isNaN(iva) ? 0 : iva;
                     total = isNaN(total) ? 0 : total;
+                    total = total - retencion;
                     //sumas
                     $('#' + idFormulario + '_productosVenta_' + contador + '_totalIeps').val(iepstotal);
                     $('#' + idFormulario + '_productosVenta_' + contador + '_iva').val(iva);
                     $('#' + idFormulario + '_productosVenta_' + contador + '_subtotal').val(subtotal);
                     $('#' + idFormulario + '_productosVenta_' + contador + '_total').val(total);
                     //totales
+                    retenciones = parseFloat(retencion) + parseFloat(retenciones);
                     iepsTotales = parseFloat(iepstotal) + parseFloat(iepsTotales);
                     subtotales = parseFloat(subtotal) + parseFloat(subtotales);
                     ivas = parseFloat(iva) + parseFloat(ivas);
@@ -79,6 +80,7 @@
                 //meto resultados
                 $('#' + idFormulario + '_iepsTotal').val(iepsTotales);
                 $('#' + idFormulario + '_iva').val(ivas);
+                $('#' + idFormulario + '_retencion').val(retenciones);
                 $('#' + idFormulario + '_subtotal').val(subtotales);
                 $('#' + idFormulario + '_total').val(totales);
             });

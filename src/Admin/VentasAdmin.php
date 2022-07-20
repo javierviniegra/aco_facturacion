@@ -153,6 +153,12 @@ final class VentasAdmin extends AbstractAdmin
                         'grouping' => true,
                         'scale' => 6
                     ])
+                    ->add('retencion', MoneyType::class, [
+                        'currency' => 'MXN',
+                        'label' => 'Retención',
+                        'grouping' => true,
+                        'scale' => 6
+                    ])
                     ->add('subtotal', MoneyType::class, [
                         'currency' => 'MXN',
                         'label' => 'Subtotal',

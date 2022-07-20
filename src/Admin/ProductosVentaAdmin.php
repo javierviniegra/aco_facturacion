@@ -69,13 +69,6 @@ final class ProductosVentaAdmin extends AbstractAdmin
                 'grouping' => true,
                 'scale' => 6
             ])
-            ->add('precioFlete', MoneyType::class, [
-                'currency' => 'MXN',
-                'label' => 'Flete',
-                'required' => false,
-                'grouping' => true,
-                'scale' => 2
-            ])
             ->add('requiereIeps',null,['label' => 'Requiere IEPS','required' => false])
             ->add('factorIeps', NumberType::class, [
                 'label' => 'Factor IEPS',
@@ -101,6 +94,13 @@ final class ProductosVentaAdmin extends AbstractAdmin
                 'grouping' => true,
                 'scale' => 6
             ])
+            ->add('retencion', MoneyType::class, [
+                'currency' => 'MXN',
+                'label' => 'Retención',
+                'required' => false,
+                'grouping' => true,
+                'scale' => 2
+            ])
             ->add('total', MoneyType::class, [
                 'currency' => 'MXN',
                 'label' => 'Total',
@@ -125,6 +125,7 @@ final class ProductosVentaAdmin extends AbstractAdmin
                     ->add('litros',null,['label' => 'Cantidad'])
                     ->add('precioLitro',null,['label' => 'Precio','template'=>'CRUD/show_field_moneda.html.twig'])
                     ->add('subtotal',null,['label' => 'SubTotal','template'=>'CRUD/show_field_moneda.html.twig'])
+                    ->add('retencion',null,['label' => 'Retención','template'=>'CRUD/show_field_moneda.html.twig'])
                     ->add('total',null,['label' => 'Total','template'=>'CRUD/show_field_moneda.html.twig'])
                 ->end()
                 ->with('Impuestos')
