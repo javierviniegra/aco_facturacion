@@ -10,6 +10,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Sonata\AdminBundle\Form\Type\ModelType;
 
 final class AlmacenajesAdmin extends AbstractAdmin
 {
@@ -18,6 +19,7 @@ final class AlmacenajesAdmin extends AbstractAdmin
     {
         $filter
             ->add('nombre')
+            ->add('combustible')
             ->add('capacidad')
             ->add('total')
             ->add('created_at')
@@ -30,6 +32,7 @@ final class AlmacenajesAdmin extends AbstractAdmin
     {
         $list
             ->add('nombre')
+            ->add('combustible')
             ->add('capacidad')
             ->add('total')
             ->add('created_at')
@@ -54,6 +57,11 @@ final class AlmacenajesAdmin extends AbstractAdmin
             ->tab('General')
                 ->with('Others')
                     ->add('nombre')
+                    ->add('combustible', ModelType::class, [
+                            'required' => false,
+                            'expanded' => false,
+                            'multiple' => false,
+                    ])
                     ->add('total', NumberType::class, [
                         'label' => 'Total',
                         'required' => false,
@@ -93,6 +101,7 @@ final class AlmacenajesAdmin extends AbstractAdmin
             ->tab('General')
                 ->with('Others')
                     ->add('nombre')
+                    ->add('combustible')
                     ->add('total', NumberType::class, [
                         'label' => 'Total'
                     ])

@@ -58,6 +58,11 @@ class Almacenajes
      */
     private $total;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Combustibles::class)
+     */
+    private $combustible;
+
 
     /**
      * @ORM\PrePersist
@@ -179,6 +184,18 @@ class Almacenajes
     public function setTotal(?float $total): self
     {
         $this->total = $total;
+
+        return $this;
+    }
+
+    public function getCombustible(): ?Combustibles
+    {
+        return $this->combustible;
+    }
+
+    public function setCombustible(?Combustibles $combustible): self
+    {
+        $this->combustible = $combustible;
 
         return $this;
     }

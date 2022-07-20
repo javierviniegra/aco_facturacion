@@ -64,6 +64,16 @@ class Combustibles
      */
     private $imagen_size;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Productos::class)
+     */
+    private $producto;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $ieps;
+
 
     /**
      * @ORM\PrePersist
@@ -170,6 +180,30 @@ class Combustibles
     public function setImagenSize(?int $imagen_size): self
     {
         $this->imagen_size = $imagen_size;
+
+        return $this;
+    }
+
+    public function getProducto(): ?Productos
+    {
+        return $this->producto;
+    }
+
+    public function setProducto(?Productos $producto): self
+    {
+        $this->producto = $producto;
+
+        return $this;
+    }
+
+    public function getIeps(): ?float
+    {
+        return $this->ieps;
+    }
+
+    public function setIeps(?float $ieps): self
+    {
+        $this->ieps = $ieps;
 
         return $this;
     }

@@ -216,6 +216,11 @@ class Ventas
      */
     private $fecha_borrado;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $retencion;
+
     public function __construct()
     {
         $this->productosVenta = new ArrayCollection();
@@ -710,6 +715,18 @@ class Ventas
     public function setFechaBorrado(?\DateTimeInterface $fecha_borrado): self
     {
         $this->fecha_borrado = $fecha_borrado;
+
+        return $this;
+    }
+
+    public function getRetencion(): ?float
+    {
+        return $this->retencion;
+    }
+
+    public function setRetencion(?float $retencion): self
+    {
+        $this->retencion = $retencion;
 
         return $this;
     }

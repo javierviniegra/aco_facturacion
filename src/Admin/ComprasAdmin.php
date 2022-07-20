@@ -162,6 +162,7 @@ final class ComprasAdmin extends AbstractAdmin
                         'by_reference' => false,
                         'required' => true,
                         'label' => false,
+                        'btn_add' => 'Agregar Producto',
                         'attr'               => array(
                             'class' => 'form-productos'
                         )

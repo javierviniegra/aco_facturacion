@@ -79,6 +79,11 @@ class ProductosVenta
      */
     private $is_active;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $retencion;
+
 
     /**
      * @ORM\PrePersist
@@ -239,6 +244,18 @@ class ProductosVenta
     public function setIsActive(bool $is_active): self
     {
         $this->is_active = $is_active;
+
+        return $this;
+    }
+
+    public function getRetencion(): ?float
+    {
+        return $this->retencion;
+    }
+
+    public function setRetencion(?float $retencion): self
+    {
+        $this->retencion = $retencion;
 
         return $this;
     }

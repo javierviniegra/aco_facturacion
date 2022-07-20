@@ -9,6 +9,8 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Form\Type\ModelType;
+use Symfony\Component\Form\Extension\Core\Type\PercentType;
 
 final class ProductosAdmin extends AbstractAdmin
 {
@@ -49,6 +51,7 @@ final class ProductosAdmin extends AbstractAdmin
             ->tab('General')
                 ->with('Others')
                     ->add('nombre')
+                    ->add('retencion',PercentType::class)
                 ->end()
             ->end();
     }
