@@ -21,6 +21,7 @@ class RecepcionProductosType extends AbstractType
         $builder
             ->add('almacenaje',null,[
                 'label' => 'Almacenaje',
+                'placeholder' => 'Selecciona un tanque',
                 'required' => true
             ])
             ->add('quienRecibe',null,[

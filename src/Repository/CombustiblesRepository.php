@@ -45,6 +45,17 @@ class CombustiblesRepository extends ServiceEntityRepository
         }
     }
 
+    public function findWhereProductoId($value) 
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.producto = :val')
+            ->setParameter('val', $value)
+            ->orderBy('c.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;   
+    }
+
     // /**
     //  * @return Combustibles[] Returns an array of Combustibles objects
     //  */

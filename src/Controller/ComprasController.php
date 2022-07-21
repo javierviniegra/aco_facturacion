@@ -10,6 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\CompraProductosRepository; 
 use App\Entity\CompraProductos; 
+use App\Entity\Combustibles; 
+use App\Entity\Almacenajes; 
 use App\Form\RecepcionProductosType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Router;
@@ -159,12 +161,26 @@ final class ComprasController extends CRUDController
 
         $producto =  $em->getRepository(CompraProductos::class)
                     ->findOneById($id_prod);
+        $combustible =  $em->getRepository(Combustibles::class)
+                    ->findWhereProductoId($producto->getProducto()->getId());
+        $tanques = $em->getRepository(Almacenajes::class)
+                    ->findWhereCombustibleId($combustible[0]->getId());
         $form = $this->createForm(RecepcionProductosType::class, $producto);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
             $producto = $form->getData();
             $producto->setRecibido(True);//pongo como recibido el producto
+
+            $tanque = $producto->getAlmacenaje();//obtengo el tanque
+            $litrosTotales = $tanque->getTotal();//total de litros
+            if(is_null($litrosTotales)) $litrosTotales = 0;
+            $litrosIngresar = $producto->getLitros();//obtengo los nuevos litros a sumar
+            //hago la operacion de suma
+            $nuevoTotal = $litrosTotales + $litrosIngresar;//hago la suma
+
+            //Persisto el nuevo valor
+            $tanque->setTotal($nuevoTotal);
 
             $em->flush();
 
@@ -175,6 +191,7 @@ final class ComprasController extends CRUDController
             'objeto' => $objeto,
             'producto' => $producto,
             'form' => $form->createView(),
+            'tanques' => $tanques,
         ]);
     }
 

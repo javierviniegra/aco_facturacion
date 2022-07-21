@@ -19,6 +19,28 @@ class AlmacenajesRepository extends ServiceEntityRepository
         parent::__construct($registry, Almacenajes::class);
     }
 
+    public function findWhereCombustibleNotId($value)
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.combustible != :val')
+            ->setParameter('val', $value)
+            ->orderBy('c.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;   
+    }
+
+    public function findWhereCombustibleId($value)
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.combustible = :val')
+            ->setParameter('val', $value)
+            ->orderBy('c.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;   
+    }
+
     // /**
     //  * @return Almacenajes[] Returns an array of Almacenajes objects
     //  */
