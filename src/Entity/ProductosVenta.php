@@ -84,6 +84,42 @@ class ProductosVenta
      */
     private $retencion;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $entregado;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $fechaSalida;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Almacenajes::class)
+     */
+    private $almacenaje;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=SonataUserUser::class)
+     */
+    private $quienEntrega;
+
+    /**
+     * @ORM\Column(type="string", length=512, nullable=true)
+     */
+    private $observaciones;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $temperatura;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $presion_absoluta;
+
+
 
     /**
      * @ORM\PrePersist
@@ -256,6 +292,90 @@ class ProductosVenta
     public function setRetencion(?float $retencion): self
     {
         $this->retencion = $retencion;
+
+        return $this;
+    }
+
+    public function getEntregado(): ?bool
+    {
+        return $this->entregado;
+    }
+
+    public function setEntregado(?bool $entregado): self
+    {
+        $this->entregado = $entregado;
+
+        return $this;
+    }
+
+    public function getFechaSalida(): ?\DateTimeInterface
+    {
+        return $this->fechaSalida;
+    }
+
+    public function setFechaSalida(?\DateTimeInterface $fechaSalida): self
+    {
+        $this->fechaSalida = $fechaSalida;
+
+        return $this;
+    }
+
+    public function getAlmacenaje(): ?Almacenajes
+    {
+        return $this->almacenaje;
+    }
+
+    public function setAlmacenaje(?Almacenajes $almacenaje): self
+    {
+        $this->almacenaje = $almacenaje;
+
+        return $this;
+    }
+
+    public function getQuienEntrega(): ?SonataUserUser
+    {
+        return $this->quienEntrega;
+    }
+
+    public function setQuienEntrega(?SonataUserUser $quienEntrega): self
+    {
+        $this->quienEntrega = $quienEntrega;
+
+        return $this;
+    }
+
+    public function getObservaciones(): ?string
+    {
+        return $this->observaciones;
+    }
+
+    public function setObservaciones(?string $observaciones): self
+    {
+        $this->observaciones = $observaciones;
+
+        return $this;
+    }
+
+    public function getTemperatura(): ?float
+    {
+        return $this->temperatura;
+    }
+
+    public function setTemperatura(?float $temperatura): self
+    {
+        $this->temperatura = $temperatura;
+
+        return $this;
+    }
+
+    public function getPresionAbsoluta(): ?float
+    {
+        return $this->presion_absoluta;
+    }
+
+    public function setPresionAbsoluta(?float $presion_absoluta): self
+    {
+        $this->presion_absoluta = $presion_absoluta;
 
         return $this;
     }

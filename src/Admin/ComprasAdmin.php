@@ -256,7 +256,7 @@ final class ComprasAdmin extends AbstractAdmin
         $collection
             ->add('recepcion', $this->getRouterIdParameter().'/recepcion')
             ->add('recepcionAlta', $this->getRouterIdParameter().'/recepcion/{id_prod}/alta')
-            ->add('recepcionMostrar', $this->getRouterIdParameter().'/recepcion/{id_prod}/mostrar');;
+            ->add('recepcionMostrar', $this->getRouterIdParameter().'/recepcion/{id_prod}/mostrar');
     }
 
     //override de la funcion del query que genera la lista

@@ -67,6 +67,9 @@ final class VentasAdmin extends AbstractAdmin
             ->add('created_at')
             ->add(ListMapper::NAME_ACTIONS, null, [
                 'actions' => [
+                    'salidas' => [
+                        'template' => 'CRUD/list__action_salida.html.twig',
+                    ],
                     'show' => [],
                     'edit' => [],
                 ],
@@ -275,5 +278,14 @@ final class VentasAdmin extends AbstractAdmin
         $sortValues[DatagridInterface::PAGE] = 1;
         $sortValues[DatagridInterface::SORT_ORDER] = 'DESC';
         $sortValues[DatagridInterface::SORT_BY] = 'created_at';
+    }
+
+    //https://symfony.com/bundles/SonataAdminBundle/current/cookbook/recipe_custom_action.html
+    protected function configureRoutes(RouteCollectionInterface $collection): void
+    {
+        $collection
+            ->add('salidas', $this->getRouterIdParameter().'/salidas')
+            ->add('salidaAlta', $this->getRouterIdParameter().'/salidas/{id_prod}/alta')
+            ->add('salidaMostrar', $this->getRouterIdParameter().'/salidas/{id_prod}/mostrar');
     }
 }

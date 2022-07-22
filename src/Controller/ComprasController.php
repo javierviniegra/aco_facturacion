@@ -146,7 +146,7 @@ final class ComprasController extends CRUDController
             'objeto' => $objeto,
             'productos' => $objeto->getProductos()
         ]);
-    }
+    } 
 
 
     /**

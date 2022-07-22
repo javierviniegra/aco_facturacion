@@ -12,12 +12,12 @@
             </li>
             <li>
                 <a href="{{ path('admin_app_compras_list') }}">
-                	<span>Compras</span>
+                	<span>Ventas</span>
                 </a>
             </li>
             <li>
                 <a href="{{ path('admin_app_compras_recepcion', {'id': objeto.id} ) }}">
-                	<span>Recepción - #{{ objeto }}</span>
+                	<span>Salida - #{{ objeto }}</span>
                 </a>
             </li>
             <li>
@@ -36,7 +36,7 @@
 	<nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
         	<div class="navbar-header">
-                <a class="navbar-brand" href="#">Recepción de Producto "{{ producto.producto.nombre }}"</a>
+                <a class="navbar-brand" href="#">Salida de Producto "{{ producto.producto.nombre }}"</a>
             </div>
             <div class="navbar-collapse">
             	<ul class="nav navbar-nav navbar-right">
@@ -44,7 +44,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Acciones <b class="caret"></b></a>
                         <ul class="dropdown-menu" role="menu">
                      		<li>
-                     			<a class="sonata-action-element" href="{{ path('admin_app_compras_recepcion', {'id': objeto.id} ) }}"><i class="fa fa-list" aria-hidden="true"></i>
+                     			<a class="sonata-action-element" href="{{ path('admin_app_ventas_salidas', {'id': objeto.id} ) }}"><i class="fa fa-list" aria-hidden="true"></i>
             						Volver al listado
             					</a>
             				</li>
@@ -74,10 +74,10 @@
                                                         <div class="box-body">
                                                             <div class="col-md-6">
                                                                 <div class="sonata-ba-collapsed-fields">
-                                                                   <b> Fecha de Recepción:</b> {{ producto.fechaRecepcion|date('d-m-Y')}}
+                                                                   <b> Fecha de Entrega:</b> {{ producto.fechaSalida|date('d-m-Y')}}
                                                                 </div>
                                                                 <div class="sonata-ba-collapsed-fields">
-                                                                    <b>Persona Recibió:</b> {{ producto.quienRecibe}}
+                                                                    <b>Persona Entrego:</b> {{ producto.quienEntrega}}
                                                                 </div>
                                                                 <div class="sonata-ba-collapsed-fields">
                                                                     <b>Temperatura:</b> {{ producto.temperatura}} °C

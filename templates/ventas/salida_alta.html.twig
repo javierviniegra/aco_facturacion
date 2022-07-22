@@ -1,6 +1,19 @@
 
 {% extends base_template %}
 
+    {% block javascripts %}
+        {{ parent() }}
+        <script>
+            $(function() {
+
+                    $("#salida_productos_almacenaje").empty();
+                {% for tanque in tanques %}
+                    $("#salida_productos_almacenaje").append("<option value='{{tanque.id}}'>{{tanque.nombre}}</option>");
+                {% endfor %}
+            });
+        </script>
+    {% endblock %}
+
 {% block title %}{{ 'title_dashboard'|trans({}, 'SonataAdminBundle') }}{% endblock %}
 {% block breadcrumb %}
     <div class="hidden-xs">
@@ -12,12 +25,12 @@
             </li>
             <li>
                 <a href="{{ path('admin_app_compras_list') }}">
-                	<span>Compras</span>
+                	<span>Ventas</span>
                 </a>
             </li>
             <li>
-                <a href="{{ path('admin_app_compras_recepcion', {'id': objeto.id} ) }}">
-                	<span>Recepción - #{{ objeto }}</span>
+                <a href="{{ path('admin_app_ventas_salidas', {'id': objeto.id} ) }}">
+                	<span>Salida - #{{ objeto }}</span>
                 </a>
             </li>
             <li>
@@ -36,7 +49,7 @@
 	<nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
         	<div class="navbar-header">
-                <a class="navbar-brand" href="#">Recepción de Producto "{{ producto.producto.nombre }}"</a>
+                <a class="navbar-brand" href="#">Salida de Producto "{{ producto.producto.nombre }}"</a>
             </div>
             <div class="navbar-collapse">
             	<ul class="nav navbar-nav navbar-right">
@@ -44,7 +57,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Acciones <b class="caret"></b></a>
                         <ul class="dropdown-menu" role="menu">
                      		<li>
-                     			<a class="sonata-action-element" href="{{ path('admin_app_compras_recepcion', {'id': objeto.id} ) }}"><i class="fa fa-list" aria-hidden="true"></i>
+                     			<a class="sonata-action-element" href="{{ path('admin_app_ventas_salidas', {'id': objeto.id} ) }}"><i class="fa fa-list" aria-hidden="true"></i>
             						Volver al listado
             					</a>
             				</li>
@@ -59,6 +72,7 @@
                     
     <section class="content">
         <div class="sonata-ba-form">
+        {{ form_start(form) }} 
             <div class="row">
                 <div class="col-md-12">
                     <div class="nav-tabs-custom">
@@ -67,31 +81,37 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="">
                                     <div class="box-body  container-fluid">
+                                        <div class="my-custom-class-for-errors">
+                                            {{ form_errors(form) }}
+                                        </div>
                                         <div class="sonata-ba-collapsed-fields">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="box box-primary">
                                                         <div class="box-body">
                                                             <div class="col-md-6">
-                                                                <div class="sonata-ba-collapsed-fields">
-                                                                   <b> Fecha de Recepción:</b> {{ producto.fechaRecepcion|date('d-m-Y')}}
+                                                                <div class="sonata-ba-collapsed-fields" id="almacenajes">
+                                                                    {{ form_row(form.almacenaje) }}
                                                                 </div>
                                                                 <div class="sonata-ba-collapsed-fields">
-                                                                    <b>Persona Recibió:</b> {{ producto.quienRecibe}}
+                                                                    {{ form_row(form.quienEntrega) }}
                                                                 </div>
                                                                 <div class="sonata-ba-collapsed-fields">
-                                                                    <b>Temperatura:</b> {{ producto.temperatura}} °C
+                                                                    {{ form_row(form.temperatura) }}
                                                                 </div>
                                                                 <div class="sonata-ba-collapsed-fields">
-                                                                    <b>Presión Absoluta:</b> {{ producto.presionAbsoluta}}
+                                                                    {{ form_row(form.presion_absoluta) }}
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="sonata-ba-collapsed-fields">
-                                                                    <b>Tanque:</b> {{ producto.almacenaje}}
+                                                                    {{ form_row(form.fechaSalida) }}
                                                                 </div>
                                                                 <div class="sonata-ba-collapsed-fields">
-                                                                    <b>Observaciones:</b> {{ producto.observaciones}}
+                                                                    {{ form_row(form.observaciones) }}
+                                                                </div>
+                                                                <div class="sonata-ba-collapsed-fields">
+                                                                    {{ form_row(form.submit) }}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -107,6 +127,8 @@
                     </div>
                 </div>
             </div>
+            {{ form_rest(form) }}
+        {{ form_end(form) }}
         </div>
     </section> 
 
