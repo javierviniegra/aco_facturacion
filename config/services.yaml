@@ -321,3 +321,10 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Catálogos, label: MetodosPagoVentas }
         public: true
+
+    admin.categorias_productos:
+        class: App\Admin\CategoriasProductosAdmin
+        arguments: [~, App\Entity\CategoriasProductos, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: CategoriasProductos }
+        public: true

@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\ProductosRepository; 
+use App\Repository\CategoriasProductosRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ProductosRepository::class)
+ * @ORM\Entity(repositoryClass=CategoriasProductosRepository::class)
  * @ORM\HasLifecycleCallbacks()
  */
-class Productos
+class CategoriasProductos
 {
     /**
      * @ORM\Id
@@ -34,34 +34,12 @@ class Productos
     private $updated_at;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $is_active;
-
-    /**
-     * @ORM\Column(type="float", nullable=true)
-     */
-    private $retencion;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=CategoriasProductos::class)
-     */
-    private $categoria;
-
-    public function __construct()
-    {
-        $this->retencion = 0;
-    }
-
-
-    /**
      * @ORM\PrePersist
      */
     public function onPrePersist()
     {
         $this->created_at = new \DateTime();
         $this->updated_at = new \DateTime();
-        $this->is_active = True;
     }
 
     /**
@@ -114,42 +92,6 @@ class Productos
     public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
-
-        return $this;
-    }
-
-    public function getIsActive(): ?bool
-    {
-        return $this->is_active;
-    }
-
-    public function setIsActive(bool $is_active): self
-    {
-        $this->is_active = $is_active;
-
-        return $this;
-    }
-
-    public function getRetencion(): ?float
-    {
-        return $this->retencion;
-    }
-
-    public function setRetencion(?float $retencion): self
-    {
-        $this->retencion = $retencion;
-
-        return $this;
-    }
-
-    public function getCategoria(): ?CategoriasProductos
-    {
-        return $this->categoria;
-    }
-
-    public function setCategoria(?CategoriasProductos $categoria): self
-    {
-        $this->categoria = $categoria;
 
         return $this;
     }
